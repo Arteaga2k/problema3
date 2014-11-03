@@ -1,0 +1,52 @@
+# Necessary to prevent problems when using a controller named "index" and having a root index.php
+# more here: http://httpd.apache.org/docs/2.2/content-negotiation.html
+Options -MultiViews
+
+# Abrimos la posibilidad de hacer reescritura de URL (controller/action/1/2/3)
+RewriteEngine On
+
+# Disallows others to look directly into /public/ folder
+Options -Indexes
+
+
+# Indicamos desde donde vamos a iniciar
+RewriteBase /problema1/
+
+# General rewrite rules
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+# eliminamos index.php de la url, el controlador frontal
+# en dólar 1 se guardará el valor de la variable $_GET
+# En el controlador frontal, analizamos esta variable, separándola por la "/" 
+# por ejemplo problema1/envios/home se analizará como controlador -> envios, acción -> home
+
+# ? Cualquier caracter coincidente
+# ! Negación, se puede usar como “Excepto …”
+# . Cualquier caracter arbitrario
+# - No hacer o no incluir
+# + Uno o más ocurrencias del caracter precedente
+# * Cero o más del caracter precedente (Comodín)
+# | Operador lógico or
+# \ Caracteres especiales como “\.” para mostrar un punto
+# /* Cero o más diagonales
+# ^$ Cadena de texto vacía
+# ^.*$ Cualquier coincidencia
+# () Agrupar
+# [] Coincidir
+# ^ Comienzo de una expresión
+# $ Final de una expresión
+
+
+# [L] – Detenerse en cuanto cumpla la última regla
+# [QSA] – Añadir cadenas de texto al final de la expresión
+# [F] – Aplicar un error 403 Forbidden
+# [N] – Siguiente instrucción
+# [R=301] – Aplicar una redirección 301
+# [NC] – No hacer distinción entre mayúsculas y minúsculas
+
+# directorios (!-d) 
+# archivos (!-f) 
