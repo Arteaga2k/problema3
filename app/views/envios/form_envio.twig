@@ -7,28 +7,91 @@
 
 			<form action="{{ constant('URL') }}envios/set" method="POST"
 				class="form-horizontal" role="form">
-				<div class="form-group">
-					<label for="idEnvio" class="col-sm-2 control-label">#ID</label>
-					<div class="col-sm-2">
-						<input type="text" name="id" class="form-control" id="idEnvio"
-							placeholder="#">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Destinatario</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="destinatario" class="col-sm-2 control-label">Nombre</label>
+							<div class="col-sm-10">
+								<input type="text" name="nombre" class="form-control"
+									id="nombre" placeholder="nombre">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="destinatario" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="text" name="email" class="form-control" id="email"
+									placeholder="email">
+							</div>
+						</div>
 					</div>
 				</div>
-				<hr />
-				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">Destinatario</label>
-					<div class="col-sm-10">
-						<input type="password" name="destinatario" class="form-control" id="inputPassword3"
-							placeholder="Password">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">Datos de envío</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="direccion" class="col-sm-2 control-label">Dirección</label>
+							<div class="col-sm-10">
+								<input type="text" name="direccion" class="form-control"
+									id="direccion" placeholder="direccion">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="telefono1" class="col-sm-2 control-label">Teléfono</label>
+							<div class="col-sm-5">
+								<input type="text" name="telefono1" class="form-control"
+									id="telefono1" placeholder="telefono1">
+							</div>
+							<div class="col-sm-5">
+								<input type="text" name="telefono2" class="form-control"
+									id="telefono2" placeholder="telefono2">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="fec_entrega" class="col-sm-2 control-label">Fecha de Entrega</label>
+							<div class="col-sm-3">
+								<input type="text" name="fec_entrega" class="form-control" id="fec_entrega"
+									placeholder="01/12/2015">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="direccion" class="col-sm-2 control-label">CP</label>
+							<div class="col-sm-3">
+								<input type="text" name="cp" class="form-control" id="cp"
+									placeholder="21110">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="provincia" class="col-sm-2 control-label">Provincia</label>
+							<div class="col-sm-10">
+								<select class="form-control" name="" id="">
+								{% for provincia in provincias %}
+									<option value="{{ provincia.ID }}">{{ provincia.NOMBRE }}</option>
+									 {% endfor %}
+								</select> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for=""poblacion"" class="col-sm-2 control-label">Población</label>
+							<div class="col-sm-10">
+								<input type="text" name=""poblacion"" class="form-control"
+									id="poblacion" placeholder="poblacion">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" name="setEnvio" value="Submit"
+									class="btn btn-default">Sign in</button>
+							</div>
+						</div>
+
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="direccion" class="col-sm-2 control-label">Dirección</label>
-					<div class="col-sm-10">
-						<input type="text" name="direccion" class="form-control" id="direccion"
-							placeholder="direccion">
-					</div>
-				</div>
+
+
+
 				<!-- <div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<div class="checkbox">
@@ -37,12 +100,7 @@
 						</div>
 					</div>
 				</div> -->
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" name="setEnvio" value="Submit"
-							class="btn btn-default">Sign in</button>
-					</div>
-				</div>
+
 			</form>
 
 

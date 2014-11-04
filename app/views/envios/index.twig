@@ -3,37 +3,45 @@
 <h3>Lista de Envíos</h3>
 <div class="row">
 	<div class="col-xs-12">
+		<div class="col-xs-6">
+			<a class="btn btn-primary" href="{{ constant('URL') }}envios/set">[+]
+				Añadir envío</a>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-xs-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="razon" class="col-xs-2 control-label">Razón social</label>
+							<div class="col-xs-10">
+								<input type="text" class="form-control col-sm-10" name="razon"
+									placeholder="razón social" />
+							</div>
+						</div>
 
-		<a class="btn btn-primary" href="{{ constant('URL') }}envios/set">Añadir
-			envío</a>
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="name" class="col-xs-2 control-label">Name</label>
-						<div class="col-xs-10">
-							<input type="text" class="form-control col-sm-10" name="name"
-								placeholder="name" />
+						<div class="form-group">
+							<label for="fecha" class="col-xs-3 col-sm-2 control-label">Fecha</label>
+							<div class="col-xs-3">
+								<input type="text" name="fcreaction" class="form-control"
+									placeholder="creacion" />
+							</div>
+							<div class="col-xs-3">
+								<input type="text" name="fentrega" class="form-control"
+									placeholder="entrega" />
+							</div>
+						</div>					
+						<div class="form-group">
+						<div class="col-xs-3 col-xs-offset-2">
+							<button type="submit" class="btn btn-primary">Filtrar</button>
+							</div>
 						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="birthday" class="col-xs-3 col-sm-2 control-label">Birthday</label>
-						<div class="col-xs-3">
-							<input type="text" class="form-control" placeholder="year" />
-						</div>
-						<div class="col-xs-3">
-							<input type="text" class="form-control" placeholder="month" />
-						</div>
-						<div class="col-xs-3">
-							<input type="text" class="form-control" placeholder="day" />
-						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
-
 	</div>
+
 	<div class="clearfix"></div>
 	<div class="col-xs-12"></div>
 	<div class="clearfix"></div>
@@ -41,22 +49,23 @@
 		<table class="table table-bordered table-hover">
 			<tr>
 				<td>Nombre</td>
-				<td>Apellido1</td>
-				<td>Apellido2</td>
+				<td>Apellidos</td>
 				<td>Telefonos</td>
 				<td>Razón Social</td>
 				<td>Acción</td>
 			</tr>
 			{% for envio in envios %}
+			<!-- |title devuelve una versión con mayúsculas iniciales del valor -->
 			<tr>
-				<td>{{ envio.NOMBRE }}</td>
-				<td>{{ envio.APELLIDO1 }}</td>
-				<td>{{ envio.APELLIDO2 }}</td>
-				<td>{{ [envio.TELEFONO1,envio.TELEFONO2]|join(' / ') }}</td>
+				<td>{{ envio.NOMBRE|title }}</td>
+				<td>{{ [envio.APELLIDO1,envio.APELLIDO2]|join(', ')|title }}</td>
+				<td>{{ [envio.TELEFONO1,envio.TELEFONO2]|join(' / ')|title }}</td>
 				<td>{{ envio.RAZONSOCIAL }}</td>
-				<td><a class="btn btn-primary"
-					href="{{ constant('URL') }}envios/delete/{{ envio.ID_ENVIO }}"> [-]
-						Eliminar</a></td>
+				<td><a class="btn btn-default"
+					href="{{ constant('URL') }}envios/edit/{{ envio.ID_ENVIO }}">Editar</a>
+					<a class="btn btn-danger"
+					href="{{ constant('URL') }}envios/delete/{{ envio.ID_ENVIO }}">Eliminar</a>
+				</td>
 			</tr>
 			{% endfor %}
 		</table>

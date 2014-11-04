@@ -47,7 +47,7 @@ abstract class Model
 
     abstract protected function delete($id);
 
-    abstract protected function validateForm($dataForm);
+  
 
     /**
      *
