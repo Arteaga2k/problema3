@@ -2,13 +2,23 @@
 
 /**
  * @author Carlos
- * 
+ * Implementación del patrón singleton
  **/
 class Db
 {
 
+    /**
+     * Contenedor Instancia de la Clase
+     *
+     * @var unknown
+     */
     private static $db;
 
+    /**
+     * El método singleton
+     *
+     * @return PDO
+     */
     public static function init()
     {
         if (! self::$db) {

@@ -46,6 +46,7 @@ abstract class Model
     abstract protected function edit($id);
 
     abstract protected function delete($id);
+
     abstract protected function validateForm($dataForm);
 
     /**
@@ -67,13 +68,14 @@ abstract class Model
 
     /**
      * Ejecuta un query simple del tipo INSERT, DELETE, UPDATE
-     * 
-     * @param array $params  bindParams          
+     *
+     * @param array $params
+     *            bindParams
      */
     public function singleQuery(array $params = array())
     {
         $sth = $this->_db->prepare($this->_sql);
-        $sth->execute($params);        
+        $sth->execute($params);
         
         if (empty($params))
             $sth->execute();
