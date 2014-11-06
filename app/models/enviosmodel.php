@@ -5,10 +5,10 @@ class EnviosModel extends model {
 	 * Obtener todos los envios de la tabla Envios
 	 */
 	public function getAllEnvios() {
-		$sql = "SELECT D.NOMBRE, D.APELLIDO1, D.APELLIDO2, 
-				D.TELEFONO1, D.TELEFONO2, D.RAZONSOCIAL, E.ID_ENVIO, D.ID_DESTINATARIO, E.FEC_CREACION, E.ESTADO
-				FROM ENVIO E, DESTINATARIO D
-				WHERE E.ID_DESTINATARIO = D.ID_DESTINATARIO";
+		$sql = "SELECT NOMBRE, APELLIDO1, APELLIDO2, 
+				TELEFONO1, TELEFONO2, RAZONSOCIAL, ID_ENVIO,FEC_CREACION, ESTADO
+				FROM TBL_ENVIO";
+				
 		
 		$this->_setSql ( $sql );
 		$envios = $this->getAll ();
@@ -42,7 +42,7 @@ class EnviosModel extends model {
 	 *
 	 * @see Model::set()
 	 */
-	public function set() {
+	public function add() {
 	}
 	
 	/**

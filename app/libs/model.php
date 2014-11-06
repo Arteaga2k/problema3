@@ -41,7 +41,7 @@ abstract class Model
     // metodos abstractos para clases que hereden, ya que no se pueden definir con exactitud
     abstract protected function get($id);
 
-    abstract protected function set();
+    abstract protected function add();
 
     abstract protected function edit($id);
 

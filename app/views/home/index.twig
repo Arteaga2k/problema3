@@ -5,7 +5,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Envíos pendientes</div>
 			<div class="panel-body">
-				<table class="table table-bordered">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
 							<td>ID</td>
@@ -19,9 +19,8 @@
 						{% if envio.ESTADO|lower == "p" %}
 						<tr>
 							<td>#{{ envio.ID_ENVIO }}</td>
-							<td><a
-								href="{{ constant('URL') }}destinatario/details/{{ envio.ID_DESTINATARIO }}">{{
-									[envio.NOMBRE,envio.APELLIDO1, envio.APELLIDO2]|join(' ') }}</a></td>
+							<td>{{
+									[envio.NOMBRE,envio.APELLIDO1, envio.APELLIDO2]|join(' ') }}</td>
 							<td><a
 								href="{{ constant('URL') }}envios/edit/{{ envio.ID_ENVIO }}">{{
 									envio.FEC_CREACION }} </a></td>

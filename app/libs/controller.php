@@ -21,7 +21,7 @@ class Controller
         // construyo cadena y cargo el modelo
         require 'app/models/' . strtolower($model_name) . '.php';
         // return el modelo cargado
-        return new $model_name(); // $this->db);
+        return new $model_name(); 
     }
 
     public function render($view, $data_array = array())
