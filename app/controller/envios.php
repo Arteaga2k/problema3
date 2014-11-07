@@ -76,7 +76,9 @@ class Envios extends Controller {
 				$this->render ( 'envios/form_envio', array (
 						'title' => 'Nuevo envío',
 						'provincias' => $provincias,
-						'errores' => $errores 
+						'errores' => array(
+							'nombre' => 'error nombre'
+						) 
 				) );
 			}
 		} else {
