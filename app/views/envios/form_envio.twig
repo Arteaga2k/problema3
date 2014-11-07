@@ -18,6 +18,20 @@
 											id="nombre" placeholder="nombre">
 									</div>
 								</div>
+									<div class="form-group">
+									<label for="apellido1" class="col-sm-2 control-label">Primer Apellido</label>
+									<div class="col-sm-10">
+										<input type="text" name="apellido1" class="form-control"
+											id="apellido1" placeholder="primer apellido">
+									</div>
+								</div>
+									<div class="form-group">
+									<label for="apellido2" class="col-sm-2 control-label">Segundo Apellido</label>
+									<div class="col-sm-10">
+										<input type="text" name="apellido2" class="form-control"
+											id="apellido2" placeholder="segundo apellido">
+									</div>
+								</div>
 								<div class="form-group">
 									<label for="destinatario" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-10">
@@ -69,8 +83,8 @@
 									<div class="col-sm-10">
 										<select class="form-control" name="" id=""> {% for provincia
 											in provincias %}
-											<option value="{{ provincia.ID }}">{{ provincia.NOMBRE }}</option>
-											{% endfor %}
+											<option value="{{ provincia.ID_PROVINCIA }}">{{
+												provincia.PROVINCIA }}</option> {% endfor %}
 										</select>
 									</div>
 								</div>

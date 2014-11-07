@@ -20,8 +20,8 @@ class EnviosModel extends model {
 	 * Obtener listado de provincias
 	 */
 	public function getProvincias() {
-		$sql = "SELECT P.ID, P.NOMBRE
-				FROM PROVINCIA P";
+		$sql = "SELECT P.ID_PROVINCIA, P.PROVINCIA
+				FROM TBL_PROVINCIA P";
 		
 		$this->_setSql ( $sql );
 		$provincias = $this->getAll ();
