@@ -105,11 +105,11 @@ class Application
             $this->url_parameter_2 = (isset($url[3]) ? $url[3] : null);
             $this->url_parameter_3 = (isset($url[4]) ? $url[4] : null);
             
-            echo 'Controlador: ' . $this->url_controller . '<br />';
+            /*echo 'Controlador: ' . $this->url_controller . '<br />';
             echo 'Accion: ' . $this->url_action . '<br />';
             echo 'Parametro 1: ' . $this->url_parameter_1 . '<br />';
             echo 'Parametro 2: ' . $this->url_parameter_2 . '<br />';
-            echo 'Paramero 3: ' . $this->url_parameter_3 . '<br />';
+            echo 'Paramero 3: ' . $this->url_parameter_3 . '<br />';*/
         }
     }
 }

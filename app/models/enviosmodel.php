@@ -59,7 +59,7 @@ class EnviosModel extends model {
 	 * @see Model::delete()
 	 */
 	public function delete($id_envio) {
-		$sql = "DELETE FROM envio WHERE id_envio =  :envioID";
+		$sql = "DELETE FROM tbl_envio WHERE id_envio =  :envioID";
 		$this->_setSql ( $sql );
 		
 		// bindeamos parámetros
