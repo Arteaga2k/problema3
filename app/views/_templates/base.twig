@@ -1,18 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title></title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+	<title>Problema 1</title>
 
 <!-- Estilos css -->
 {% block stylesheets %}
-<link href="{{ constant('URL') }}assets/css/bootstrap.css"
-	type="text/css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<link href="{{ constant('URL') }}assets/css/bootstrap.css"	type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 {% endblock %}
 
 
@@ -54,11 +49,12 @@
 
 
 
-		<!-- Bloque javascript
+		<!-- Bloque javascript -->
 	</div>
     {% block javascripts %}
-        <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="assets/js/jquery-1.11.1.min.js" type="text/javascript"></script>                
+     <script src="{{ constant('URL') }}assets/js/jquery-1.11.1.min.js" type="text/javascript"></script>  
+        <script src="{{ constant('URL') }}assets/js/bootstrap.min.js" type="text/javascript"></script>          
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>    
     {% endblock %} 
 </body>
 </html>

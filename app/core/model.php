@@ -25,17 +25,8 @@ abstract class Model
      */
     public function __construct()
     {
-        require 'app/libs/db.php';
-        $this->_db = Db::init();
-    }
-
-    /**
-     *
-     * @param unknown $sql            
-     */
-    protected function _setSql($sql)
-    {
-        $this->_sql = $sql;
+        require 'app/core/db.php';
+        $this->_db = Db::singleton();
     }
     
     // metodos abstractos para clases que hereden, ya que no se pueden definir con exactitud
@@ -47,9 +38,17 @@ abstract class Model
 
     abstract protected function delete($id);
 
-  
+    /**
+     *
+     * @param string $sql            
+     */
+    protected function _setSql($sql)
+    {
+        $this->_sql = $sql;
+    }
 
     /**
+     * Ejecuta un query del tipo SELECT que devuelve todas las filas
      *
      * @param string $data            
      * @throws Exception
@@ -69,34 +68,36 @@ abstract class Model
     /**
      * Ejecuta un query simple del tipo INSERT, DELETE, UPDATE
      *
-     * @param array $params
-     *            bindParams
+     * @param array $params            
+     * @throws Exception
      */
     public function singleQuery(array $params = array())
-    {
-        $sth = $this->_db->prepare($this->_sql);
-        $sth->execute($params);
-        
-        if (empty($params))
-            $sth->execute();
-        
-        $sth->execute($params);
-    }
-
-    /**
-     *
-     * @param string $data            
-     * @throws Exception
-     * @return mixed
-     */
-    public function getFila($data = null)
     {
         if (! $this->_sql) {
             throw new Exception("No hay sql");
         }
         
         $sth = $this->_db->prepare($this->_sql);
-        $sth->execute($data);
+        $sth->execute($params);
+        
+       
+    }
+
+    /**
+     * Ejecuta un query simple del tipo SELECT que devuelve una sola fila
+     *
+     * @param string $data            
+     * @throws Exception
+     * @return mixed
+     */
+    public function getFila(array $params = array())
+    {
+        if (! $this->_sql) {
+            throw new Exception("No hay sql");
+        }
+        
+        $sth = $this->_db->prepare($this->_sql);
+        $sth->execute($params);
         return $sth->fetch();
     }
 }

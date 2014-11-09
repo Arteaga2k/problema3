@@ -16,6 +16,7 @@ class Home extends Controller
         $envios = $envios_model->getAllEnvios();
         
         $this->render('home/index', array(
+            'title' => 'Dashboard',
             'envios' => $envios
         ));
     }

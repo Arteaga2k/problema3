@@ -19,7 +19,7 @@ class Db
      *
      * @return PDO
      */
-    public static function init()
+    public static function singleton()
     {
         if (! self::$db) {
             try {

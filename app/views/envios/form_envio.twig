@@ -1,88 +1,96 @@
 {% extends "_templates/base.twig" %} {% block content %}
-<h2>{{ title }}</h2>
+<div class="page-header">
+            <h1>Envíos <small>{{ title }} {%  if datos.ID_ENVIO %}#id{{ datos.ID_ENVIO}} {% endif %}</small></h1>
+</div>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="row">
-			<div class="col-xs-6">
-			<p>{{ errores.nombre }}</p>
-				{% for error in errores %}
-				http://knpuniversity.com/screencast/twig/objects-and-arrays
-				<p class="">{{ error.nombre }}</p>
-				{% endfor %}
+			<div class="col-xs-6 col-xs-offset-2">		
 				<div class="panel">
 					<form action="{{ constant('URL') }}envios/add" method="POST"
 						class="form-horizontal" role="form">
 						<div class="panel panel-default">
-							<div class="panel-heading">Destinatario</div>
+							<div class="panel-heading">Datos destinatario</div>
 							<div class="panel-body">
-								<div class="form-group">
+								<div class="form-group {% if errores.nombre|length -%} has-error {%- endif -%}">
 									<label for="destinatario" class="col-sm-2 control-label">Nombre</label>
 									<div class="col-sm-10">
 										<input type="text" name="nombre" class="form-control"
-											id="nombre" placeholder="nombre">
+											id="nombre"
+											placeholder=" {{- datos.nombre|length ? datos.nombre : '' -}} ">											
+											<span>{{- errores.nombre|length ? errores.nombre : '' -}}</span>																				
 									</div>
+									
 								</div>
-								<div class="form-group">
+								<div class="form-group {% if errores.apellido1|length  -%} has-error {%- endif -%}">
 									<label for="apellido1" class="col-sm-2 control-label">Primer
 										Apellido</label>
 									<div class="col-sm-10">
 										<input type="text" name="apellido1" class="form-control"
-											id="apellido1" placeholder="primer apellido">
+											id="apellido1" placeholder="{{ datos.apellido1|length ? datos.apellido1 : '' }}">
+											<span>{{- errores.apellido1|length ? errores.apellido1 : '' -}}</span>		
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group {% if errores.apellido2|length -%} has-error {%- endif -%}">
 									<label for="apellido2" class="col-sm-2 control-label">Segundo
 										Apellido</label>
 									<div class="col-sm-10">
 										<input type="text" name="apellido2" class="form-control"
-											id="apellido2" placeholder="segundo apellido">
+											id="apellido2" placeholder="{{ datos.apellido2|length ? datos.apellido2 : '' }}">
+											<span>{{- errores.apellido2|length ? errores.apellido2 : '' -}}</span>
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="destinatario" class="col-sm-2 control-label">Email</label>
+								<div class="form-group {% if errores.email|length -%} has-error {%- endif -%}">
+									<label for="email" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-10">
 										<input type="text" name="email" class="form-control"
-											id="email" placeholder="email">
+											id="email" placeholder="{{ datos.email|length ? datos.email : '' }}">
+											<span>{{- errores.email|length ? errores.email : '' -}}</span>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="panel panel-default">
-							<div class="panel-heading">Datos de envío</div>
+							<div class="panel-heading">Datos envío</div>
 							<div class="panel-body">
-								<div class="form-group">
+								<div class="form-group {% if errores.direccion|length -%} has-error {%- endif -%}">
 									<label for="direccion" class="col-sm-2 control-label">Dirección</label>
 									<div class="col-sm-10">
 										<input type="text" name="direccion" class="form-control"
-											id="direccion" placeholder="direccion">
+											id="direccion" placeholder="{{ datos.direccion|length ? datos.direccion : '' }}">
+											<span>{{- errores.direccion|length ? errores.direccion : '' -}}</span>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group {% if errores.telefono1|length -%} has-error {%- endif -%}">
 									<label for="telefono1" class="col-sm-2 control-label">Teléfono</label>
 									<div class="col-sm-5">
 										<input type="text" name="telefono1" class="form-control"
-											id="telefono1" placeholder="telefono1">
+											id="telefono1" placeholder="{{ datos.telefono1|length ? datos.telefono1 : '' }}">
+											<span>{{- errores.telefono1|length ? errores.telefono1 : '' -}}</span>
 									</div>
 									<div class="col-sm-5">
 										<input type="text" name="telefono2" class="form-control"
-											id="telefono2" placeholder="telefono2">
+											id="telefono2" placeholder="{{ datos.telefono2|length ? datos.telefono2 : '' }}">
+											<span>{{- errores.telefono2|length ? errores.telefono2 : '' -}}</span>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group {% if errores.fec_entrega|length -%} has-error {%- endif -%}">
 									<label for="fec_entrega" class="col-sm-2 control-label">Fecha
 										de Entrega</label>
 									<div class="col-sm-3">
 										<input type="text" name="fec_entrega" class="form-control"
-											id="fec_entrega" placeholder="01/12/2015">
+											id="fec_entrega" placeholder="{{ datos.fec_entrega|length ? datos.fec_entrega : 'dd/mm/aaaa' }}">		
+											<span>{{- errores.fec_entrega|length ? errores.fec_entrega : '' -}}</span>									
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="direccion" class="col-sm-2 control-label">Código
+								<div class="form-group {% if errores.codpostal|length -%} has-error {%- endif -%}">
+									<label for="codpostal" class="col-sm-2 control-label">Código
 										postal</label>
 									<div class="col-sm-3">
-										<input type="text" name="cp" class="form-control" id="cp"
-											placeholder="21110">
+										<input type="text" name="codpostal" class="form-control" id="cp"
+											placeholder="{{ datos.codpostal|length ? datos.codpostal : '' }}">
+											<span>{{- errores.codpostal|length ? errores.codpostal : '' -}}</span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -95,21 +103,34 @@
 										</select>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group {% if errores.poblacion|length -%} has-error {%- endif -%}">
 									<label for="poblacion" " class="col-sm-2 control-label">Población</label>
 									<div class="col-sm-10">
 										<input type="text" name="poblacion" class="form-control"
-											id="poblacion" placeholder="poblacion">
+											id="poblacion" placeholder="{{ datos.telefono1|length ? datos.telefono1 : '' }}">
+											<span>{{- errores.poblacion|length ? errores.poblacion : '' -}}</span>
 									</div>
 								</div>
-								<!-- <div class="form-group">
-									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" name="setEnvio" value="Submit"
-											class="btn btn-primary pull-right">Guardar</button>
-									</div>
-								</div>-->
 							</div>
 						</div>
+						
+						<div class="panel panel-default">
+					<div class="panel-heading">Estado Pedido</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="estado" class="col-sm-2 control-label">Estado</label>
+							<div class="col-sm-10">
+								<!-- Creo array de estados -->
+								{% set estados = {'e': 'enviado', 'p': 'pendiente','d':
+								'devuelto'} %} <select class="form-control" name="estado"
+									id="estado"> {% for key,value in estados %}
+									<option value="{{ key }}">{{ value }}</option> {% endfor %}
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+						
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" name="setEnvio" value="Submit"
@@ -119,26 +140,21 @@
 				
 				</div>
 			</div>
-			<div class="col-xs-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Estado Pedido</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label for="estado" class="col-sm-2 control-label">Estado</label>
-							<div class="col-sm-10">
-								<!-- Creo array de estados -->
-								{% set estados = {'e': 'entregado', 'p': 'pendiente','d':
-								'devuelto'} %} <select class="form-control" name="estado"
-									id="estado"> {% for key,value in estados %}
-									<option value="{{ key }}">{{ value }}</option> {% endfor %}
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		
 			</form>
 			<!-- Fin row -->
 		</div>
 	</div>
+	{% endblock %}
+	{% block javascripts %}
+	 {{ parent() }}
+	  <script>
+		
+	 /* $(function () {
+		 
+		  $("#fec_entrega").datepicker({		 
+		  });
+		  });*/
+	  </script>
+	
 	{% endblock %}
