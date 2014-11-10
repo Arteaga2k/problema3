@@ -1,4 +1,4 @@
-``macro``
+''macro''
 =========
 
 Macros are comparable with functions in regular programming languages. They
@@ -15,7 +15,7 @@ Here is a small example of a macro that renders a form element:
 
 Macros differs from native PHP functions in a few ways:
 
-* Default argument values are defined by using the ``default`` filter in the
+* Default argument values are defined by using the ''default'' filter in the
   macro body;
 
 * Arguments of a macro are always optional.
@@ -26,19 +26,19 @@ variables.
 .. tip::
 
     You can pass the whole context as an argument by using the special
-    ``_context`` variable.
+    ''_context'' variable.
 
 Macros can be defined in any template, and need to be "imported" before being
-used (see the documentation for the :doc:`import<../tags/import>` tag for more
+used (see the documentation for the :doc:'import<../tags/import>' tag for more
 information):
 
 .. code-block:: jinja
 
     {% import "forms.html" as forms %}
 
-The above ``import`` call imports the "forms.html" file (which can contain only
+The above ''import'' call imports the "forms.html" file (which can contain only
 macros, or a template and some macros), and import the functions as items of
-the ``forms`` variable.
+the ''forms'' variable.
 
 The macro can then be called at will:
 
@@ -48,7 +48,7 @@ The macro can then be called at will:
     <p>{{ forms.input('password', null, 'password') }}</p>
 
 If macros are defined and used in the same template, you can use the
-special ``_self`` variable to import them:
+special ''_self'' variable to import them:
 
 .. code-block:: jinja
 
@@ -59,7 +59,7 @@ special ``_self`` variable to import them:
 .. warning::
 
     When you define a macro in the template where you are going to use it, you
-    might be tempted to call the macro directly via ``_self.input()`` instead
+    might be tempted to call the macro directly via ''_self.input()'' instead
     of importing it; even if seems to work, this is just a side-effect of the
     current implementation and it won't work anymore in Twig 2.x.
 
@@ -80,4 +80,4 @@ import it locally:
         </div>
     {% endmacro %}
 
-.. seealso:: :doc:`from<../tags/from>`, :doc:`import<../tags/import>`
+.. seealso:: :doc:'from<../tags/from>', :doc:'import<../tags/import>'

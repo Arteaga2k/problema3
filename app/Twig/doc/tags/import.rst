@@ -1,13 +1,13 @@
-``import``
+''import''
 ==========
 
-Twig supports putting often used code into :doc:`macros<../tags/macro>`. These
+Twig supports putting often used code into :doc:'macros<../tags/macro>'. These
 macros can go into different templates and get imported from there.
 
 There are two ways to import templates. You can import the complete template
 into a variable or request specific macros from it.
 
-Imagine we have a helper module that renders forms (called ``forms.html``):
+Imagine we have a helper module that renders forms (called ''forms.html''):
 
 .. code-block:: jinja
 
@@ -51,7 +51,7 @@ namespace:
 
 .. tip::
 
-    To import macros from the current file, use the special ``_self`` variable
+    To import macros from the current file, use the special ''_self'' variable
     for the source.
 
-.. seealso:: :doc:`macro<../tags/macro>`, :doc:`from<../tags/from>`
+.. seealso:: :doc:'macro<../tags/macro>', :doc:'from<../tags/from>'

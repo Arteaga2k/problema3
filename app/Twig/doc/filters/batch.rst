@@ -1,10 +1,10 @@
-``batch``
+''batch''
 =========
 
 .. versionadded:: 1.12.3
-    The ``batch`` filter was added in Twig 1.12.3.
+    The ''batch'' filter was added in Twig 1.12.3.
 
-The ``batch`` filter "batches" items by returning a list of lists with the
+The ''batch'' filter "batches" items by returning a list of lists with the
 given number of items. If you provide a second parameter, it is used to fill
 missing items:
 

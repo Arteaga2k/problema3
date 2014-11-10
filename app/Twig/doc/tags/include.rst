@@ -1,7 +1,7 @@
-``include``
+''include''
 ===========
 
-The ``include`` statement includes a template and returns the rendered content
+The ''include'' statement includes a template and returns the rendered content
 of that file into the current namespace:
 
 .. code-block:: jinja
@@ -15,7 +15,7 @@ Included templates have access to the variables of the active context.
 If you are using the filesystem loader, the templates are looked for in the
 paths defined by it.
 
-You can add additional variables by passing them after the ``with`` keyword:
+You can add additional variables by passing them after the ''with'' keyword:
 
 .. code-block:: jinja
 
@@ -25,7 +25,7 @@ You can add additional variables by passing them after the ``with`` keyword:
     {% set vars = {'foo': 'bar'} %}
     {% include 'template.html' with vars %}
 
-You can disable access to the context by appending the ``only`` keyword:
+You can disable access to the context by appending the ''only'' keyword:
 
 .. code-block:: jinja
 
@@ -40,8 +40,8 @@ You can disable access to the context by appending the ``only`` keyword:
 .. tip::
 
     When including a template created by an end user, you should consider
-    sandboxing it. More information in the :doc:`Twig for Developers<../api>`
-    chapter and in the :doc:`sandbox<../tags/sandbox>` tag documentation.
+    sandboxing it. More information in the :doc:'Twig for Developers<../api>'
+    chapter and in the :doc:'sandbox<../tags/sandbox>' tag documentation.
 
 The template name can be any valid Twig expression:
 
@@ -50,7 +50,7 @@ The template name can be any valid Twig expression:
     {% include some_var %}
     {% include ajax ? 'ajax.html' : 'not_ajax.html' %}
 
-And if the expression evaluates to a ``Twig_Template`` object, Twig will use it
+And if the expression evaluates to a ''Twig_Template'' object, Twig will use it
 directly::
 
     // {% include template %}
@@ -60,9 +60,9 @@ directly::
     $twig->loadTemplate('template.twig')->display(array('template' => $template));
 
 .. versionadded:: 1.2
-    The ``ignore missing`` feature has been added in Twig 1.2.
+    The ''ignore missing'' feature has been added in Twig 1.2.
 
-You can mark an include with ``ignore missing`` in which case Twig will ignore
+You can mark an include with ''ignore missing'' in which case Twig will ignore
 the statement if the template to be included does not exist. It has to be
 placed just after the template name. Here some valid examples:
 
@@ -82,5 +82,5 @@ inclusion. The first template that exists will be included:
 
     {% include ['page_detailed.html', 'page.html'] %}
 
-If ``ignore missing`` is given, it will fall back to rendering nothing if none
+If ''ignore missing'' is given, it will fall back to rendering nothing if none
 of the templates exist, otherwise it will throw an exception.

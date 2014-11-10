@@ -1,7 +1,7 @@
-``abs``
+''abs''
 =======
 
-The ``abs`` filter returns the absolute value.
+The ''abs'' filter returns the absolute value.
 
 .. code-block:: jinja
 
@@ -13,6 +13,6 @@ The ``abs`` filter returns the absolute value.
 
 .. note::
 
-    Internally, Twig uses the PHP `abs`_ function.
+    Internally, Twig uses the PHP 'abs'_ function.
 
-.. _`abs`: http://php.net/abs
+.. _'abs': http://php.net/abs

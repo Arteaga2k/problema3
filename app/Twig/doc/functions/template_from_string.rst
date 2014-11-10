@@ -1,10 +1,10 @@
-``template_from_string``
+''template_from_string''
 ========================
 
 .. versionadded:: 1.11
-    The ``template_from_string`` function was added in Twig 1.11.
+    The ''template_from_string'' function was added in Twig 1.11.
 
-The ``template_from_string`` function loads a template from a string:
+The ''template_from_string'' function loads a template from a string:
 
 .. code-block:: jinja
 
@@ -13,8 +13,8 @@ The ``template_from_string`` function loads a template from a string:
 
 .. note::
 
-    The ``template_from_string`` function is not available by default. You
-    must add the ``Twig_Extension_StringLoader`` extension explicitly when
+    The ''template_from_string'' function is not available by default. You
+    must add the ''Twig_Extension_StringLoader'' extension explicitly when
     creating your Twig environment::
 
         $twig = new Twig_Environment(...);
@@ -22,11 +22,11 @@ The ``template_from_string`` function loads a template from a string:
 
 .. note::
 
-    Even if you will probably always use the ``template_from_string`` function
-    with the ``include`` function, you can use it with any tag or function that
-    takes a template as an argument (like the ``embed`` or ``extends`` tags).
+    Even if you will probably always use the ''template_from_string'' function
+    with the ''include'' function, you can use it with any tag or function that
+    takes a template as an argument (like the ''embed'' or ''extends'' tags).
 
 Arguments
 ---------
 
-* ``template``: The template
+* ''template'': The template

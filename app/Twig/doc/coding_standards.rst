@@ -4,8 +4,8 @@ Coding Standards
 When writing Twig templates, we recommend you to follow these official coding
 standards:
 
-* Put one (and only one) space after the start of a delimiter (``{{``, ``{%``,
-  and ``{#``) and before the end of a delimiter (``}}``, ``%}``, and ``#}``):
+* Put one (and only one) space after the start of a delimiter (''{{'', ''{%'',
+  and ''{#'') and before the end of a delimiter (''}}'', ''%}'', and ''#}''):
 
   .. code-block:: jinja
 
@@ -23,10 +23,10 @@ standards:
     {%- if foo -%}{%- endif -%}
 
 * Put one (and only one) space before and after the following operators:
-  comparison operators (``==``, ``!=``, ``<``, ``>``, ``>=``, ``<=``), math
-  operators (``+``, ``-``, ``/``, ``*``, ``%``, ``//``, ``**``), logic
-  operators (``not``, ``and``, ``or``), ``~``, ``is``, ``in``, and the ternary
-  operator (``?:``):
+  comparison operators (''=='', ''!='', ''<'', ''>'', ''>='', ''<=''), math
+  operators (''+'', ''-'', ''/'', ''*'', ''%'', ''//'', ''**''), logic
+  operators (''not'', ''and'', ''or''), ''~'', ''is'', ''in'', and the ternary
+  operator (''?:''):
 
   .. code-block:: jinja
 
@@ -34,7 +34,7 @@ standards:
      {{ foo ~ bar }}
      {{ true ? true : false }}
 
-* Put one (and only one) space after the ``:`` sign in hashes and ``,`` in
+* Put one (and only one) space after the '':'' sign in hashes and '','' in
   arrays and hashes:
 
   .. code-block:: jinja
@@ -56,8 +56,8 @@ standards:
     {{ 'foo' }}
     {{ "foo" }}
 
-* Do not put any spaces before and after the following operators: ``|``,
-  ``.``, ``..``, ``[]``:
+* Do not put any spaces before and after the following operators: ''|'',
+  ''.'', ''..'', ''[]'':
 
   .. code-block:: jinja
 

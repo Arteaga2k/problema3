@@ -1,8 +1,8 @@
-``defined``
+''defined''
 ===========
 
-``defined`` checks if a variable is defined in the current context. This is very
-useful if you use the ``strict_variables`` option:
+''defined'' checks if a variable is defined in the current context. This is very
+useful if you use the ''strict_variables'' option:
 
 .. code-block:: jinja
 
@@ -20,7 +20,7 @@ useful if you use the ``strict_variables`` option:
         ...
     {% endif %}
 
-When using the ``defined`` test on an expression that uses variables in some
+When using the ''defined'' test on an expression that uses variables in some
 method calls, be sure that they are all defined first:
 
 .. code-block:: jinja

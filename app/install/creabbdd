@@ -1,47 +1,47 @@
-CREATE SCHEMA `kenollega` ;
+CREATE SCHEMA 'kenollega' ;
 
 --
--- Estructura de tabla para la tabla `envio`
+-- Estructura de tabla para la tabla 'envio'
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_envio` (
-`id_envio` int(11) NOT NULL,
-  `direccion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `poblacion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `cp` int(5) NOT NULL,
-  `provincia` varchar(5) COLLATE utf8_spanish_ci NOT NULL,
-  `email` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `estado` varchar(3) COLLATE utf8_spanish_ci NOT NULL,
-  `fec_creacion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `fec_entrega` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `observaciones` varchar(300) COLLATE utf8_spanish_ci NOT NULL,
-  `nombre` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-  `apellido1` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-  `apellido2` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-  `razonsocial` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-  `telefono1` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `telefono2` varchar(20) COLLATE utf8_spanish_ci NOT NULL
+CREATE TABLE IF NOT EXISTS 'tbl_envio' (
+'id_envio' int(11) NOT NULL,
+  'direccion' varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  'poblacion' varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  'codpostal' int(5) NOT NULL,
+  'provincia' varchar(5) COLLATE utf8_spanish_ci NOT NULL,
+  'email' varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  'estado' varchar(3) COLLATE utf8_spanish_ci NOT NULL,
+  'fec_creacion' varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  'fec_entrega' varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  'observaciones' varchar(300) COLLATE utf8_spanish_ci NOT NULL,
+  'nombre' varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  'apellido1' varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  'apellido2' varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  'razonsocial' varchar(60) COLLATE utf8_spanish_ci NOT NULL,
+  'telefono1' varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  'telefono2' varchar(20) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 
 --
--- Indices de la tabla `envio`
+-- Indices de la tabla 'envio'
 --
-ALTER TABLE `tbl_envio`
- ADD PRIMARY KEY (`id_envio`);
+ALTER TABLE 'tbl_envio'
+ ADD PRIMARY KEY ('id_envio');
 
 --
--- AUTO_INCREMENT de la tabla `envio`
+-- AUTO_INCREMENT de la tabla 'envio'
 --
-ALTER TABLE `tbl_envio`
-MODIFY `id_envio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+ALTER TABLE 'tbl_envio'
+MODIFY 'id_envio' int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 
-CREATE TABLE `tbl_provincia` (
-  `id_provincia` smallint(6) DEFAULT NULL,
-  `provincia` varchar(30) DEFAULT NULL
+CREATE TABLE 'tbl_provincia' (
+  'id_provincia' smallint(6) DEFAULT NULL,
+  'provincia' varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB;
 
-INSERT INTO `tbl_provincia` (`id_provincia`, `provincia`)
+INSERT INTO 'tbl_provincia' ('id_provincia', 'provincia')
 VALUES
 	(2,'Albacete'),
 	(3,'Alicante/Alacant'),

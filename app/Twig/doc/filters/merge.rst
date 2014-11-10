@@ -1,7 +1,7 @@
-``merge``
+''merge''
 =========
 
-The ``merge`` filter merges an array with another array:
+The ''merge'' filter merges an array with another array:
 
 .. code-block:: jinja
 
@@ -13,7 +13,7 @@ The ``merge`` filter merges an array with another array:
 
 New values are added at the end of the existing ones.
 
-The ``merge`` filter also works on hashes:
+The ''merge'' filter also works on hashes:
 
 .. code-block:: jinja
 
@@ -42,6 +42,6 @@ overridden.
         
 .. note::
 
-    Internally, Twig uses the PHP `array_merge`_ function.
+    Internally, Twig uses the PHP 'array_merge'_ function.
 
-.. _`array_merge`: http://php.net/array_merge
+.. _'array_merge': http://php.net/array_merge

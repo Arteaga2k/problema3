@@ -1,4 +1,4 @@
-``range``
+''range''
 =========
 
 Returns a list containing an arithmetic progression of integers:
@@ -22,7 +22,7 @@ decrement):
 
     {# outputs 0, 2, 4, 6, #}
 
-The Twig built-in ``..`` operator is just syntactic sugar for the ``range``
+The Twig built-in ''..'' operator is just syntactic sugar for the ''range''
 function (with a step of 1):
 
 .. code-block:: jinja
@@ -33,13 +33,13 @@ function (with a step of 1):
 
 .. tip::
 
-    The ``range`` function works as the native PHP `range`_ function.
+    The ''range'' function works as the native PHP 'range'_ function.
 
 Arguments
 ---------
 
-* ``low``:  The first value of the sequence.
-* ``high``: The highest possible value of the sequence.
-* ``step``: The increment between elements of the sequence.
+* ''low'':  The first value of the sequence.
+* ''high'': The highest possible value of the sequence.
+* ''step'': The increment between elements of the sequence.
 
-.. _`range`: http://php.net/range
+.. _'range': http://php.net/range

@@ -1,7 +1,7 @@
-``lower``
+''lower''
 =========
 
-The ``lower`` filter converts a value to lowercase:
+The ''lower'' filter converts a value to lowercase:
 
 .. code-block:: jinja
 

@@ -1,7 +1,7 @@
-``replace``
+''replace''
 ===========
 
-The ``replace`` filter formats a given string by replacing the placeholders
+The ''replace'' filter formats a given string by replacing the placeholders
 (placeholders are free-form):
 
 .. code-block:: jinja
@@ -14,6 +14,6 @@ The ``replace`` filter formats a given string by replacing the placeholders
 Arguments
 ---------
 
-* ``replace_pairs``: The placeholder values
+* ''replace_pairs'': The placeholder values
 
-.. seealso:: :doc:`format<format>`
+.. seealso:: :doc:'format<format>'

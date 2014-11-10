@@ -1,7 +1,7 @@
-``null``
+''null''
 ========
 
-``null`` returns ``true`` if the variable is ``null``:
+''null'' returns ''true'' if the variable is ''null'':
 
 .. code-block:: jinja
 
@@ -9,4 +9,4 @@
 
 .. note::
 
-    ``none`` is an alias for ``null``.
+    ''none'' is an alias for ''null''.

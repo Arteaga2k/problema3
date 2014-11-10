@@ -1,16 +1,16 @@
-``set``
+''set''
 =======
 
 Inside code blocks you can also assign values to variables. Assignments use
-the ``set`` tag and can have multiple targets.
+the ''set'' tag and can have multiple targets.
 
-Here is how you can assign the ``bar`` value to the ``foo`` variable:
+Here is how you can assign the ''bar'' value to the ''foo'' variable:
 
 .. code-block:: jinja
 
     {% set foo = 'bar' %}
 
-After the ``set`` call, the ``foo`` variable is available in the template like
+After the ''set'' call, the ''foo'' variable is available in the template like
 any other ones:
 
 .. code-block:: jinja
@@ -18,8 +18,8 @@ any other ones:
     {# displays bar #}
     {{ foo }}
 
-The assigned value can be any valid :ref:`Twig expressions
-<twig-expressions>`:
+The assigned value can be any valid :ref:'Twig expressions
+<twig-expressions>':
 
 .. code-block:: jinja
 
@@ -38,7 +38,7 @@ Several variables can be assigned in one block:
     {% set foo = 'foo' %}
     {% set bar = 'bar' %}
 
-The ``set`` tag can also be used to 'capture' chunks of text:
+The ''set'' tag can also be used to 'capture' chunks of text:
 
 .. code-block:: jinja
 
@@ -56,7 +56,7 @@ The ``set`` tag can also be used to 'capture' chunks of text:
 .. note::
 
     Note that loops are scoped in Twig; therefore a variable declared inside a
-    ``for`` loop is not accessible outside the loop itself:
+    ''for'' loop is not accessible outside the loop itself:
 
     .. code-block:: jinja
 

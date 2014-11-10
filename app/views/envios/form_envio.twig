@@ -1,13 +1,15 @@
 {% extends "_templates/base.twig" %} {% block content %}
 <div class="page-header">
-            <h1>Envíos <small>{{ title }} {%  if datos.ID_ENVIO %}#id{{ datos.ID_ENVIO}} {% endif %}</small></h1>
+            <h1>Envíos <small>{{ title }} {%  if datos.id_envio %}#id{{ datos.id_envio}} {% endif %}</small></h1>
 </div>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="row">
 			<div class="col-xs-6 col-xs-offset-2">		
 				<div class="panel">
-					<form action="{{ constant('URL') }}envios/add" method="POST"
+					<form action="{{ constant('URL') }}envios/{{ accion }}{%- if accion == "edit" -%}
+					/{{ datos.id_envio }}
+					{% endif %}" method="POST"
 						class="form-horizontal" role="form">
 						<div class="panel panel-default">
 							<div class="panel-heading">Datos destinatario</div>
@@ -133,7 +135,7 @@
 						
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" name="setEnvio" value="Submit"
+								<button type="submit" name="{{ accion }}" value="Submit"
 									class="btn btn-primary pull-right">Guardar</button>
 							</div>
 						</div>

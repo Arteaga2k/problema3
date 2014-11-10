@@ -1,8 +1,8 @@
-``filter``
+''filter''
 ==========
 
 Filter sections allow you to apply regular Twig filters on a block of template
-data. Just wrap the code in the special ``filter`` section:
+data. Just wrap the code in the special ''filter'' section:
 
 .. code-block:: jinja
 

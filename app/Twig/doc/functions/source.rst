@@ -1,10 +1,10 @@
-``source``
+''source''
 ==========
 
 .. versionadded:: 1.15
-    The ``source`` function was added in Twig 1.15.
+    The ''source'' function was added in Twig 1.15.
 
-The ``source`` function returns the content of a template without rendering it:
+The ''source'' function returns the content of a template without rendering it:
 
 .. code-block:: jinja
 
@@ -18,4 +18,4 @@ for in the paths defined by it.
 Arguments
 ---------
 
-* ``name``: The name of the template to read
+* ''name'': The name of the template to read

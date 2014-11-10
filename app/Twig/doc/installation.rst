@@ -9,7 +9,7 @@ Installing the Twig PHP package
 Installing via Composer (recommended)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install `Composer`_ and run the following command to get the latest version:
+Install 'Composer'_ and run the following command to get the latest version:
 
 .. code-block:: bash
 
@@ -18,7 +18,7 @@ Install `Composer`_ and run the following command to get the latest version:
 Installing from the tarball release
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Download the most recent tarball from the `download page`_
+1. Download the most recent tarball from the 'download page'_
 2. Verify the integrity of the tarball http://fabien.potencier.org/article/73/signing-project-releases
 3. Unpack the tarball
 4. Move the files somewhere in your project
@@ -77,25 +77,25 @@ runtime engine; install it like any other PHP extensions:
 
 For Windows:
 
-1. Setup the build environment following the `PHP documentation`_
-2. Put Twig's C extension source code into ``C:\php-sdk\phpdev\vcXX\x86\php-source-directory\ext\twig``
-3. Use the ``configure --disable-all --enable-cli --enable-twig=shared`` command instead of step 14
-4. ``nmake``
-5. Copy the ``C:\php-sdk\phpdev\vcXX\x86\php-source-directory\Release_TS\php_twig.dll`` file to your PHP setup.
+1. Setup the build environment following the 'PHP documentation'_
+2. Put Twig's C extension source code into ''C:\php-sdk\phpdev\vcXX\x86\php-source-directory\ext\twig''
+3. Use the ''configure --disable-all --enable-cli --enable-twig=shared'' command instead of step 14
+4. ''nmake''
+5. Copy the ''C:\php-sdk\phpdev\vcXX\x86\php-source-directory\Release_TS\php_twig.dll'' file to your PHP setup.
 
 .. tip::
 
-    For Windows ZendServer, ZTS is not enabled as mentioned in `Zend Server
-    FAQ`_.
+    For Windows ZendServer, ZTS is not enabled as mentioned in 'Zend Server
+    FAQ'_.
 
-    You have to use ``configure --disable-all --disable-zts --enable-cli
-    --enable-twig=shared`` to be able to build the twig C extension for
+    You have to use ''configure --disable-all --disable-zts --enable-cli
+    --enable-twig=shared'' to be able to build the twig C extension for
     ZendServer.
 
     The built DLL will be available in
-    ``C:\\php-sdk\\phpdev\\vcXX\\x86\\php-source-directory\\Release``
+    ''C:\\php-sdk\\phpdev\\vcXX\\x86\\php-source-directory\\Release''
 
-Finally, enable the extension in your ``php.ini`` configuration file:
+Finally, enable the extension in your ''php.ini'' configuration file:
 
 .. code-block:: ini
 
@@ -105,9 +105,9 @@ Finally, enable the extension in your ``php.ini`` configuration file:
 And from now on, Twig will automatically compile your templates to take
 advantage of the C extension. Note that this extension does not replace the
 PHP code but only provides an optimized version of the
-``Twig_Template::getAttribute()`` method.
+''Twig_Template::getAttribute()'' method.
 
-.. _`download page`: https://github.com/fabpot/Twig/tags
-.. _`Composer`: https://getcomposer.org/download/
-.. _`PHP documentation`: https://wiki.php.net/internals/windows/stepbystepbuild
-.. _`Zend Server FAQ`: http://www.zend.com/en/products/server/faq#faqD6
+.. _'download page': https://github.com/fabpot/Twig/tags
+.. _'Composer': https://getcomposer.org/download/
+.. _'PHP documentation': https://wiki.php.net/internals/windows/stepbystepbuild
+.. _'Zend Server FAQ': http://www.zend.com/en/products/server/faq#faqD6

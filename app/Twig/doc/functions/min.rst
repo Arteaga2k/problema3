@@ -1,10 +1,10 @@
-``min``
+''min''
 =======
 
 .. versionadded:: 1.15
-    The ``min`` function was added in Twig 1.15.
+    The ''min'' function was added in Twig 1.15.
 
-``min`` returns the lowest value of a sequence or a set of values:
+''min'' returns the lowest value of a sequence or a set of values:
 
 .. code-block:: jinja
 

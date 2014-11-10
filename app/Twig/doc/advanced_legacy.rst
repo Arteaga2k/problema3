@@ -4,7 +4,7 @@ Extending Twig
 .. caution::
 
     This section describes how to extends Twig for versions **older than
-    1.12**. If you are using a newer version, read the :doc:`newer<advanced>`
+    1.12**. If you are using a newer version, read the :doc:'newer<advanced>'
     chapter instead.
 
 Twig can be extended in many ways; you can add extra tags, filters, tests,
@@ -31,24 +31,24 @@ different possible extension points and when to use them.
 
 First, remember that Twig has two main language constructs:
 
-* ``{{ }}``: used to print the result of an expression evaluation;
+* ''{{ }}'': used to print the result of an expression evaluation;
 
-* ``{% %}``: used to execute statements.
+* ''{% %}'': used to execute statements.
 
 To understand why Twig exposes so many extension points, let's see how to
 implement a *Lorem ipsum* generator (it needs to know the number of words to
 generate).
 
-You can use a ``lipsum`` *tag*:
+You can use a ''lipsum'' *tag*:
 
 .. code-block:: jinja
 
     {% lipsum 40 %}
 
-That works, but using a tag for ``lipsum`` is not a good idea for at least
+That works, but using a tag for ''lipsum'' is not a good idea for at least
 three main reasons:
 
-* ``lipsum`` is not a language construct;
+* ''lipsum'' is not a language construct;
 * The tag outputs something;
 * The tag is not flexible as you cannot use it in an expression:
 
@@ -59,7 +59,7 @@ three main reasons:
 In fact, you rarely need to create tags; and that's good news because tags are
 the most complex extension point of Twig.
 
-Now, let's use a ``lipsum`` *filter*:
+Now, let's use a ''lipsum'' *filter*:
 
 .. code-block:: jinja
 
@@ -67,10 +67,10 @@ Now, let's use a ``lipsum`` *filter*:
 
 Again, it works, but it looks weird. A filter transforms the passed value to
 something else but here we use the value to indicate the number of words to
-generate (so, ``40`` is an argument of the filter, not the value we want to
+generate (so, ''40'' is an argument of the filter, not the value we want to
 transform).
 
-Next, let's use a ``lipsum`` *function*:
+Next, let's use a ''lipsum'' *function*:
 
 .. code-block:: jinja
 
@@ -118,7 +118,7 @@ available in all templates and macros::
     $twig = new Twig_Environment($loader);
     $twig->addGlobal('text', new Text());
 
-You can then use the ``text`` variable anywhere in a template:
+You can then use the ''text'' variable anywhere in a template:
 
 .. code-block:: jinja
 
@@ -128,8 +128,8 @@ Filters
 -------
 
 A filter is a regular PHP function or an object method that takes the left
-side of the filter (before the pipe ``|``) as first argument and the extra
-arguments passed to the filter (within parentheses ``()``) as extra arguments.
+side of the filter (before the pipe ''|'') as first argument and the extra
+arguments passed to the filter (within parentheses ''()'') as extra arguments.
 
 Defining a filter is as easy as associating the filter name with a PHP
 callable. For instance, let's say you have the following code in a template:
@@ -139,15 +139,15 @@ callable. For instance, let's say you have the following code in a template:
     {{ 'TWIG'|lower }}
 
 When compiling this template to PHP, Twig looks for the PHP callable
-associated with the ``lower`` filter. The ``lower`` filter is a built-in Twig
-filter, and it is simply mapped to the PHP ``strtolower()`` function. After
+associated with the ''lower'' filter. The ''lower'' filter is a built-in Twig
+filter, and it is simply mapped to the PHP ''strtolower()'' function. After
 compilation, the generated PHP code is roughly equivalent to:
 
 .. code-block:: html+php
 
     <?php echo strtolower('TWIG') ?>
 
-As you can see, the ``'TWIG'`` string is passed as a first argument to the PHP
+As you can see, the '''TWIG''' string is passed as a first argument to the PHP
 function.
 
 A filter can also take extra arguments like in the following example:
@@ -165,8 +165,8 @@ argument, and the compiled code is equivalent to:
 
 Let's see how to create a new filter.
 
-In this section, we will create a ``rot13`` filter, which should return the
-`rot13`_ transformation of a string. Here is an example of its usage and the
+In this section, we will create a ''rot13'' filter, which should return the
+'rot13'_ transformation of a string. Here is an example of its usage and the
 expected output:
 
 .. code-block:: jinja
@@ -175,16 +175,16 @@ expected output:
 
     {# should displays Gjvt #}
 
-Adding a filter is as simple as calling the ``addFilter()`` method on the
-``Twig_Environment`` instance::
+Adding a filter is as simple as calling the ''addFilter()'' method on the
+''Twig_Environment'' instance::
 
     $twig = new Twig_Environment($loader);
     $twig->addFilter('rot13', new Twig_Filter_Function('str_rot13'));
 
-The second argument of ``addFilter()`` is an instance of ``Twig_Filter``.
-Here, we use ``Twig_Filter_Function`` as the filter is a PHP function. The
-first argument passed to the ``Twig_Filter_Function`` constructor is the name
-of the PHP function to call, here ``str_rot13``, a native PHP function.
+The second argument of ''addFilter()'' is an instance of ''Twig_Filter''.
+Here, we use ''Twig_Filter_Function'' as the filter is a PHP function. The
+first argument passed to the ''Twig_Filter_Function'' constructor is the name
+of the PHP function to call, here ''str_rot13'', a native PHP function.
 
 Let's say I now want to be able to add a prefix before the converted string:
 
@@ -194,7 +194,7 @@ Let's say I now want to be able to add a prefix before the converted string:
 
     {# should displays prefix_Gjvt #}
 
-As the PHP ``str_rot13()`` function does not support this requirement, let's
+As the PHP ''str_rot13()'' function does not support this requirement, let's
 create a new PHP function::
 
     function project_compute_rot13($string, $prefix = '')
@@ -202,15 +202,15 @@ create a new PHP function::
         return $prefix.str_rot13($string);
     }
 
-As you can see, the ``prefix`` argument of the filter is passed as an extra
-argument to the ``project_compute_rot13()`` function.
+As you can see, the ''prefix'' argument of the filter is passed as an extra
+argument to the ''project_compute_rot13()'' function.
 
 Adding this filter is as easy as before::
 
     $twig->addFilter('rot13', new Twig_Filter_Function('project_compute_rot13'));
 
 For better encapsulation, a filter can also be defined as a static method of a
-class. The ``Twig_Filter_Function`` class can also be used to register such
+class. The ''Twig_Filter_Function'' class can also be used to register such
 static methods as filters::
 
     $twig->addFilter('rot13', new Twig_Filter_Function('SomeClass::rot13Filter'));
@@ -223,9 +223,9 @@ static methods as filters::
 Environment aware Filters
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``Twig_Filter`` classes take options as their last argument. For instance,
+The ''Twig_Filter'' classes take options as their last argument. For instance,
 if you want access to the current environment instance in your filter, set the
-``needs_environment`` option to ``true``::
+''needs_environment'' option to ''true''::
 
     $filter = new Twig_Filter_Function('str_rot13', array('needs_environment' => true));
 
@@ -246,13 +246,13 @@ Automatic Escaping
 If automatic escaping is enabled, the output of the filter may be escaped
 before printing. If your filter acts as an escaper (or explicitly outputs HTML
 or JavaScript code), you will want the raw output to be printed. In such a
-case, set the ``is_safe`` option::
+case, set the ''is_safe'' option::
 
     $filter = new Twig_Filter_Function('nl2br', array('is_safe' => array('html')));
 
 Some filters may need to work on input that is already escaped or safe, for
 example when adding (safe) HTML tags to originally unsafe output. In such a
-case, set the ``pre_escape`` option to escape the input data before it is run
+case, set the ''pre_escape'' option to escape the input data before it is run
 through your filter::
 
     $filter = new Twig_Filter_Function('somefilter', array('pre_escape' => 'html', 'is_safe' => array('html')));
@@ -263,8 +263,8 @@ Dynamic Filters
 .. versionadded:: 1.5
     Dynamic filters support was added in Twig 1.5.
 
-A filter name containing the special ``*`` character is a dynamic filter as
-the ``*`` can be any string::
+A filter name containing the special ''*'' character is a dynamic filter as
+the ''*'' can be any string::
 
     $twig->addFilter('*_path_*', new Twig_Filter_Function('twig_path'));
 
@@ -275,8 +275,8 @@ the ``*`` can be any string::
 
 The following filters will be matched by the above defined dynamic filter:
 
-* ``product_path``
-* ``category_path``
+* ''product_path''
+* ''category_path''
 
 A dynamic filter can define more than one dynamic parts::
 
@@ -288,8 +288,8 @@ A dynamic filter can define more than one dynamic parts::
     }
 
 The filter will receive all dynamic part values before the normal filters
-arguments. For instance, a call to ``'foo'|a_path_b()`` will result in the
-following PHP call: ``twig_path('a', 'b', 'foo')``.
+arguments. For instance, a call to '''foo'|a_path_b()'' will result in the
+following PHP call: ''twig_path('a', 'b', 'foo')''.
 
 Functions
 ---------
@@ -302,8 +302,8 @@ templates.
     {{ constant("DATE_W3C") }}
 
 When compiling this template to PHP, Twig looks for the PHP callable
-associated with the ``constant`` function. The ``constant`` function is a built-in Twig
-function, and it is simply mapped to the PHP ``constant()`` function. After
+associated with the ''constant'' function. The ''constant'' function is a built-in Twig
+function, and it is simply mapped to the PHP ''constant()'' function. After
 compilation, the generated PHP code is roughly equivalent to:
 
 .. code-block:: html+php
@@ -311,7 +311,7 @@ compilation, the generated PHP code is roughly equivalent to:
     <?php echo constant('DATE_W3C') ?>
 
 Adding a function is similar to adding a filter. This can be done by calling the
-``addFunction()`` method on the ``Twig_Environment`` instance::
+''addFunction()'' method on the ''Twig_Environment'' instance::
 
     $twig = new Twig_Environment($loader);
     $twig->addFunction('functionName', new Twig_Function_Function('someFunction'));
@@ -322,7 +322,7 @@ You can also expose extension methods as functions in your templates::
     $twig = new Twig_Environment($loader);
     $twig->addFunction('otherFunction', new Twig_Function_Method($this, 'someMethod'));
 
-Functions also support ``needs_environment`` and ``is_safe`` parameters.
+Functions also support ''needs_environment'' and ''is_safe'' parameters.
 
 Dynamic Functions
 ~~~~~~~~~~~~~~~~~
@@ -330,8 +330,8 @@ Dynamic Functions
 .. versionadded:: 1.5
     Dynamic functions support was added in Twig 1.5.
 
-A function name containing the special ``*`` character is a dynamic function
-as the ``*`` can be any string::
+A function name containing the special ''*'' character is a dynamic function
+as the ''*'' can be any string::
 
     $twig->addFunction('*_path', new Twig_Function_Function('twig_path'));
 
@@ -342,8 +342,8 @@ as the ``*`` can be any string::
 
 The following functions will be matched by the above defined dynamic function:
 
-* ``product_path``
-* ``category_path``
+* ''product_path''
+* ''category_path''
 
 A dynamic function can define more than one dynamic parts::
 
@@ -355,8 +355,8 @@ A dynamic function can define more than one dynamic parts::
     }
 
 The function will receive all dynamic part values before the normal functions
-arguments. For instance, a call to ``a_path_b('foo')`` will result in the
-following PHP call: ``twig_path('a', 'b', 'foo')``.
+arguments. For instance, a call to ''a_path_b('foo')'' will result in the
+following PHP call: ''twig_path('a', 'b', 'foo')''.
 
 Tags
 ----
@@ -365,7 +365,7 @@ One of the most exciting feature of a template engine like Twig is the
 possibility to define new language constructs. This is also the most complex
 feature as you need to understand how Twig's internals work.
 
-Let's create a simple ``set`` tag that allows the definition of simple
+Let's create a simple ''set'' tag that allows the definition of simple
 variables from within a template. The tag can be used like follows:
 
 .. code-block:: jinja
@@ -378,7 +378,7 @@ variables from within a template. The tag can be used like follows:
 
 .. note::
 
-    The ``set`` tag is part of the Core extension and as such is always
+    The ''set'' tag is part of the Core extension and as such is always
     available. The built-in version is slightly more powerful and supports
     multiple assignments by default (cf. the template designers chapter for
     more information).
@@ -394,8 +394,8 @@ Three steps are needed to define a new tag:
 Registering a new tag
 ~~~~~~~~~~~~~~~~~~~~~
 
-Adding a tag is as simple as calling the ``addTokenParser`` method on the
-``Twig_Environment`` instance::
+Adding a tag is as simple as calling the ''addTokenParser'' method on the
+''Twig_Environment'' instance::
 
     $twig = new Twig_Environment($loader);
     $twig->addTokenParser(new Project_Set_TokenParser());
@@ -425,41 +425,41 @@ Now, let's see the actual code of this class::
         }
     }
 
-The ``getTag()`` method must return the tag we want to parse, here ``set``.
+The ''getTag()'' method must return the tag we want to parse, here ''set''.
 
-The ``parse()`` method is invoked whenever the parser encounters a ``set``
-tag. It should return a ``Twig_Node`` instance that represents the node (the
-``Project_Set_Node`` calls creating is explained in the next section).
+The ''parse()'' method is invoked whenever the parser encounters a ''set''
+tag. It should return a ''Twig_Node'' instance that represents the node (the
+''Project_Set_Node'' calls creating is explained in the next section).
 
 The parsing process is simplified thanks to a bunch of methods you can call
-from the token stream (``$this->parser->getStream()``):
+from the token stream (''$this->parser->getStream()''):
 
-* ``getCurrent()``: Gets the current token in the stream.
+* ''getCurrent()'': Gets the current token in the stream.
 
-* ``next()``: Moves to the next token in the stream, *but returns the old one*.
+* ''next()'': Moves to the next token in the stream, *but returns the old one*.
 
-* ``test($type)``, ``test($value)`` or ``test($type, $value)``: Determines whether
+* ''test($type)'', ''test($value)'' or ''test($type, $value)'': Determines whether
   the current token is of a particular type or value (or both). The value may be an
   array of several possible values.
 
-* ``expect($type[, $value[, $message]])``: If the current token isn't of the given
+* ''expect($type[, $value[, $message]])'': If the current token isn't of the given
   type/value a syntax error is thrown. Otherwise, if the type and value are correct,
   the token is returned and the stream moves to the next token.
 
-* ``look()``: Looks a the next token without consuming it.
+* ''look()'': Looks a the next token without consuming it.
 
-Parsing expressions is done by calling the ``parseExpression()`` like we did for
-the ``set`` tag.
+Parsing expressions is done by calling the ''parseExpression()'' like we did for
+the ''set'' tag.
 
 .. tip::
 
-    Reading the existing ``TokenParser`` classes is the best way to learn all
+    Reading the existing ''TokenParser'' classes is the best way to learn all
     the nitty-gritty details of the parsing process.
 
 Defining a Node
 ~~~~~~~~~~~~~~~
 
-The ``Project_Set_Node`` class itself is rather simple::
+The ''Project_Set_Node'' class itself is rather simple::
 
     class Project_Set_Node extends Twig_Node
     {
@@ -482,25 +482,25 @@ The ``Project_Set_Node`` class itself is rather simple::
 The compiler implements a fluid interface and provides methods that helps the
 developer generate beautiful and readable PHP code:
 
-* ``subcompile()``: Compiles a node.
+* ''subcompile()'': Compiles a node.
 
-* ``raw()``: Writes the given string as is.
+* ''raw()'': Writes the given string as is.
 
-* ``write()``: Writes the given string by adding indentation at the beginning
+* ''write()'': Writes the given string by adding indentation at the beginning
   of each line.
 
-* ``string()``: Writes a quoted string.
+* ''string()'': Writes a quoted string.
 
-* ``repr()``: Writes a PHP representation of a given value (see
-  ``Twig_Node_For`` for a usage example).
+* ''repr()'': Writes a PHP representation of a given value (see
+  ''Twig_Node_For'' for a usage example).
 
-* ``addDebugInfo()``: Adds the line of the original template file related to
+* ''addDebugInfo()'': Adds the line of the original template file related to
   the current node as a comment.
 
-* ``indent()``: Indents the generated code (see ``Twig_Node_Block`` for a
+* ''indent()'': Indents the generated code (see ''Twig_Node_Block'' for a
   usage example).
 
-* ``outdent()``: Outdents the generated code (see ``Twig_Node_Block`` for a
+* ''outdent()'': Outdents the generated code (see ''Twig_Node_Block'' for a
   usage example).
 
 .. _creating_extensions:
@@ -524,7 +524,7 @@ to host all the specific tags and filters you want to add to Twig.
 
     When packaging your code into an extension, Twig is smart enough to
     recompile your templates whenever you make a change to it (when the
-    ``auto_reload`` is enabled).
+    ''auto_reload'' is enabled).
 
 .. note::
 
@@ -602,11 +602,11 @@ An extension is a class that implements the following interface::
     }
 
 To keep your extension class clean and lean, it can inherit from the built-in
-``Twig_Extension`` class instead of implementing the whole interface. That
-way, you just need to implement the ``getName()`` method as the
-``Twig_Extension`` provides empty implementations for all other methods.
+''Twig_Extension'' class instead of implementing the whole interface. That
+way, you just need to implement the ''getName()'' method as the
+''Twig_Extension'' provides empty implementations for all other methods.
 
-The ``getName()`` method must return a unique identifier for your extension.
+The ''getName()'' method must return a unique identifier for your extension.
 
 Now, with this information in mind, let's create the most basic extension
 possible::
@@ -627,14 +627,14 @@ possible::
 Twig does not care where you save your extension on the filesystem, as all
 extensions must be registered explicitly to be available in your templates.
 
-You can register an extension by using the ``addExtension()`` method on your
-main ``Environment`` object::
+You can register an extension by using the ''addExtension()'' method on your
+main ''Environment'' object::
 
     $twig = new Twig_Environment($loader);
     $twig->addExtension(new Project_Twig_Extension());
 
 Of course, you need to first load the extension file by either using
-``require_once()`` or by using an autoloader (see `spl_autoload_register()`_).
+''require_once()'' or by using an autoloader (see 'spl_autoload_register()'_).
 
 .. tip::
 
@@ -643,7 +643,7 @@ Of course, you need to first load the extension file by either using
 Globals
 ~~~~~~~
 
-Global variables can be registered in an extension via the ``getGlobals()``
+Global variables can be registered in an extension via the ''getGlobals()''
 method::
 
     class Project_Twig_Extension extends Twig_Extension
@@ -661,7 +661,7 @@ method::
 Functions
 ~~~~~~~~~
 
-Functions can be registered in an extension via the ``getFunctions()``
+Functions can be registered in an extension via the ''getFunctions()''
 method::
 
     class Project_Twig_Extension extends Twig_Extension
@@ -679,7 +679,7 @@ method::
 Filters
 ~~~~~~~
 
-To add a filter to an extension, you need to override the ``getFilters()``
+To add a filter to an extension, you need to override the ''getFilters()''
 method. This method must return an array of filters to add to the Twig
 environment::
 
@@ -695,16 +695,16 @@ environment::
         // ...
     }
 
-As you can see in the above code, the ``getFilters()`` method returns an array
-where keys are the name of the filters (``rot13``) and the values the
-definition of the filter (``new Twig_Filter_Function('str_rot13')``).
+As you can see in the above code, the ''getFilters()'' method returns an array
+where keys are the name of the filters (''rot13'') and the values the
+definition of the filter (''new Twig_Filter_Function('str_rot13')'').
 
 As seen in the previous chapter, you can also define filters as static methods
 on the extension class::
 
 $twig->addFilter('rot13', new Twig_Filter_Function('Project_Twig_Extension::rot13Filter'));
 
-You can also use ``Twig_Filter_Method`` instead of ``Twig_Filter_Function``
+You can also use ''Twig_Filter_Method'' instead of ''Twig_Filter_Function''
 when defining a filter to use a method::
 
     class Project_Twig_Extension extends Twig_Extension
@@ -724,8 +724,8 @@ when defining a filter to use a method::
         // ...
     }
 
-The first argument of the ``Twig_Filter_Method`` constructor is always
-``$this``, the current extension object. The second one is the name of the
+The first argument of the ''Twig_Filter_Method'' constructor is always
+''$this'', the current extension object. The second one is the name of the
 method to call.
 
 Using methods for filters is a great way to package your filter without
@@ -760,9 +760,9 @@ want to override::
         }
     }
 
-Here, we override the ``date`` filter with a custom one. Using this extension
-is as simple as registering the ``MyCoreExtension`` extension by calling the
-``addExtension()`` method on the environment instance::
+Here, we override the ''date'' filter with a custom one. Using this extension
+is as simple as registering the ''MyCoreExtension'' extension by calling the
+''addExtension()'' method on the environment instance::
 
     $twig = new Twig_Environment($loader);
     $twig->addExtension(new MyCoreExtension());
@@ -771,7 +771,7 @@ Tags
 ~~~~
 
 Adding a tag in an extension can be done by overriding the
-``getTokenParsers()`` method. This method must return an array of tags to add
+''getTokenParsers()'' method. This method must return an array of tags to add
 to the Twig environment::
 
     class Project_Twig_Extension extends Twig_Extension
@@ -785,14 +785,14 @@ to the Twig environment::
     }
 
 In the above code, we have added a single new tag, defined by the
-``Project_Set_TokenParser`` class. The ``Project_Set_TokenParser`` class is
+''Project_Set_TokenParser'' class. The ''Project_Set_TokenParser'' class is
 responsible for parsing the tag and compiling it to PHP.
 
 Operators
 ~~~~~~~~~
 
-The ``getOperators()`` methods allows to add new operators. Here is how to add
-``!``, ``||``, and ``&&`` operators::
+The ''getOperators()'' methods allows to add new operators. Here is how to add
+''!'', ''||'', and ''&&'' operators::
 
     class Project_Twig_Extension extends Twig_Extension
     {
@@ -815,7 +815,7 @@ The ``getOperators()`` methods allows to add new operators. Here is how to add
 Tests
 ~~~~~
 
-The ``getTests()`` methods allows to add new test functions::
+The ''getTests()'' methods allows to add new test functions::
 
     class Project_Twig_Extension extends Twig_Extension
     {
@@ -853,7 +853,7 @@ following file structure in your test directory::
             bar.test
     IntegrationTest.php
 
-The ``IntegrationTest.php`` file should look like this::
+The ''IntegrationTest.php'' file should look like this::
 
     class Project_Tests_IntegrationTest extends Twig_Test_IntegrationTestCase
     {
@@ -872,16 +872,16 @@ The ``IntegrationTest.php`` file should look like this::
     }
 
 Fixtures examples can be found within the Twig repository
-`tests/Twig/Fixtures`_ directory.
+'tests/Twig/Fixtures'_ directory.
 
 Node Tests
 ~~~~~~~~~~
 
 Testing the node visitors can be complex, so extend your test cases from
-``Twig_Test_NodeTestCase``. Examples can be found in the Twig repository
-`tests/Twig/Node`_ directory.
+''Twig_Test_NodeTestCase''. Examples can be found in the Twig repository
+'tests/Twig/Node'_ directory.
 
-.. _`spl_autoload_register()`: http://www.php.net/spl_autoload_register
-.. _`rot13`:                   http://www.php.net/manual/en/function.str-rot13.php
-.. _`tests/Twig/Fixtures`:     https://github.com/fabpot/Twig/tree/master/test/Twig/Tests/Fixtures
-.. _`tests/Twig/Node`:         https://github.com/fabpot/Twig/tree/master/test/Twig/Tests/Node
+.. _'spl_autoload_register()': http://www.php.net/spl_autoload_register
+.. _'rot13':                   http://www.php.net/manual/en/function.str-rot13.php
+.. _'tests/Twig/Fixtures':     https://github.com/fabpot/Twig/tree/master/test/Twig/Tests/Fixtures
+.. _'tests/Twig/Node':         https://github.com/fabpot/Twig/tree/master/test/Twig/Tests/Node

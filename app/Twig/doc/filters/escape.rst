@@ -1,14 +1,14 @@
-``escape``
+''escape''
 ==========
 
 .. versionadded:: 1.9.0
-    The ``css``, ``url``, and ``html_attr`` strategies were added in Twig
+    The ''css'', ''url'', and ''html_attr'' strategies were added in Twig
     1.9.0.
 
 .. versionadded:: 1.14.0
     The ability to define custom escapers was added in Twig 1.14.0.
 
-The ``escape`` filter escapes a string for safe insertion into the final
+The ''escape'' filter escapes a string for safe insertion into the final
 output. It supports different escaping strategies depending on the template
 context.
 
@@ -18,13 +18,13 @@ By default, it uses the HTML escaping strategy:
 
     {{ user.username|escape }}
 
-For convenience, the ``e`` filter is defined as an alias:
+For convenience, the ''e'' filter is defined as an alias:
 
 .. code-block:: jinja
 
     {{ user.username|e }}
 
-The ``escape`` filter can also be used in other contexts than HTML thanks to
+The ''escape'' filter can also be used in other contexts than HTML thanks to
 an optional argument which defines the escaping strategy to use:
 
 .. code-block:: jinja
@@ -40,24 +40,24 @@ And here is how to escape variables included in JavaScript code:
     {{ user.username|escape('js') }}
     {{ user.username|e('js') }}
 
-The ``escape`` filter supports the following escaping strategies:
+The ''escape'' filter supports the following escaping strategies:
 
-* ``html``: escapes a string for the **HTML body** context.
+* ''html'': escapes a string for the **HTML body** context.
 
-* ``js``: escapes a string for the **JavaScript context**.
+* ''js'': escapes a string for the **JavaScript context**.
 
-* ``css``: escapes a string for the **CSS context**. CSS escaping can be
+* ''css'': escapes a string for the **CSS context**. CSS escaping can be
   applied to any string being inserted into CSS and escapes everything except
   alphanumerics.
 
-* ``url``: escapes a string for the **URI or parameter contexts**. This should
+* ''url'': escapes a string for the **URI or parameter contexts**. This should
   not be used to escape an entire URI; only a subcomponent being inserted.
 
-* ``html_attr``: escapes a string for the **HTML attribute** context.
+* ''html_attr'': escapes a string for the **HTML attribute** context.
 
 .. note::
 
-    Internally, ``escape`` uses the PHP native `htmlspecialchars`_ function
+    Internally, ''escape'' uses the PHP native 'htmlspecialchars'_ function
     for the HTML escaping strategy.
 
 .. caution::
@@ -90,9 +90,9 @@ The ``escape`` filter supports the following escaping strategies:
 Custom Escapers
 ---------------
 
-You can define custom escapers by calling the ``setEscaper()`` method on the
-``core`` extension instance. The first argument is the escaper name (to be
-used in the ``escape`` call) and the second one must be a valid PHP callable:
+You can define custom escapers by calling the ''setEscaper()'' method on the
+''core'' extension instance. The first argument is the escaper name (to be
+used in the ''escape'' call) and the second one must be a valid PHP callable:
 
 .. code-block:: php
 
@@ -110,7 +110,7 @@ string to escape, and the charset.
 Arguments
 ---------
 
-* ``strategy``: The escaping strategy
-* ``charset``:  The string charset
+* ''strategy'': The escaping strategy
+* ''charset'':  The string charset
 
-.. _`htmlspecialchars`: http://php.net/htmlspecialchars
+.. _'htmlspecialchars': http://php.net/htmlspecialchars

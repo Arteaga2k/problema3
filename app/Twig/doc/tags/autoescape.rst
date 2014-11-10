@@ -1,8 +1,8 @@
-``autoescape``
+''autoescape''
 ==============
 
 Whether automatic escaping is enabled or not, you can mark a section of a
-template to be escaped or not by using the ``autoescape`` tag:
+template to be escaped or not by using the ''autoescape'' tag:
 
 .. code-block:: jinja
 
@@ -49,7 +49,7 @@ template to be escaped or not by using the ``autoescape`` tag:
 
 When automatic escaping is enabled everything is escaped by default except for
 values explicitly marked as safe. Those can be marked in the template by using
-the :doc:`raw<../filters/raw>` filter:
+the :doc:'raw<../filters/raw>' filter:
 
 .. code-block:: jinja
 
@@ -57,13 +57,13 @@ the :doc:`raw<../filters/raw>` filter:
         {{ safe_value|raw }}
     {% endautoescape %}
 
-Functions returning template data (like :doc:`macros<macro>` and
-:doc:`parent<../functions/parent>`) always return safe markup.
+Functions returning template data (like :doc:'macros<macro>' and
+:doc:'parent<../functions/parent>') always return safe markup.
 
 .. note::
 
     Twig is smart enough to not escape an already escaped value by the
-    :doc:`escape<../filters/escape>` filter.
+    :doc:'escape<../filters/escape>' filter.
 
 .. note::
 
@@ -79,5 +79,5 @@ Functions returning template data (like :doc:`macros<macro>` and
 
 .. note::
 
-    The chapter :doc:`Twig for Developers<../api>` gives more information
+    The chapter :doc:'Twig for Developers<../api>' gives more information
     about when and how automatic escaping is applied.

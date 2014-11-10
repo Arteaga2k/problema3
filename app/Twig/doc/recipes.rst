@@ -6,7 +6,7 @@ Making a Layout conditional
 
 Working with Ajax means that the same content is sometimes displayed as is,
 and sometimes decorated with a layout. As Twig layout template names can be
-any valid expression, you can pass a variable that evaluates to ``true`` when
+any valid expression, you can pass a variable that evaluates to ''true'' when
 the request is made via Ajax and choose the layout accordingly:
 
 .. code-block:: jinja
@@ -27,7 +27,7 @@ instance, the name can depend on the value of a variable:
 
     {% include var ~ '_foo.html' %}
 
-If ``var`` evaluates to ``index``, the ``index_foo.html`` template will be
+If ''var'' evaluates to ''index'', the ''index_foo.html'' template will be
 rendered.
 
 As a matter of fact, the template name can be any valid expression, such as
@@ -52,9 +52,9 @@ A template can be customized in two different ways:
 But how do you combine both: *replace* a template that also extends itself
 (aka a template in a directory further in the list)?
 
-Let's say that your templates are loaded from both ``.../templates/mysite``
-and ``.../templates/default`` in this order. The ``page.twig`` template,
-stored in ``.../templates/default`` reads as follows:
+Let's say that your templates are loaded from both ''.../templates/mysite''
+and ''.../templates/default'' in this order. The ''page.twig'' template,
+stored in ''.../templates/default'' reads as follows:
 
 .. code-block:: jinja
 
@@ -65,7 +65,7 @@ stored in ``.../templates/default`` reads as follows:
     {% endblock %}
 
 You can replace this template by putting a file with the same name in
-``.../templates/mysite``. And if you want to extend the original template, you
+''.../templates/mysite''. And if you want to extend the original template, you
 might be tempted to write the following:
 
 .. code-block:: jinja
@@ -74,11 +74,11 @@ might be tempted to write the following:
     {% extends "page.twig" %} {# from .../templates/default #}
 
 Of course, this will not work as Twig will always load the template from
-``.../templates/mysite``.
+''.../templates/mysite''.
 
 It turns out it is possible to get this to work, by adding a directory right
 at the end of your template directories, which is the parent of all of the
-other directories: ``.../templates`` in our case. This has the effect of
+other directories: ''.../templates'' in our case. This has the effect of
 making every template file within our system uniquely addressable. Most of the
 time you will use the "normal" paths, but in the special case of wanting to
 extend a template with an overriding version of itself we can reference its
@@ -140,12 +140,12 @@ syntax::
 Using dynamic Object Properties
 -------------------------------
 
-When Twig encounters a variable like ``article.title``, it tries to find a
-``title`` public property in the ``article`` object.
+When Twig encounters a variable like ''article.title'', it tries to find a
+''title'' public property in the ''article'' object.
 
 It also works if the property does not exist but is rather defined dynamically
-thanks to the magic ``__get()`` method; you just need to also implement the
-``__isset()`` magic method like shown in the following snippet of code::
+thanks to the magic ''__get()'' method; you just need to also implement the
+''__isset()'' magic method like shown in the following snippet of code::
 
     class Article
     {
@@ -172,7 +172,7 @@ Accessing the parent Context in Nested Loops
 --------------------------------------------
 
 Sometimes, when using nested loops, you need to access the parent context. The
-parent context is always accessible via the ``loop.parent`` variable. For
+parent context is always accessible via the ''loop.parent'' variable. For
 instance, if you have the following template data::
 
     $data = array(
@@ -204,19 +204,19 @@ The output will be similar to:
       - 2.1: The message 1 of topic 2
       - 2.2: The message 2 of topic 2
 
-In the inner loop, the ``loop.parent`` variable is used to access the outer
-context. So, the index of the current ``topic`` defined in the outer for loop
-is accessible via the ``loop.parent.loop.index`` variable.
+In the inner loop, the ''loop.parent'' variable is used to access the outer
+context. So, the index of the current ''topic'' defined in the outer for loop
+is accessible via the ''loop.parent.loop.index'' variable.
 
 Defining undefined Functions and Filters on the Fly
 ---------------------------------------------------
 
 When a function (or a filter) is not defined, Twig defaults to throw a
-``Twig_Error_Syntax`` exception. However, it can also call a `callback`_ (any
+''Twig_Error_Syntax'' exception. However, it can also call a 'callback'_ (any
 valid PHP callable) which should return a function (or a filter).
 
-For filters, register callbacks with ``registerUndefinedFilterCallback()``.
-For functions, use ``registerUndefinedFunctionCallback()``::
+For filters, register callbacks with ''registerUndefinedFilterCallback()''.
+For functions, use ''registerUndefinedFunctionCallback()''::
 
     // auto-register all native PHP functions as Twig functions
     // don't try this at home as it's not secure at all!
@@ -229,10 +229,10 @@ For functions, use ``registerUndefinedFunctionCallback()``::
     });
 
 If the callable is not able to return a valid function (or filter), it must
-return ``false``.
+return ''false''.
 
 If you register more than one callback, Twig will call them in turn until one
-does not return ``false``.
+does not return ''false''.
 
 .. tip::
 
@@ -244,7 +244,7 @@ Validating the Template Syntax
 
 When template code is provided by a third-party (through a web interface for
 instance), it might be interesting to validate the template syntax before
-saving it. If the template code is stored in a `$template` variable, here is
+saving it. If the template code is stored in a '$template' variable, here is
 how you can do it::
 
     try {
@@ -256,7 +256,7 @@ how you can do it::
     }
 
 If you iterate over a set of files, you can pass the filename to the
-``tokenize()`` method to get the filename in the exception message::
+''tokenize()'' method to get the filename in the exception message::
 
     foreach ($files as $file) {
         try {
@@ -277,9 +277,9 @@ If you iterate over a set of files, you can pass the filename to the
 Refreshing modified Templates when APC is enabled and apc.stat = 0
 ------------------------------------------------------------------
 
-When using APC with ``apc.stat`` set to ``0`` and Twig cache enabled, clearing
+When using APC with ''apc.stat'' set to ''0'' and Twig cache enabled, clearing
 the template cache won't update the APC cache. To get around this, one can
-extend ``Twig_Environment`` and force the update of the APC cache when Twig
+extend ''Twig_Environment'' and force the update of the APC cache when Twig
 rewrites the cache::
 
     class Twig_Environment_APC extends Twig_Environment
@@ -296,7 +296,7 @@ rewrites the cache::
 Reusing a stateful Node Visitor
 -------------------------------
 
-When attaching a visitor to a ``Twig_Environment`` instance, Twig uses it to
+When attaching a visitor to a ''Twig_Environment'' instance, Twig uses it to
 visit *all* templates it compiles. If you need to keep some state information
 around, you probably want to reset it when visiting a new template.
 
@@ -322,10 +322,10 @@ Using the Template name to set the default Escaping Strategy
 .. versionadded:: 1.8
     This recipe requires Twig 1.8 or later.
 
-The ``autoescape`` option determines the default escaping strategy to use when
+The ''autoescape'' option determines the default escaping strategy to use when
 no escaping is applied on a variable. When Twig is used to mostly generate
-HTML files, you can set it to ``html`` and explicitly change it to ``js`` when
-you have some dynamic JavaScript files thanks to the ``autoescape`` tag:
+HTML files, you can set it to ''html'' and explicitly change it to ''js'' when
+you have some dynamic JavaScript files thanks to the ''autoescape'' tag:
 
 .. code-block:: jinja
 
@@ -336,7 +336,7 @@ you have some dynamic JavaScript files thanks to the ``autoescape`` tag:
 But if you have many HTML and JS files, and if your template names follow some
 conventions, you can instead determine the default escaping strategy to use
 based on the template name. Let's say that your template names always end
-with ``.html`` for HTML files, ``.js`` for JavaScript ones, and ``.css`` for
+with ''.html'' for HTML files, ''.js'' for JavaScript ones, and ''.css'' for
 stylesheets, here is how you can configure Twig::
 
     class TwigEscapingGuesser
@@ -386,8 +386,8 @@ First, let's create a temporary in-memory SQLite3 database to work with::
     $dbh->exec("INSERT INTO templates (name, source, last_modified) VALUES ('base.twig', '$base', $now)");
     $dbh->exec("INSERT INTO templates (name, source, last_modified) VALUES ('index.twig', '$index', $now)");
 
-We have created a simple ``templates`` table that hosts two templates:
-``base.twig`` and ``index.twig``.
+We have created a simple ''templates'' table that hosts two templates:
+''base.twig'' and ''index.twig''.
 
 Now, let's define a loader able to use this database::
 
@@ -451,7 +451,7 @@ Using different Template Sources
 This recipe is the continuation of the previous one. Even if you store the
 contributed templates in a database, you might want to keep the original/base
 templates on the filesystem. When templates can be loaded from different
-sources, you need to use the ``Twig_Loader_Chain`` loader.
+sources, you need to use the ''Twig_Loader_Chain'' loader.
 
 As you can see in the previous recipe, we reference the template in the exact
 same way as we would have done it with a regular filesystem loader. This is
@@ -469,7 +469,7 @@ logical name, and not the path from the filesystem::
 
     echo $twig->render('index.twig', array('name' => 'Fabien'));
 
-Now that the ``base.twig`` templates is defined in an array loader, you can
+Now that the ''base.twig'' templates is defined in an array loader, you can
 remove it from the database, and everything else will still work as before.
 
 .. _callback: http://www.php.net/manual/en/function.is-callable.php

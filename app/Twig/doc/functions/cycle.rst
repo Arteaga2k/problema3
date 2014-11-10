@@ -1,7 +1,7 @@
-``cycle``
+''cycle''
 =========
 
-The ``cycle`` function cycles on an array of values:
+The ''cycle'' function cycles on an array of values:
 
 .. code-block:: jinja
 
@@ -25,4 +25,4 @@ The array can contain any number of values:
 Arguments
 ---------
 
-* ``position``: The cycle position
+* ''position'': The cycle position

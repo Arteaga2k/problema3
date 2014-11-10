@@ -1,10 +1,10 @@
-``constant``
+''constant''
 ============
 
 .. versionadded: 1.12.1
     constant now accepts object instances as the second argument.
 
-``constant`` returns the constant value for a given string:
+''constant'' returns the constant value for a given string:
 
 .. code-block:: jinja
 

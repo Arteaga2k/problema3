@@ -83,7 +83,7 @@
 
  * fixed getting a numeric-like item on a variable ('09' for instance)
  * fixed getting a boolean or float key on an array, so it is consistent with PHP's array access:
-   `{{ array[false] }}` behaves the same as `echo $array[false];` (equals `$array[0]`)
+   '{{ array[false] }}' behaves the same as 'echo $array[false];' (equals '$array[0]')
  * made the escape filter 20% faster for happy path (escaping string for html with UTF-8)
  * changed ☃ to § in tests
  * enforced usage of named arguments after positional ones
@@ -540,8 +540,8 @@ Changes:
 
 Backward incompatibilities:
  * the trans tag plural count is now attached to the plural tag:
-    old: `{% trans count %}...{% plural %}...{% endtrans %}`
-    new: `{% trans %}...{% plural count %}...{% endtrans %}`
+    old: '{% trans count %}...{% plural %}...{% endtrans %}'
+    new: '{% trans %}...{% plural count %}...{% endtrans %}'
 
  * added a way to translate strings coming from a variable ({% trans var %})
  * fixed trans tag when used with the Escaper extension
@@ -589,7 +589,7 @@ Backward incompatibilities:
  * fixed the Lexer when mbstring.func_overload is used with an mbstring.internal_encoding different from ASCII
  * added a long-syntax for the set tag ({% set foo %}...{% endset %})
  * unit tests are now powered by PHPUnit
- * added support for gettext via the `i18n` extension
+ * added support for gettext via the 'i18n' extension
  * fixed twig_capitalize_string_filter() and fixed twig_length_filter() when used with UTF-8 values
  * added a more useful exception if an if tag is not closed properly
  * added support for escaping strategy in the autoescape tag

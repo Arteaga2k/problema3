@@ -1,15 +1,15 @@
-``extends``
+''extends''
 ===========
 
-The ``extends`` tag can be used to extend a template from another one.
+The ''extends'' tag can be used to extend a template from another one.
 
 .. note::
 
     Like PHP, Twig does not support multiple inheritance. So you can only have
     one extends tag called per rendering. However, Twig supports horizontal
-    :doc:`reuse<use>`.
+    :doc:'reuse<use>'.
 
-Let's define a base template, ``base.html``, which defines a simple HTML
+Let's define a base template, ''base.html'', which defines a simple HTML
 skeleton document:
 
 .. code-block:: html+jinja
@@ -32,10 +32,10 @@ skeleton document:
         </body>
     </html>
 
-In this example, the :doc:`block<block>` tags define four blocks that child
+In this example, the :doc:'block<block>' tags define four blocks that child
 templates can fill in.
 
-All the ``block`` tag does is to tell the template engine that a child
+All the ''block'' tag does is to tell the template engine that a child
 template may override those portions of the template.
 
 Child Template
@@ -61,23 +61,23 @@ A child template might look like this:
         </p>
     {% endblock %}
 
-The ``extends`` tag is the key here. It tells the template engine that this
+The ''extends'' tag is the key here. It tells the template engine that this
 template "extends" another template. When the template system evaluates this
 template, first it locates the parent. The extends tag should be the first tag
 in the template.
 
-Note that since the child template doesn't define the ``footer`` block, the
+Note that since the child template doesn't define the ''footer'' block, the
 value from the parent template is used instead.
 
-You can't define multiple ``block`` tags with the same name in the same
+You can't define multiple ''block'' tags with the same name in the same
 template. This limitation exists because a block tag works in "both"
 directions. That is, a block tag doesn't just provide a hole to fill - it also
 defines the content that fills the hole in the *parent*. If there were two
-similarly-named ``block`` tags in a template, that template's parent wouldn't
+similarly-named ''block'' tags in a template, that template's parent wouldn't
 know which one of the blocks' content to use.
 
 If you want to print a block multiple times you can however use the
-``block`` function:
+''block'' function:
 
 .. code-block:: jinja
 
@@ -89,7 +89,7 @@ Parent Blocks
 -------------
 
 It's possible to render the contents of the parent block by using the
-:doc:`parent<../functions/parent>` function. This gives back the results of
+:doc:'parent<../functions/parent>' function. This gives back the results of
 the parent block:
 
 .. code-block:: jinja
@@ -114,7 +114,7 @@ readability:
         {% endblock inner_sidebar %}
     {% endblock sidebar %}
 
-Of course, the name after the ``endblock`` word must match the block name.
+Of course, the name after the ''endblock'' word must match the block name.
 
 Block Nesting and Scope
 -----------------------
@@ -153,7 +153,7 @@ Twig supports dynamic inheritance by using a variable as the base template:
 
     {% extends some_var %}
 
-If the variable evaluates to a ``Twig_Template`` object, Twig will use it as
+If the variable evaluates to a ''Twig_Template'' object, Twig will use it as
 the parent template::
 
     // {% extends layout %}
@@ -183,7 +183,7 @@ possible to make the inheritance mechanism conditional:
     {% extends standalone ? "minimum.html" : "base.html" %}
 
 In this example, the template will extend the "minimum.html" layout template
-if the ``standalone`` variable evaluates to ``true``, and "base.html"
+if the ''standalone'' variable evaluates to ''true'', and "base.html"
 otherwise.
 
 How do blocks work?
@@ -207,7 +207,7 @@ importantly, how it does not work:
     {% endfor %}
 
 If you render this template, the result would be exactly the same with or
-without the ``block`` tag. The ``block`` inside the ``for`` loop is just a way
+without the ''block'' tag. The ''block'' inside the ''for'' loop is just a way
 to make it overridable by a child template:
 
 .. code-block:: jinja
@@ -236,7 +236,7 @@ executed template is then equivalent to the following one:
         </article>
     {% endfor %}
 
-Let's take another example: a block included within an ``if`` statement:
+Let's take another example: a block included within an ''if'' statement:
 
 .. code-block:: jinja
 
@@ -250,7 +250,7 @@ Let's take another example: a block included within an ``if`` statement:
 
 Contrary to what you might think, this template does not define a block
 conditionally; it just makes overridable by a child template the output of
-what will be rendered when the condition is ``true``.
+what will be rendered when the condition is ''true''.
 
 If you want the output to be displayed conditionally, use the following
 instead:
@@ -265,4 +265,4 @@ instead:
         {% endif %}
     {% endblock head %}
 
-.. seealso:: :doc:`block<../functions/block>`, :doc:`block<../tags/block>`, :doc:`parent<../functions/parent>`, :doc:`use<../tags/use>`
+.. seealso:: :doc:'block<../functions/block>', :doc:'block<../tags/block>', :doc:'parent<../functions/parent>', :doc:'use<../tags/use>'

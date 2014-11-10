@@ -1,9 +1,9 @@
-``raw``
+''raw''
 =======
 
-The ``raw`` filter marks the value as being "safe", which means that in an
+The ''raw'' filter marks the value as being "safe", which means that in an
 environment with automatic escaping enabled this variable will not be escaped
-if ``raw`` is the last filter applied to it:
+if ''raw'' is the last filter applied to it:
 
 .. code-block:: jinja
 
@@ -13,7 +13,7 @@ if ``raw`` is the last filter applied to it:
 
 .. note::
 
-    Be careful when using the ``raw`` filter inside expressions:
+    Be careful when using the ''raw'' filter inside expressions:
 
     .. code-block:: jinja
 
@@ -28,9 +28,9 @@ if ``raw`` is the last filter applied to it:
             {{ (false ? hola : hello)|raw }}
         {% endautoescape %}
 
-    The first ternary statement is not escaped: ``hello`` is marked as being
+    The first ternary statement is not escaped: ''hello'' is marked as being
     safe and Twig does not escape static values (see
-    :doc:`escape<../tags/autoescape>`). In the second ternary statement, even
-    if ``hello`` is marked as safe, ``hola`` remains unsafe and so is the whole
+    :doc:'escape<../tags/autoescape>'). In the second ternary statement, even
+    if ''hello'' is marked as safe, ''hola'' remains unsafe and so is the whole
     expression. The third ternary statement is marked as safe and the result is
     not escaped.

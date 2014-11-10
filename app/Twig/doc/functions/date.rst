@@ -1,4 +1,4 @@
-``date``
+''date''
 ========
 
 .. versionadded:: 1.6
@@ -15,7 +15,7 @@ Converts an argument to a date to allow date comparison:
         {# do something #}
     {% endif %}
 
-The argument must be in one of PHP’s supported `date and time formats`_.
+The argument must be in one of PHP’s supported 'date and time formats'_.
 
 You can pass a timezone as the second argument:
 
@@ -35,8 +35,8 @@ If no argument is passed, the function returns the current date:
 
 .. note::
 
-    You can set the default timezone globally by calling ``setTimezone()`` on
-    the ``core`` extension instance:
+    You can set the default timezone globally by calling ''setTimezone()'' on
+    the ''core'' extension instance:
 
     .. code-block:: php
 
@@ -46,7 +46,7 @@ If no argument is passed, the function returns the current date:
 Arguments
 ---------
 
-* ``date``:     The date
-* ``timezone``: The timezone
+* ''date'':     The date
+* ''timezone'': The timezone
 
-.. _`date and time formats`: http://php.net/manual/en/datetime.formats.php
+.. _'date and time formats': http://php.net/manual/en/datetime.formats.php

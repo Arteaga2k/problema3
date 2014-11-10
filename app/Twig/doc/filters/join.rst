@@ -1,7 +1,7 @@
-``join``
+''join''
 ========
 
-The ``join`` filter returns a string which is the concatenation of the items
+The ''join'' filter returns a string which is the concatenation of the items
 of a sequence:
 
 .. code-block:: jinja
@@ -20,4 +20,4 @@ define it with the optional first parameter:
 Arguments
 ---------
 
-* ``glue``: The separator
+* ''glue'': The separator

@@ -1,12 +1,12 @@
-``embed``
+''embed''
 =========
 
 .. versionadded:: 1.8
-    The ``embed`` tag was added in Twig 1.8.
+    The ''embed'' tag was added in Twig 1.8.
 
-The ``embed`` tag combines the behaviour of :doc:`include<include>` and
-:doc:`extends<extends>`.
-It allows you to include another template's contents, just like ``include``
+The ''embed'' tag combines the behaviour of :doc:'include<include>' and
+:doc:'extends<extends>'.
+It allows you to include another template's contents, just like ''include''
 does. But it also allows you to override any block defined inside the
 included template, like when extending a template.
 
@@ -25,9 +25,9 @@ Think of an embedded template as a "micro layout skeleton".
         {% endblock %}
     {% endembed %}
 
-The ``embed`` tag takes the idea of template inheritance to the level of
+The ''embed'' tag takes the idea of template inheritance to the level of
 content fragments. While template inheritance allows for "document skeletons",
-which are filled with life by child templates, the ``embed`` tag allows you to
+which are filled with life by child templates, the ''embed'' tag allows you to
 create "skeletons" for smaller units of content and re-use and fill them
 anywhere you like.
 
@@ -86,7 +86,7 @@ two boxes side by side:
     │                                     │
     └─────────────────────────────────────┘
 
-Without the ``embed`` tag, you have two ways to design your templates:
+Without the ''embed'' tag, you have two ways to design your templates:
 
  * Create two "intermediate" base templates that extend the master layout
    template: one with vertically stacked boxes to be used by the "foo" and
@@ -109,12 +109,12 @@ These two solutions do not scale well because they each have a major drawback:
    of the structure, correctness has to be verified for each copy, copies may
    go out of sync by careless modifications etc.
 
-In such a situation, the ``embed`` tag comes in handy. The common layout
+In such a situation, the ''embed'' tag comes in handy. The common layout
 code can live in a single base template, and the two different content structures,
 let's call them "micro layouts" go into separate templates which are embedded
 as necessary:
 
-Page template ``foo.twig``:
+Page template ''foo.twig'':
 
 .. code-block:: jinja
 
@@ -132,7 +132,7 @@ Page template ``foo.twig``:
         {% endembed %}
     {% endblock %}
 
-And here is the code for ``vertical_boxes_skeleton.twig``:
+And here is the code for ''vertical_boxes_skeleton.twig'':
 
 .. code-block:: html+jinja
 
@@ -148,10 +148,10 @@ And here is the code for ``vertical_boxes_skeleton.twig``:
         {% endblock %}
     </div>
 
-The goal of the ``vertical_boxes_skeleton.twig`` template being to factor
+The goal of the ''vertical_boxes_skeleton.twig'' template being to factor
 out the HTML markup for the boxes.
 
-The ``embed`` tag takes the exact same arguments as the ``include`` tag:
+The ''embed'' tag takes the exact same arguments as the ''include'' tag:
 
 .. code-block:: jinja
 
@@ -173,6 +173,6 @@ The ``embed`` tag takes the exact same arguments as the ``include`` tag:
     on the template "filename" won't work as expected if you change the
     context (for instance, if you embed a CSS/JavaScript template into an HTML
     one). In that case, explicitly set the default auto-escaping strategy with
-    the ``autoescape`` tag.
+    the ''autoescape'' tag.
 
-.. seealso:: :doc:`include<../tags/include>`
+.. seealso:: :doc:'include<../tags/include>'

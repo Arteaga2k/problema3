@@ -1,10 +1,10 @@
-``slice``
+''slice''
 ===========
 
 .. versionadded:: 1.6
-    The ``slice`` filter was added in Twig 1.6.
+    The ''slice'' filter was added in Twig 1.6.
 
-The ``slice`` filter extracts a slice of a sequence, a mapping, or a string:
+The ''slice'' filter extracts a slice of a sequence, a mapping, or a string:
 
 .. code-block:: jinja
 
@@ -24,7 +24,7 @@ You can use any valid expression for both the start and the length:
         {# ... #}
     {% endfor %}
 
-As syntactic sugar, you can also use the ``[]`` notation:
+As syntactic sugar, you can also use the ''[]'' notation:
 
 .. code-block:: jinja
 
@@ -40,8 +40,8 @@ As syntactic sugar, you can also use the ``[]`` notation:
     {# you can omit the last argument -- which will select everything till the end #}
     {{ '12345'[2:] }} {# will display "345" #}
 
-The ``slice`` filter works as the `array_slice`_ PHP function for arrays and
-`mb_substr`_ for strings with a fallback to `substr`_.
+The ''slice'' filter works as the 'array_slice'_ PHP function for arrays and
+'mb_substr'_ for strings with a fallback to 'substr'_.
 
 If the start is non-negative, the sequence will start at that start in the
 variable. If start is negative, the sequence will start that far from the end
@@ -56,16 +56,16 @@ up until the end of the variable.
 
 .. note::
 
-    It also works with objects implementing the `Traversable`_ interface.
+    It also works with objects implementing the 'Traversable'_ interface.
 
 Arguments
 ---------
 
-* ``start``:         The start of the slice
-* ``length``:        The size of the slice
-* ``preserve_keys``: Whether to preserve key or not (when the input is an array)
+* ''start'':         The start of the slice
+* ''length'':        The size of the slice
+* ''preserve_keys'': Whether to preserve key or not (when the input is an array)
 
-.. _`Traversable`: http://php.net/manual/en/class.traversable.php
-.. _`array_slice`: http://php.net/array_slice
-.. _`mb_substr` :  http://php.net/mb-substr
-.. _`substr`:      http://php.net/substr
+.. _'Traversable': http://php.net/manual/en/class.traversable.php
+.. _'array_slice': http://php.net/array_slice
+.. _'mb_substr' :  http://php.net/mb-substr
+.. _'substr':      http://php.net/substr

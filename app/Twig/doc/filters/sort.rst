@@ -1,7 +1,7 @@
-``sort``
+''sort''
 ========
 
-The ``sort`` filter sorts an array:
+The ''sort'' filter sorts an array:
 
 .. code-block:: jinja
 
@@ -11,7 +11,7 @@ The ``sort`` filter sorts an array:
 
 .. note::
 
-    Internally, Twig uses the PHP `asort`_ function to maintain index
+    Internally, Twig uses the PHP 'asort'_ function to maintain index
     association.
 
-.. _`asort`: http://php.net/asort
+.. _'asort': http://php.net/asort

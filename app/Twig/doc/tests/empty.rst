@@ -1,7 +1,7 @@
-``empty``
+''empty''
 =========
 
-``empty`` checks if a variable is empty:
+''empty'' checks if a variable is empty:
 
 .. code-block:: jinja
 

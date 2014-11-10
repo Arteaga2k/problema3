@@ -1,10 +1,10 @@
-``nl2br``
+''nl2br''
 =========
 
 .. versionadded:: 1.5
-    The ``nl2br`` filter was added in Twig 1.5.
+    The ''nl2br'' filter was added in Twig 1.5.
 
-The ``nl2br`` filter inserts HTML line breaks before all newlines in a string:
+The ''nl2br'' filter inserts HTML line breaks before all newlines in a string:
 
 .. code-block:: jinja
 
@@ -18,5 +18,5 @@ The ``nl2br`` filter inserts HTML line breaks before all newlines in a string:
 
 .. note::
 
-    The ``nl2br`` filter pre-escapes the input before applying the
+    The ''nl2br'' filter pre-escapes the input before applying the
     transformation.

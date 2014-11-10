@@ -1,8 +1,8 @@
-``block``
+''block''
 =========
 
 When a template uses inheritance and if you want to print a block multiple
-times, use the ``block`` function:
+times, use the ''block'' function:
 
 .. code-block:: jinja
 
@@ -12,4 +12,4 @@ times, use the ``block`` function:
 
     {% block body %}{% endblock %}
 
-.. seealso:: :doc:`extends<../tags/extends>`, :doc:`parent<../functions/parent>`
+.. seealso:: :doc:'extends<../tags/extends>', :doc:'parent<../functions/parent>'
