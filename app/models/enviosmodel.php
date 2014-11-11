@@ -122,4 +122,16 @@ class EnviosModel extends model {
 		
 		return $result;
 	}
+	
+	public function creaSql($array,$accion)
+	{
+		$columns = array_keys($array);
+		$values = array_values($array);
+	
+		$query = "
+		$accion $this->_table (" . implode(", ", $columns) . ")
+	       VALUES ('" . implode("', '", $values) . "')";
+		
+		var_dump($query);
+	}
 }

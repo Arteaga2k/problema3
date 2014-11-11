@@ -31,7 +31,7 @@ class Envios extends Controller {
 		
 		// comprobamos si existe el formulario
 		if (isset ( $_REQUEST ['add'] )) {
-			require 'app/core/form_filter.php';
+			require 'app/libs/formHelper.php';
 			$helperForm = new FilterForm ();
 			
 			$formEnvio = $this->setCamposForEnvio ();
@@ -100,35 +100,44 @@ class Envios extends Controller {
 	 *        	identificador tabla envío
 	 */
 	public function edit($envio_id) {
-		// si existe $envio_id
+		// si existe $envio_id		
 		if (isset ( $envio_id )) {
+			// cargamos el modelo
+			$envios_model = $this->loadModel ( 'EnviosModel' );
+			// obtenemos datos del envío a editar
+			$data['datos'] = $envios_model->get ( $envio_id );
+			// obtenemos listado de provincias
+			$provincias = $this->getProvincias ( $envios_model );
+			
 			
 			// comprobamos si existe el formulario
 			if (isset ( $_REQUEST ['edit'] )) {
-				require 'app/core/form_filter.php';
+				require 'app/libs/formHelper.php';
 				$helperForm = new FilterForm ();
 				
 				$formEnvio = $this->setCamposForEnvio ();
-				$data = $helperForm->checkForm ( $formEnvio );
+				$data['errores'] = $helperForm->checkForm ( $formEnvio );
 				
-				// guardamos datos y errores posibles del formulario en arrays que pasaremos a la plantilla
-				$dataForm = $data ['datos'];
-				$errores = $data ['errores'];
-				
-				var_dump ( $dataForm );
 				
 				// Si existen errores recargamos el formulario con los errores existentes
 				if (! empty ( $errores )) {
 					$this->render ( 'envios/form_envio', array (
 							'title' => 'Editar envío',
 							'provincias' => $provincias,
-							'datos' => $dataForm,
-							'errores' => $errores 
+							'datos' => $data ['datos'],
+							'errores' => $data ['errores'] 
 					) );
 				} else { // no hay errores
-				         // insertamos nuevo envío y redireccionamos a envios index
-					$envios_model->edit ( $envio_id );
-					header ( 'location: ' . URL . 'envios' );
+				     // insertamos nuevo envío y redireccionamos a envios index
+					 //$envios_model->edit ( $envio_id );
+					 
+					 $campos = array(
+					 		'id_envio' => ':id_envio'
+					 );
+					 $envios_model->creaSql($campos,'update ');
+					//header ( 'location: ' . URL . 'envios' );
+					
+					echo 'no hay errores';
 				}
 			} else {
 				
@@ -139,6 +148,7 @@ class Envios extends Controller {
 				$this->render ( 'envios/form_envio', array (
 						'title' => 'Editar envío',
 						'accion' => 'edit',
+						'datos' =>  $data ['datos'],
 						'provincias' => $provincias 
 				) );
 			}
@@ -147,7 +157,7 @@ class Envios extends Controller {
 	
 	/**
 	 * Función que devuelve el listado de provincias
-	 * 
+	 *
 	 * @param
 	 *        	el objeto modelo $envios_model
 	 */
@@ -157,7 +167,7 @@ class Envios extends Controller {
 	
 	/**
 	 * Rellena el array con campos esperados del formulario envío -nombre/tipo-
-	 * 
+	 *
 	 * @return multitype:string
 	 */
 	public function setCamposForEnvio() {

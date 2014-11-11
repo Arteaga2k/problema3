@@ -8,6 +8,12 @@
 abstract class Model
 {
 
+	/**
+	 * 
+	 * @var unknown
+	 */
+	protected  $_table;
+	
     /**
      *
      * @var unknown
@@ -25,7 +31,7 @@ abstract class Model
      */
     public function __construct()
     {
-        require 'app/core/db.php';
+        require 'app/libs/db.php';
         $this->_db = Db::singleton();
     }
     
@@ -100,4 +106,6 @@ abstract class Model
         $sth->execute($params);
         return $sth->fetch();
     }
+    
+    
 }
