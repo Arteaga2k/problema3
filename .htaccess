@@ -12,7 +12,7 @@ Options -Indexes
 # Indicamos desde donde vamos a iniciar
 RewriteBase /problema1/
 
-# General rewrite rules
+# # Disable rewriting for existing files or directories
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l

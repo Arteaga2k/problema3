@@ -108,4 +108,29 @@ abstract class Model
     }
     
     
+    
+    public function creaSql($array,$accion,$cond,$)
+    {  
+    	 
+    	$cond = array();    	
+    	
+    	$columns = array_keys($array);
+    	$values = array_values($array);
+		
+		//accion insert into, update set, delete from
+    	
+    	
+    	$query = "
+    	$accion (" . implode(", ", $columns) . ")
+    	$VALUES ('" . implode("', '", $values) . "')";   	
+    
+    	 
+    	if (count($cond)) {
+    		$query .= ' WHERE ' . implode(' AND ', $cond);
+    	} 	 
+    
+    	var_dump($query);
+    }
+    
+    
 }

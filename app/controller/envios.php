@@ -132,9 +132,15 @@ class Envios extends Controller {
 					 //$envios_model->edit ( $envio_id );
 					 
 					 $campos = array(
+					 		'prueba' => ':prueba',
+					 		'reg2' => ':reg2',
+					 		'reg3' => ':reg3'
+					 );					 
+					
+					 $condiciones = array(
 					 		'id_envio' => ':id_envio'
 					 );
-					 $envios_model->creaSql($campos,'update ');
+					 $envios_model->creaSql($campos,'UPDATE tbl_envio SET',$condiciones);
 					//header ( 'location: ' . URL . 'envios' );
 					
 					echo 'no hay errores';
