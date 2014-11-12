@@ -123,14 +123,28 @@ class EnviosModel extends model {
 		return $result;
 	}
 	
-	public function creaSql($array,$accion)
+	public function creaSql($array,$accion,$cond)
 	{
+	    $firstname = 'Patrick';
+	    $lastname = 'Allaert';
+	    
+	    $query = 'SELECT * FROM users';
+	    
+	    $cond = array();
+	    $params = array();	    
+	   
+	    
+	    if (count($cond)) {
+	        $query .= ' WHERE ' . implode(' AND ', $cond);
+	    }	
+	    
+	    
 		$columns = array_keys($array);
 		$values = array_values($array);
 	
-		$query = "
+		/*$query = "
 		$accion $this->_table (" . implode(", ", $columns) . ")
-	       VALUES ('" . implode("', '", $values) . "')";
+	       VALUES ('" . implode("', '", $values) . "')";*/
 		
 		var_dump($query);
 	}
