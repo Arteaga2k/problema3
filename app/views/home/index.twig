@@ -1,11 +1,11 @@
 {% extends "_templates/base.twig" %} {% block content %}
 <div class="page-header">
-            <h1>{{ title }}</h1>
+	<h1>{{ title }}</h1>
 </div>
 <div class="row">
 	<div class="col-xs-5">
-		<div class="panel panel-default">
-			<div class="panel-heading">Envíos pendientes</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Envíos Pendientes</div>
 			<div class="panel-body">
 				<table class="table table-bordered table-hover">
 					<thead>
@@ -18,15 +18,13 @@
 					</thead>
 					{% for envio in envios %}
 					<tbody>
-						{% if envio.ESTADO|lower == "p" %}
+						{% if envio.estado|lower == "p" %}
 						<tr>
-							<td>#{{ envio.ID_ENVIO }}</td>
-							<td>{{
-									[envio.NOMBRE,envio.APELLIDO1, envio.APELLIDO2]|join(' ') }}</td>
-							<td><a
-								href="{{ constant('URL') }}envios/edit/{{ envio.ID_ENVIO }}">{{
-									envio.FEC_CREACION }} </a></td>
-							<td><span class="label label-danger">PENDIENTE</span></td>
+							<td><a href="{{ constant('URL') }}envios/edit/{{ envio.id_envio }}">{{ envio.id_envio }} </a></td>
+							<td>{{ [envio.nombre,envio.apellido1, envio.apellido2]|join(' ')
+								}}</td>
+							<td>{{ envio.fec_creacion }}</td>
+							<td class="text-center"><span class="label label-danger">PENDIENTE</span></td>
 						</tr>
 						{% endif %} {% endfor %}
 					</tbody>
@@ -37,12 +35,44 @@
 
 
 	<div class="col-xs-7">
-		<div class="panel panel-default">
-			<div class="panel-heading">Envíos devueltos</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Envíos recientes</div>
 			<div class="panel-body">
 				<table class="table table-bordered">
 					<tr></tr>
 					<tr></tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	<div class="col-xs-5">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Envíos Enviados</div>
+			<div class="panel-body">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>Destinatario</td>
+							<td>Fecha creación</td>
+							<td>Estado</td>
+						</tr>
+					</thead>
+					{% for envio in envios %}
+					<tbody>
+						{% if envio.estado|lower == "e" %}
+						<tr>
+							<td><a href="{{ constant('URL') }}envios/edit/{{ envio.id_envio }}">{{ envio.id_envio }} </a></td>
+							<td>{{ [envio.nombre,envio.apellido1, envio.apellido2]|join(' ')
+								}}</td>
+							<td>{{ envio.fec_creacion }}</td>
+							<td class="text-center"><span class="label label-success">ENVIADO</span></td>
+						</tr>
+						{% endif %} {% endfor %}
+					</tbody>
 				</table>
 			</div>
 		</div>

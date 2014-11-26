@@ -1,126 +1,203 @@
 <?php
-class EnviosModel extends model {
-	
-	/**
-	 * Obtener todos los envios de la tabla Envios
-	 */
-	public function getAllEnvios() {
-		$sql = "SELECT NOMBRE, APELLIDO1, APELLIDO2, 
-				TELEFONO1, TELEFONO2, RAZONSOCIAL, ID_ENVIO,FEC_CREACION, ESTADO
-				FROM TBL_ENVIO";
-		
-		$this->_setSql ( $sql );
-		$envios = $this->getAll ();
-		
-		return $envios;
-	}
-	
-	/**
-	 * Obtener listado de provincias
-	 */
-	public function getAllProvincias() {
-		$sql = "SELECT P.ID_PROVINCIA, P.PROVINCIA
-				FROM TBL_PROVINCIA P";
-		
-		$this->_setSql ( $sql );
-		$provincias = $this->getAll ();
-		
-		return $provincias;
-	}
-	
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see Model::get()
-	 */
-	public function get($id_envio) {
-		// Creamos consulta
-		$sql = "SELECT nombre, apellido1, apellido2, direccion,codpostal,email,
-				telefono1, telefono2, razonsocial, id_envio,fec_creacion, estado
-				FROM TBL_ENVIO
-                WHERE ID_ENVIO = :envioID";
-		// Asignamos consulta
-		$this->_setSql ( $sql );
-		
-		// bindeamos parámetros
-		$params = array (
-				':envioID' => $id_envio 
-		);
-		
-		// obtenemos datos del envío
-		$result = $this->getFila ( $params );
-		return $result;
-	}
-	
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see Model::set()
-	 */
-	public function add() {
-		$sql = "INSERT INTO 'kenollega'.'tbl_envio' ('id_envio', 'direccion', 'poblacion', 'cp',
-             'provincia', 'email', 'estado', 'fec_creacion', 'fec_entrega', 'observaciones', 'nombre',
-             'apellido1', 'apellido2', 'razonsocial', 'telefono1', 'telefono2') 
-            VALUES (NULL, 'avenida huelva', 'aljaraque', '21110', '10', 'cav1662@hotmail.com', 'e', '14/10/2014',
-             '24/10/2014', 'ninguna', 'carlos', 'arteaga', 'virella', 'onuba sl', '654564564', '5645645')";
-	}
-	
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see Model::edit()
-	 */
-	public function edit($datos) {
-		$sql = "UPDATE 'tbl_envio' SET 'direccion'=:direccion,'poblacion'=:poblacion,
-    			'codpostal'=:codpostal,'provincia'=:provincia,'email'=:email,'estado'=:estado,
-    			'fec_entrega'=:fec_entra,'observaciones'=:observaciones,'nombre'=:nombre,
-    			'apellido1'=:apellido1,'apellido2'=:apellido2,'razonsocial'=:razonsocial,
-    			'telefono1'=:telefono1,'telefono2'=:telefono2 WHERE 'id_envio'=:id_envio";
-		
-		// Asignamos consulta
-		$this->_setSql ( $sql );
-		
-		// bindeamos parámetros
-		$params = array (
-				':envioID' => $datos['id_envio'],
-				':direccion' => $datos['direccion'],
-				':poblacion' => $datos['poblacion'],
-				':codpostal' => $datos['codpostal'],
-				':provincia' => $datos['provincia'],
-				':email' => $datos['email'],
-				':estado' => $datos['estado'],
-				':fec_entrega' => $datos['fec_entrega'],
-				':observaciones' => $datos['observaciones'],
-				':nombre' => $datos['nombre'],
-				':apellido1' => $datos['apellido1'],
-				':apellido2' => $datos['apellido2']
-				
-		);
-		
-		// obtenemos dato del envío
-		$result = $this->singleQuery ( $params );
-		
-		return $result;
-	}
-	
-	/**
-	 * (non-PHPdoc)
-	 *
-	 * @see Model::delete()
-	 */
-	public function delete($id_envio) {
-		$sql = "DELETE FROM tbl_envio WHERE id_envio =  :envioID";
-		$this->_setSql ( $sql );
-		
-		// bindeamos parámetros
-		$params = array (
-				':envioID' => $id_envio 
-		);
-		
-		// obtenemos dato del envío
-		$result = $this->singleQuery ( $params );
-		
-		return $result;
-	}	
 
+/**
+ * Clase enviosmodel
+ * 
+ * 
+ * 
+ * @author Carlos
+ *
+ */
+class EnviosModel
+{
+
+    /**
+     * nombre de la tabla envio
+     * @var unknown
+     */
+    private $table = "tbl_envio";
+
+    /**
+     * Constructor de la clase
+     */
+    public function __construct()
+    {
+        require 'app/libs/mysql_DB.php';
+        $this->mysqlDB = new MysqlDB();
+    }
+
+    /**
+     * Obtener todos los envios de la tabla Envios
+     */
+    public function getAllEnvios($filtro = NULL, $offset = 0)
+    {
+        if (is_null($filtro)) {
+            $result = $this->mysqlDB->select()
+                ->limit("$offset," . REGS_PAG)
+                ->from($this->table)
+                ->fetchAll();
+        } else {
+            
+            $binds = array(
+                'direccion' => '%' . $filtro['texto'] . '%',
+                'poblacion' => '%' . $filtro['texto'] . '%',
+                'nombre' => '%' . $filtro['texto'] . '%',
+                'apellido1' => '%' . $filtro['texto'] . '%',
+                'apellido2' => '%' . $filtro['texto'] . '%',
+                'razonsocial' => '%' . $filtro['texto'] . '%'
+            );
+            
+            foreach ($binds as $key => $value) {
+                $fields[$key] = 'like';
+            }
+            
+            if (! empty($filtro['fec_desde'])) {
+                $binds['fec_creacion'] = '2014-11-27';
+            }
+            
+            $this->mysqlDB->setBinds($binds);
+            
+            $this->mysqlDB->or_where($fields);
+            if (isset($binds['fec_creacion'])) {
+                
+                $dateField = array(
+                    'fec_creacion' => '>='
+                );
+                
+                $this->mysqlDB->or_where($dateField);
+            }
+            
+            $this->mysqlDB->select()
+                ->limit("$offset," . REGS_PAG)
+                ->from($this->table)
+                ->orderBy('fec_creacion', 'desc');
+            
+            $result = $this->mysqlDB->fetchAll();
+            
+            // ->where(array('fec_creacion' => '<='))
+        }
+        
+        return $result;
+        
+        /*
+         * SELECT * FROM `tbl_envio` WHERE nombre
+         * like '%ca%' or telefono1 >=89182192819281 and telefono1 <= 89182192819281
+         * OR telefono2 >= 1 and telefono2 <= 99990000000
+         */
+    }
+
+    /**
+     * Pide a la  base de datos el listado de provincia
+     *
+     * @return array $result Listado de provincias
+     */
+    public function getAllProvincias()
+    {
+        $result = $this->mysqlDB->select()
+            ->from('tbl_provincia')
+            ->fetchAll();
+        
+        return $result;
+    }
+
+    /**
+     *
+     * @param string $id_envio
+     *            identificador de la tabla
+     * @return mixed
+     */
+    public function getEnvio($id_envio)
+    {
+        $binds = array(
+            ':id_envio' => $id_envio
+        );
+        
+        $this->mysqlDB->setBinds($binds);
+        
+        $result = $this->mysqlDB->where('id_envio')
+            ->select()
+            ->from($this->table)
+            ->fetch();
+        
+        return $result;
+    }
+
+    /**
+     *
+     * @param unknown $dataForm            
+     */
+    public function addEnvio($dataForm)
+    {
+        
+        // bindeamos parametros
+        foreach ($dataForm as $key => $value) {
+            $binds[":$key"] = $value; // iria en el execute
+        }
+        // var_dump($dataForm);
+        $this->mysqlDB->setBinds($binds);
+        $this->mysqlDB->insert($this->table, $dataForm);
+    }
+
+    /**
+     *
+     * @param unknown $dataForm            
+     * @param unknown $id_envio            
+     */
+    public function editEnvio($dataForm, $id_envio)
+    {
+        // bindeamos campos del formulario, que coinciden con la tabla envio
+        foreach ($dataForm as $key => $value) {
+            $binds[":$key"] = $value;
+        }
+        // id_envio no está como campo de formulario, lo añadimos
+        $binds[":id_envio"] = $id_envio;
+        
+        $this->mysqlDB->setBinds($binds);
+        $this->mysqlDB->where('id_envio')->update($this->table, $dataForm);
+    }
+
+    public function anotaEnvio($dataForm, $id_envio)
+    {
+        // bindeamos campos del formulario, que coinciden con la tabla envio
+        foreach ($dataForm as $key => $value) {
+            $binds[":$key"] = $value;
+        }
+        // id_envio no está como campo de formulario, lo añadimos
+        $binds[":id_envio"] = $id_envio;
+        $binds[":estado"] = 'e';
+        
+        $this->mysqlDB->setBinds($binds);
+        $this->mysqlDB->where('id_envio')->update($this->table, $dataForm);
+    }
+
+    /**
+     *
+     * @param unknown $id_envio            
+     */
+    public function deleteEnvio($id_envio)
+    {
+        $this->mysqlDB->setBinds(array(
+            ':id_envio' => $id_envio
+        ));
+        
+        $this->mysqlDB->where('id_envio')->delete($this->table);
+    }
+
+    public function getTotalRows($dataForm = NULL)
+    {
+        // bindeamos campos del formulario, que coinciden con la tabla envio
+        /*
+         * foreach ($dataForm as $key => $value) {
+         * $binds[":$key"] = $value;
+         * }
+         * if (!empty($dataForm)){
+         * $this->mysqlDB->setBinds($binds);
+         * }
+         */
+        $result = $this->mysqlDB->select("COUNT(*) as total")
+            ->from($this->table)
+            ->fetch();
+        
+        return $result['total'];
+    }
 }

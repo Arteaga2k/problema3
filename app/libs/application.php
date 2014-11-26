@@ -1,10 +1,11 @@
 <?php
 
 /**
- *  * @author Carlos
- *  Controlador frontal
- *  Analizar� la url e invocar� el controlador determinado por la url
- *
+ *  Clase application
+ *  
+ *  Controlador frontal que analiza la url e invocará el controlador determinado por la url
+ *  
+ *  @author Carlos
  */
 class Application
 {
@@ -45,6 +46,7 @@ class Application
      */
     public function __construct()
     {
+        
         // crea un array con los par�metros de la URL de la variable $url
         $this->separaUrl();
         
@@ -105,11 +107,13 @@ class Application
             $this->url_parameter_2 = (isset($url[3]) ? $url[3] : null);
             $this->url_parameter_3 = (isset($url[4]) ? $url[4] : null);
             
-            /*echo 'Controlador: ' . $this->url_controller . '<br />';
-            echo 'Accion: ' . $this->url_action . '<br />';
-            echo 'Parametro 1: ' . $this->url_parameter_1 . '<br />';
-            echo 'Parametro 2: ' . $this->url_parameter_2 . '<br />';
-            echo 'Paramero 3: ' . $this->url_parameter_3 . '<br />';*/
+            /*
+             * echo 'Controlador: ' . $this->url_controller . '<br />';
+             * echo 'Accion: ' . $this->url_action . '<br />';
+             * echo 'Parametro 1: ' . $this->url_parameter_1 . '<br />';
+             * echo 'Parametro 2: ' . $this->url_parameter_2 . '<br />';
+             * echo 'Paramero 3: ' . $this->url_parameter_3 . '<br />';
+             */
         }
     }
 }

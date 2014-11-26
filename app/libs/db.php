@@ -1,8 +1,11 @@
 <?php
 
-/**
- * @author Carlos
- * Implementación del patrón singleton
+/** 
+ * Clase Db
+ * 
+ * Implementación del patrón singleton, devuelve una instancia de la conexión a la bbdd
+ * 
+ * @author Carlos * 
  **/
 class Db
 {
