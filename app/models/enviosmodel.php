@@ -22,7 +22,7 @@ class EnviosModel
      */
     public function __construct()
     {
-        require 'app/libs/mysql_DB.php';
+        require_once 'app/libs/mysql_DB.php';
         $this->mysqlDB = new MysqlDB();
     }
 

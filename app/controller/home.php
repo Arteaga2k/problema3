@@ -17,7 +17,7 @@ class Home extends Controller
      */
     public function index()
     {
-        var_dump($_COOKIE);
+        //var_dump($_COOKIE);
         $envios_model = $this->loadModel('EnviosModel');
         $envios = $envios_model->getAllEnvios();
         

@@ -15,7 +15,7 @@ class UsuarioModel {
 	 * Constructor de la clase
 	 */
 	public function __construct() {
-		require 'app/libs/mysql_DB.php';
+		require_once 'app/libs/mysql_DB.php';
 		$this->mysqlDB = new MysqlDB ();
 	}
 	public function addUsuario($dataForm) {

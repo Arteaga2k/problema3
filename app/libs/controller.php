@@ -7,6 +7,7 @@
  * Desde aquí cargaremos el modelo requerido y renderizamos la vista 
  * 
  * @author Carlos * 
+ * @version 0.1
  */
 class Controller
 {
@@ -14,7 +15,7 @@ class Controller
     {
         Session::start();
         // Si existe cookie, intentamos hacer login con la cookie
-        if (! isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+        if (! isset($_SESSION['usuario_logueado']) && isset($_COOKIE['rememberme'])) {
             header('location: ' . URL . 'login/loginConCookie');
         }
     }
