@@ -368,7 +368,7 @@ class MysqlDB
     {
         if (is_null($sql))
             $sql = $this->buildSql();
-        //var_dump($sql);
+        var_dump($sql);
         $this->sth = $this->db->prepare($sql);
         if (is_null($this->binds))
             $result = $this->sth->execute();

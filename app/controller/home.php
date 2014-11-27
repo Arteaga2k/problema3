@@ -20,7 +20,9 @@ class Home extends Controller
     	Autorizacion::checkLogin();
         
         $envios_model = $this->loadModel('EnviosModel');
-        $envios = $envios_model->getAllEnvios();
+        $envios = $envios_model->getEnvios();
+        
+        var_dump($envios);
         
         $this->render('home/index', array(
             'title' => 'Dashboard',

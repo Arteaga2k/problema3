@@ -26,6 +26,16 @@ class EnviosModel {
 	}
 	
 	/**
+	 * Devuelve resultado consulta todas las filas de la tabla tbl_envio
+	 */
+	public function getEnvios(){
+		$result = $this->mysqlDB->select ()->from ( $this->table )->fetchAll ();
+		
+		return $result;
+	}
+	
+	
+	/**
 	 * Obtener todos los envios de la tabla Envios
 	 */
 	public function getAllEnvios($filtro = NULL, $offset = 0, $count = NULL) {
