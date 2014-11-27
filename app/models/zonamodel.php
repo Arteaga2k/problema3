@@ -28,7 +28,17 @@ class ZonaModel {
 		return $result;
 	}
 	
+	/**
+	 * 
+	 */
 	public function addZona(){
+		// bindeamos parametros
+		foreach ( $dataForm as $key => $value ) {
+			$binds [":$key"] = $value; // iria en el execute
+		}
+		// var_dump($dataForm);
+		$this->mysqlDB->setBinds ( $binds );
+		$this->mysqlDB->insert ( $this->table, $dataForm );
 		
 	}
 	

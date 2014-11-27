@@ -1,4 +1,4 @@
-{% extends "envios/base_envio.twig" %} {% block content %}
+{% extends "_templates/base.twig" %} {% block content %}
 
 <div class="page-header">
 	<h1>
@@ -19,7 +19,7 @@
 		<div class="panel panel-default">
 
 			<div class="panel-body">
-				<form action="{{ constant('URL') }}envios/index/"
+				<form action="{{ constant('URL') }}envios/filtroPaginacion/"
 					class="form-inline" role="form" method="POST">
 
 					<div class="input-group col-sm-3">
@@ -41,7 +41,8 @@
 					</div>
 
 					<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
-					<button type="text" class="btn btn-default">Limpiar filtros</button>
+					<a class="btn btn-default" href="{{ constant('URL') }}envios/borraFiltros/">Limpiar filtros</a>
+					
 				</form>
 
 

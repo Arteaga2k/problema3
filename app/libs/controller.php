@@ -13,6 +13,8 @@ class Controller
 {
     public function __construct()
     {
+    	Autorizacion::checkLogin();
+    	
         Session::start();
         // Si existe cookie, intentamos hacer login con la cookie
         if (! isset($_SESSION['usuario_logueado']) && isset($_COOKIE['rememberme'])) {
