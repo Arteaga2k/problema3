@@ -5,8 +5,29 @@
  *
  */
 class Usuario extends Controller {
-	public function index() {
-	}
+/**
+     * PÁGINA: index
+     *
+     * http://problema1/usuario/index
+     */
+    public function index(){
+        // cargamos modelo, realizamos accion, guardamos resultado en una variable
+        $usuario_model = $this->loadModel('UsuarioModel');
+        $zona_model = $this->loadModel('ZonaModel');
+        
+        $usuarios = $usuario_model->getUsuarios();        
+        $zona = $zona_model->getZona($_SESSION['usuario_zona']);
+        
+        // creamos la vista, pasamos datos de envío obtenidos
+        $this->render('usuarios/index', array(
+            'tabla' => 'Usuarios', 
+            'cabecera' => 'Lista usuarios',
+            'usuario' => $_SESSION['usuario_nombre'],
+            'usuarios' => $usuarios,   
+            'zona_usuario' => $zona['nombrezona'],
+        ));
+        
+    }
 	
 	/**
 	 * PÁGINA: alta usuario
@@ -14,7 +35,7 @@ class Usuario extends Controller {
 	public function add() {
 		$this->render ( 'usuarios/form_registro', array (
 				'tabla' => 'Usuario',
-				'title' => 'Registro usuario' 
+				'title' => 'Alta usuario' 
 		) );
 	}
 	
@@ -38,7 +59,7 @@ class Usuario extends Controller {
 			} else {
 				$this->render('usuarios/form_registro', array(
 						'tabla' => 'Usuario',
-						'title' => 'Registro usuario',
+						'title' => 'Alta usuario',
 						'datos' => $data['datos'],
 						'errores' => $data['errores']
 				));
@@ -46,9 +67,24 @@ class Usuario extends Controller {
 		}
 		
 	}
-	public function editar() {
-	}
-	public function eliminar() {
+	
+	
+	/**
+	 * Log out ddel usuario, borramos cookie y sesion
+	 */
+	public function logout()
+	{
+	    // eliminamos cookie según explica el enlace de abajo
+	    // ponemos una fecha antigua.
+	    // @see http://stackoverflow.com/a/686166/1114320
+	    setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
+	
+	    // borramos sesion
+	    Session::destroy();
+	    
+	    // redireccionamos al formulario de login
+	     header('location: ' . URL . 'login');
+	    
 	}
 	
 	/**
@@ -66,4 +102,6 @@ class Usuario extends Controller {
 		
 		return $formEnvio;
 	}
+	
+	
 }

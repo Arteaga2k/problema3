@@ -9,8 +9,8 @@
 
 	<div class="col-xs-12">
 		<p>
-					<a class="btn btn-primary" href="{{ constant('URL') }}usuario/add">[+]
-				Añadir usuario</a>
+					<a class="btn btn-primary" href="{{ constant('URL') }}zona/add">[+]
+				Añadir zona</a>
 		</p>
 	</div>
 
@@ -22,7 +22,7 @@
 					class="form-inline" role="form" method="POST">
 
 					<div class="input-group col-sm-3">
-						<span class="input-group-addon">Texto</span> <input type="text"
+						<span class="input-group-addon">Nombre</span> <input type="text"
 							id="texto" name="texto" placeholder="" class="form-control"
 							value="{{ filtro.filtro_texto|length  ? filtro.filtro_texto : '' }}">
 					</div>
@@ -42,10 +42,10 @@
 		<div class="panel panel-default">
 
 			<div class="panel-body">
-				<form action="{{ constant('URL') }}usuario/consulta/"
+				<form action="{{ constant('URL') }}zona/consulta/"
 					class="form-inline" role="form" method="POST">
 					<div class="input-group ">
-						<span class="input-group-addon">Usuario</span> <input type="text"
+						<span class="input-group-addon">#ID Zona</span> <input type="text"
 							class="form-control" name="ver" id="ver" placeholder="">
 					</div>
 					<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
@@ -86,27 +86,26 @@
 	<div class="col-xs-6">
 		<div class="panel panel-primary">
 			<!-- Default panel contents -->
-			<div class="panel-heading">Lista de usuarios</div>
+			<div class="panel-heading">Lista de zonas administrativas</div>
 			<div class="panel-body">Total de registros {{ filas }}</div>
 			<table class="table table-hover table-bordered">
 				<tr>
-				<th>#ID</th>
-				<th>Nombre</th>
-				<th>Email</th>					
-				<th></th>
+					<td><strong>#ID</strong></td>
+
+					<td><strong>Nombre</strong></td>
+					<td></td>
 				</tr>
-				{% for usuario in usuarios %}
+				{% for zona in zonas %}
 				<!-- |title devuelve una versión con mayúsculas iniciales del valor -->
 				<tr>
-					<td>#{{ usuario.id_usuario }}</td>
-					<td>{{ usuario.username|title }}</td>
-					<td>{{ usuario.email|title }}</td>
+					<td>#{{ zona.id_zona }}</td>
+					<td>{{ zona.nombrezona|title }}</td>
 					<td class="col-xs-3">
 					
 					  <p><a class="btn btn-default"
-							href="{{ constant('URL') }}zona/editar/{{ usuario.id_usuario }}">Editar</a>					
+							href="{{ constant('URL') }}zona/editar/{{ zona.id_zona }}">Editar</a>					
 						 <a class="btn btn-danger"
-						href="{{ constant('URL') }}zona/eliminar/{{ usuario.id_usuario }}">Eliminar</a></p>  						
+						href="{{ constant('URL') }}zona/eliminar/{{ zona.id_zona }}">Eliminar</a></p>  						
 					</td>
 				</tr>
 				{% endfor %}

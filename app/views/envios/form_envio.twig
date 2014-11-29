@@ -1,27 +1,18 @@
-{% extends "envios/base_envio.twig" %} {% block content %}
+{% extends "_templates/base.twig" %} {% block content %}
 <div class="page-header">
 	<h1>
-		Envíos <small>{{ title }} {% if datos.id_envio %}#{{ datos.id_envio}}
+		{{ tabla }} <small>{{ cabecera }} {% if datos.id_envio %}#{{ datos.id_envio}}
 			{% endif %}</small>
 	</h1>
 
 </div>
 <div class="row">
 	<form
-		action="{{ constant('URL') }}envios/{{ accion }}{%- if accion == "edit" or accion == "anotar"  -%}
-					/{{ datos.id_envio }}
-					{% endif %}"
+		action="{{ constant('URL') }}envios/{{ accion }}"
 		method="POST" class="form-horizontal" role="form">
 		<div class="col-xs-12">
 			<div class="row">
-				<div class="col-xs-5">
-					<form
-						action="{{ constant('URL') }}envios/{{ accion }}{%- if accion == "edit" -%}
-					/{{ datos.id_envio }}
-					{% endif %}"
-						method="POST" class="form-horizontal" role="form">
-
-
+				<div class="col-xs-5 ">
 						<div class="panel panel-default">
 							<div class="panel-heading">Datos envío</div>
 							<div class="panel-body">
@@ -33,10 +24,11 @@
 											value="{{ datos.direccion|length ? datos.direccion : '' }}"
 											class="form-control" id="direccion"
 											
-											 {{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 											errores.direccion|length ? errores.direccion : '' -}}</span>
 									</div>
 								</div>
+								<input type="hidden" name="id_envio" value="{{ datos.id_envio|length ? datos.id_envio : '' }}">
 								<div
 									class="form-group {% if errores.telefono1|length -%} has-error {%- endif -%}">
 									<label for="telefono1" class="col-sm-2 control-label">Teléfono</label>
@@ -45,7 +37,7 @@
 											value="{{ datos.telefono1|length ? datos.telefono1 : '' }}"
 											class="form-control" id="telefono1"
 											
-											 {{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 											errores.telefono1|length ? errores.telefono1 : '' -}}</span>
 									</div>
 									<div class="col-sm-5">
@@ -53,7 +45,7 @@
 											value="{{ datos.telefono2|length ? datos.telefono2 : '' }}"
 											class="form-control" id="telefono2"
 											
-											 {{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 											errores.telefono2|length ? errores.telefono2 : '' -}}</span>
 									</div>
 								</div>
@@ -81,7 +73,7 @@
 											value="{{ datos.codpostal|length ? datos.codpostal : '' }}"
 											class="form-control" id="cp"
 											
-											 {{accion|lower == 'anotar' or accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+											 {{accion|lower == 'anotar_accion' or accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 											errores.codpostal|length ? errores.codpostal : '' -}}</span>
 									</div>
 								</div>
@@ -90,7 +82,7 @@
 									<div class="col-sm-10">
 										<select class="form-control" name="provincia" id="provincia"
 											
-											 {{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> {% for
+											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> {% for
 											provincia in provincias %}
 											<option value="{{ provincia.id_provincia }}">{{
 												provincia.provincia }}</option> {% endfor %}
@@ -106,10 +98,33 @@
 											value="{{ datos.poblacion|length ? datos.poblacion : '' }}"
 											class="form-control" id="poblacion"
 											
-											 {{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 											errores.poblacion|length ? errores.poblacion : '' -}}</span>
 									</div>
 								</div>
+								
+								<div class="form-group {% if errores.zona_entrega|length -%} has-error {%- endif -%}">
+								<label for="zona_entrega" class="col-sm-2 control-label">Zona Envío</label>
+								<div class="col-sm-10">									
+									 <select class="form-control" name="zona_entrega"
+										id="zona_entrega"   {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+										{% for zona in zonas %}
+										<option value="{{ zona.id_zona }}" {{ zona.nombrezona|lower == zona_usuario|lower ? "selected='selected'": '' -}}>{{ zona.nombrezona }}</option> {% endfor %}
+									</select>
+								</div>
+							</div>						
+							<div class="form-group {% if errores.zona_recepcion|length -%} has-error {%- endif -%}">
+								<label for="zona_recepcion" class="col-sm-2 control-label">Zona Recepción</label>
+								<div class="col-sm-10">									
+									 <select class="form-control" name="zona_recepcion"
+										id="zona_recepcion"   {{ accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+										{% for zona in zonas %}
+										<option value="{{- zona.id_zona -}}" {{ zona.nombrezona|lower == zona_usuario|lower ? "selected='selected'": '' -}}>{{- zona.nombrezona -}}
+										</option> 
+										{%- endfor -%}
+									</select>
+								</div>
+							</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
@@ -136,7 +151,7 @@
 										value="{{- datos.razonsocial|length ? datos.razonsocial : '' -}}"
 										class="form-control" id="razonsocial"
 										
-										 {{accion|lower == 'anotar' or accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+										 {{accion|lower == 'anotar_accion' or accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 										errores.razonsocial|length ? errores.razonsocial : '' -}}</span>
 								</div>
 
@@ -150,7 +165,7 @@
 										value=" {{- datos.nombre|length ? datos.nombre : '' -}}"
 										class="form-control" id="nombre"
 										
-										{{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+										{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 										errores.nombre|length ? errores.nombre : '' -}}</span>
 
 								</div>
@@ -168,7 +183,7 @@
 										value="{{ datos.apellido1|length ? datos.apellido1 : '' }}"
 										class="form-control" id="apellido1"
 										
-{{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 										errores.apellido1|length ? errores.apellido1 : '' -}}</span>
 								</div>
 							</div>
@@ -182,7 +197,7 @@
 										value="{{ datos.apellido2|length ? datos.apellido2 : '' }}"
 										class="form-control" id="apellido2"
 										
-{{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 										errores.apellido2|length ? errores.apellido2 : '' -}}</span>
 								</div>
 							</div>
@@ -195,15 +210,15 @@
 										value="{{ datos.email|length ? datos.email : '' }}"
 										class="form-control" id="email"
 										
-{{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
+{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 										errores.email|length ? errores.email : '' -}}</span>
 								</div>
 							</div>
 						</div>
-					</div>
-					{% if accion|lower == 'anotar' %}
+					</div>					
+					{% if accion|lower == 'anotar_accion' %}
 					<div class="panel panel-default">
-						<div class="panel-heading">Anotar recepción</div>
+						<div class="panel-heading">anotar_accion recepción</div>
 						<div class="panel-body">
 							<div
 								class="form-group {% if errores.fec_entrega|length -%} has-error {%- endif -%}">
@@ -218,7 +233,7 @@
 							</div>
 
 
-							<div class="form-group">
+							<div class="form-group {% if errores.confirmacion|length -%} has-error {%- endif -%}">
 								<div class="col-sm-offset-2 col-sm-10">
 									<div class="checkbox">
 										<label> <input type="checkbox" name="confirmacion" value=""
@@ -241,7 +256,7 @@
 									<!-- Creo array de estados -->
 									{% set estados = { 'p': 'pendiente','e': 'enviado','d':
 									'devuelto'} %} <select class="form-control" name="estado"
-										id="estado"   {{accion|lower == 'anotar' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+										id="estado"   {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
 										{% for key,value in estados %}
 										<option value="{{ key }}">{{ value }}</option> {% endfor %}
 									</select>
@@ -256,14 +271,11 @@
 						<hr />
 						<button type="submit" name="{{ accion }}" value="Submit"
 							class="btn btn-primary ">Guardar</button>
-						<button type="submit" name="{{ accion }}" value="Submit"
-							class="btn btn-default ">Cancelar</button>
+						<a class="btn btn-default" href="{{ constant('URL') }}envios/index/">Cancelar</a>
 
 						<hr />
 					</div>
-
 				</div>
-
 				<!-- FIN COL-XS-5-OFFSET-1 -->
 			</div>
 	

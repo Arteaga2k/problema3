@@ -2,7 +2,7 @@
 
 <div class="page-header">
 	<h1>
-		Envíos <small>{{ title }}</small>
+		{{ tabla }} <small>{{ cabecera }}</small>
 	</h1>
 </div>
 <div class="row">
@@ -24,20 +24,23 @@
 
 					<div class="input-group col-sm-3">
 						<span class="input-group-addon">Texto</span> <input type="text"
-							id="texto" name="texto" placeholder="" class="form-control">
+							id="texto" name="texto" placeholder="" class="form-control"
+							value="{{ filtro.filtro_texto|length  ? filtro.filtro_texto : '' }}">
 					</div>
 
 
 					<div class="input-group">
 						<span class="input-group-addon">Desde</span> <input type="text"
 							id="fec_desde" name="fec_desde" placeholder="aaaa/mm/dd"
-							class="form-control">
+							class="form-control" 
+							value="{{ filtro.filtro_fec_desde|length  ? filtro.filtro_fec_desde : '' }}">
 					</div>
 
 					<div class="input-group">
 						<span class="input-group-addon">Hasta</span> <input type="text"
 							id="fec_hasta" name="fec_hasta" class="form-control"
-							placeholder="aaaa/mm/dd">
+							placeholder="aaaa/mm/dd"
+							value="{{ filtro.filtro_fec_hasta|length  ? filtro.filtro_fec_hasta : '' }}">
 					</div>
 
 					<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>

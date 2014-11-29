@@ -3,7 +3,8 @@
 /** 
  * Clase mysqldb 
  * 
- * Intenta emular el comportamiento de active record de codeigniter, prepara el query
+ * Intenta emular el comportamiento de active record de codeigniter
+ * guarda condiciones del query por separado
  * 
  * @author Carlos
  */
@@ -72,7 +73,7 @@ class MysqlDB
 
     /**
      *
-     * @var unknown
+     * @var unknown array que guarda historial de condiciones where
      */
     private $ar_where = null;
 
@@ -141,9 +142,7 @@ class MysqlDB
     {
         $this->table = $table;
         
-        $campos = implode(", ", array_keys($values));
-        
-        var_dump($campos);
+        $campos = implode(", ", array_keys($values));    
         
         $sql = "INSERT INTO   $table   ( $campos ) VALUES (";
         
@@ -203,7 +202,7 @@ class MysqlDB
             $sql .= $this->where .= ")";
         }
         
-        var_dump($sql);
+       
         $this->sth = $this->db->prepare($sql);
         return $result = $this->sth->execute($this->binds);
     }
@@ -304,13 +303,7 @@ class MysqlDB
             }
             // Si la condición contiene un Like, in, >=...etc lo sustituimos por el '='
             if ($char = $this->esOperador($value)) {
-                $this->where .= "$key $char :$key";
-                /*
-                 * if (strtolower($char) == 'like')
-                 * $this->where .= "$key $char :$key";
-                 * else
-                 * $this->where .= "$key $char :$key";
-                 */
+                $this->where .= "$key $char :$key";               
             } else {
                 $this->where .= "$value = :$value";
             }
@@ -319,9 +312,7 @@ class MysqlDB
         
         return $this;
     }
-
-    public function like()
-    {}
+    
 
     /**
      *
@@ -368,7 +359,7 @@ class MysqlDB
     {
         if (is_null($sql))
             $sql = $this->buildSql();
-        var_dump($sql);
+        //kint::dump($sql);
         $this->sth = $this->db->prepare($sql);
         if (is_null($this->binds))
             $result = $this->sth->execute();

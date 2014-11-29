@@ -12,12 +12,11 @@
 class Controller
 {
     public function __construct()
-    {
-    	Autorizacion::checkLogin();
-    	
-        Session::start();
+    {    	
+        Session::start();       
+             
         // Si existe cookie, intentamos hacer login con la cookie
-        if (! isset($_SESSION['usuario_logueado']) && isset($_COOKIE['rememberme'])) {
+        if (! isset($_SESSION['usuario_logueado']) && isset($_COOKIE['rememberme'])) {           
             header('location: ' . URL . 'login/loginConCookie');
         }
     }

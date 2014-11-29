@@ -18,6 +18,11 @@ class UsuarioModel {
 		require_once 'app/libs/mysql_DB.php';
 		$this->mysqlDB = new MysqlDB ();
 	}
+	
+	/**
+	 * 
+	 * @param unknown $dataForm
+	 */
 	public function addUsuario($dataForm) {
 	    		
 		// crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
@@ -48,11 +53,15 @@ class UsuarioModel {
 	/**
 	 * devuelve listado de usuarios limitados por el offset y el num de registros
 	 */
-	public function getAllUsuario($offset = 0) {
+	public function getUsuarios($offset = 0) {
 		$this->mysqlDB->select ()->limit ( "$offset," . REGS_PAG )->from ( $this->table );
 		
 		return $result = $this->mysqlDB->fetchAll ();
 	}
+	
+	/**
+	 * 
+	 */
 	public function editUsuario() {
 	}
 	

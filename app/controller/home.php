@@ -16,17 +16,24 @@ class Home extends Controller
      * http://problema1/index
      */
     public function index()
-    {
-    	Autorizacion::checkLogin();
+    {    
+        Autorizacion::checkLogin();
         
         $envios_model = $this->loadModel('EnviosModel');
-        $envios = $envios_model->getEnvios();
+        $zona_model = $this->loadModel('ZonaModel');
         
-        var_dump($envios);
+        $envios = $envios_model->getEnvios($_SESSION['usuario_zona']);
+        $zona = $zona_model->getZona($_SESSION['usuario_zona']);
+        $zonas = $zona_model->getZonas();
         
         $this->render('home/index', array(
-            'title' => 'Dashboard',
-            'envios' => $envios
+            'cabecera' => 'Dashboard',
+            'usuario' => $_SESSION['usuario_nombre'],
+            'envios' => $envios,
+            'zona_usuario' => $zona['nombrezona'],
+            'zonas' => $zonas
         ));
     }
+
+    
 }
