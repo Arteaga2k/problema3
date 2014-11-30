@@ -39,8 +39,8 @@ class ZonaModel
 
     /**
      * Devuelve la información de una zona determinada por su id
-     * 
-     * @param unknown $id_zona
+     *
+     * @param unknown $id_zona            
      * @return multitype:
      */
     public function getZona($id_zona)
@@ -58,6 +58,17 @@ class ZonaModel
     }
 
     /**
+     *
+     * @return multitype:
+     */
+    public function getZonaDefault()
+    {
+        return $result = $this->mysqlDB->select("MIN(id_zona) as ZONA")
+            ->from($this->table)
+            ->fetch();
+    }
+
+    /**
      */
     public function addZona($dataForm)
     {
@@ -69,10 +80,11 @@ class ZonaModel
         $this->mysqlDB->setBinds($binds);
         $this->mysqlDB->insert($this->table, $dataForm);
     }
-    
+
     /**
      * Elimina un envio determinado por su id en la base de datos
-     * @param unknown $id_zona
+     * 
+     * @param unknown $id_zona            
      */
     public function deleteZona($id_zona)
     {
@@ -81,19 +93,19 @@ class ZonaModel
                 ':id_zona' => $id_zona
             ));
             
-            $this->mysqlDB->where('id_zona')->delete($this->table);            
-           return TRUE;
-           // al ser foreign key en tabla envio puede dar error al intentar eliminar
+            $this->mysqlDB->where('id_zona')->delete($this->table);
+            return TRUE;
+            // al ser foreign key en tabla envio puede dar error al intentar eliminar
         } catch (Exception $e) {
-           return FALSE;
+            return FALSE;
         }
-       
     }
 
     /**
-     * Edita datos de zona determinado por su id  en la base de datos
-     * @param unknown $dataForm
-     * @param unknown $id_zona
+     * Edita datos de zona determinado por su id en la base de datos
+     * 
+     * @param unknown $dataForm            
+     * @param unknown $id_zona            
      */
     public function editZona($dataForm, $id_zona)
     {
@@ -107,6 +119,4 @@ class ZonaModel
         $this->mysqlDB->setBinds($binds);
         $this->mysqlDB->where('id_zona')->update($this->table, $dataForm);
     }
-
-   
 }

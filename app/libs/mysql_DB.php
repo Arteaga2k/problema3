@@ -363,7 +363,7 @@ class MysqlDB
         $this->sth = $this->db->prepare($sql);
         if (is_null($this->binds))
             $result = $this->sth->execute();
-        else
+        else          
             $result = $this->sth->execute($this->binds);
     }
 

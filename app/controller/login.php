@@ -83,7 +83,11 @@ class Login extends Controller
         $cookie = isset($_COOKIE['rememberme']) ? $_COOKIE['rememberme'] : '';
               
         $login_model = $this->loadModel('LoginModel');
+        $zona_model = $this->loadModel('ZonaModel');
+        $zona = $zona_model->getZonaDefault();
         $user = $login_model->getUsuarioCookie($cookie);
+        $user['zona'] = $zona['ZONA'];
+        
         
                 
         if (! empty($user)) {
@@ -104,6 +108,8 @@ class Login extends Controller
      */
     public function guardaDatosSesion($user)
     {
+        var_dump($user);
+        
         // guardamos datos en la sesion
         Session::start();
         Session::set('usuario_logueado', true);

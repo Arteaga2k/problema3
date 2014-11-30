@@ -6,19 +6,17 @@
 
 <!-- Estilos css -->
 {% block stylesheets %}
-<link href="{{ constant('URL') }}assets/css/bootstrap.css"
-	type="text/css" rel="stylesheet" />
-<link href="{{ constant('URL') }}assets/css/jquery.cleditor.css"
-	type="text/css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link href="{{ constant('URL') }}assets/css/bootstrap.css"	type="text/css" rel="stylesheet" />
+<link href="{{ constant('URL') }}assets/css/jquery.cleditor.css"	type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 {% endblock %}
+
 
 
 </head>
 <body>
 
-	<div class="container-fluid">
+	 <div class="container-fluid">
 		<nav class="navbar navbar-inverse" role="navigation">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -67,14 +65,9 @@
 		</nav>
 
 
-
 		<!-- Contenido será rellenado por las diferentes vistas via Twig -->
 		{% block content %} {% endblock %}
-
-
-
-
-		<!-- Bloque javascript -->
+		
 	</div>
 	{% block javascripts %}
 	<script src="{{ constant('URL') }}assets/js/jquery-1.11.1.min.js"

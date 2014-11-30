@@ -35,7 +35,7 @@ class EnviosModel
     public function getEnvios($id_zona)
     {
        
-        $this->binds['zona_recepcion'] = $id_zona;
+        $this->binds[':zona_recepcion'] = $id_zona;
         $this->mysqlDB->setBinds($this->binds);
         $result = $this->mysqlDB->select()
             ->where('zona_recepcion')
@@ -53,7 +53,7 @@ class EnviosModel
     {
         if (is_null($filtro) || empty($filtro)) {
             
-            $this->binds['zona_recepcion'] = $id_zona;
+            $this->binds[':zona_recepcion'] = $id_zona;
             
             $this->mysqlDB->setBinds($this->binds);
             
@@ -74,6 +74,7 @@ class EnviosModel
             orderBy('fec_creacion', 'desc');
             $result = $this->mysqlDB->fetchAll();
         }
+        unset($this->binds);
         return $result;
     }
 
@@ -216,9 +217,11 @@ class EnviosModel
         $binds[":id_envio"] = $id_envio;
         $binds[":estado"] = 'e';
         
-        var_dump($dataForm);
+       
         $this->mysqlDB->setBinds($binds);
         $this->mysqlDB->where('id_envio')->update($this->table, $dataForm);
+        
+        unset($this->binds);
     }
 
     /**
@@ -234,6 +237,7 @@ class EnviosModel
             ));
             
             $this->mysqlDB->where('id_envio')->delete($this->table);
+            unset($this->binds);
             
             return TRUE;
         } catch (Exception $e) {
@@ -250,7 +254,7 @@ class EnviosModel
     {
         if (is_null($filtro) || empty($filtro)) {
             
-            $this->binds['zona_recepcion'] = $id_zona;
+            $this->binds[':zona_recepcion'] = $id_zona;
             
             $this->mysqlDB->setBinds($this->binds);
             $result = $this->mysqlDB->select("COUNT(*) as total")
@@ -258,7 +262,7 @@ class EnviosModel
                 ->from($this->table)
                 ->fetch();
         }
-        
+        unset($this->binds);
         return $result['total'];
     }
 }
