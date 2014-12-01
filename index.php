@@ -8,6 +8,7 @@ require 'app/libs/controller.php';
 require 'app/kint/Kint.class.php';
 require 'app/libs/Session.php';
 require 'app/libs/autorizacion.php';
+require 'app/libs/configuration.php';
 
 // Cargamos el motor de plantillas Twig
 require 'app/Twig/lib/Twig/Autoloader.php';

@@ -226,7 +226,7 @@ class Envios extends Controller
             $envios_model = $this->loadModel('EnviosModel');
             $zona_model = $this->loadModel('ZonaModel');
             // obtenemos datos del envío a editar
-            $data['datos'] = $envios_model->getEnvio($envio_id);
+            $data['datos'] = $envios_model->getEnvio($envio_id,$_SESSION['usuario_zona']);
             $zona = $zona_model->getZona($_SESSION['usuario_zona']);
             $zonas = $zona_model->getZonas();
             
@@ -306,7 +306,7 @@ class Envios extends Controller
         if (! is_null($envio_id)) {
             $envios_model = $this->loadModel('EnviosModel');
             // obtenemos datos del envío a editar
-            $data['datos'] = $envios_model->getEnvio($envio_id);
+            $data['datos'] = $envios_model->getEnvio($envio_id,$_SESSION['usuario_zona']);
             // obtenemos listado de provincias
             $provincias = $envios_model->getAllProvincias();
             
@@ -340,7 +340,7 @@ class Envios extends Controller
                 header('location: ' . URL . 'envios/index');
             } else {                  
                 // obtenemos datos del envío a editar y añadimos a datos del usuario que estamos editando
-                $data['datos'] = $envios_model->getEnvio($_REQUEST['id_envio']);
+                $data['datos'] = $envios_model->getEnvio($_REQUEST['id_envio'],$_SESSION['usuario_zona']);
                 foreach ($dataAnotar['datos'] as $key => $value) {
                     $data['datos'][$key] = $value;
                 }

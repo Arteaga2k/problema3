@@ -77,19 +77,18 @@
 		<nav class="pull-right">
 			<ul class="pagination">
 
-				<li class=""><a href="{{ constant('URL') }}envios/index/1">&laquo;</a></li>
-				<li class=""><a
+				<li class="{{ page == 1 ? 'disabled' : '' }}"><a href="{{ constant('URL') }}envios/index/1">&laquo;</a></li>
+				<li class="{{ page == 1 ? 'disabled' : '' }}"><a
 					href="{{ constant('URL') }}envios/index/{{ page == 1 ? 1 : page-1 }}">&larr;</a></li>
 
-				{% for pag in inicio..fin %} {% if (pag > 0) and (pag <= totalpag)
-				%}
+				{% for pag in inicio..fin %} {% if (pag > 0) and (pag <= totalpag) %}
 				<li class="{{ pag == page ? 'active' : '' }}"><a
 					href="{{ constant('URL') }}envios/index/{{ pag }}">{{ pag }} <span
 						class="sr-only">(current)</span></a></li> {% endif %} {% endfor %}
 
-				<li class=""><a
+				<li class="{{ page == totalpag ? 'disabled' : '' }}"><a
 					href="{{ constant('URL') }}envios/index/{{  page == totalpag ? totalpag : page+1 }}">&rarr;</a></li>
-				<li class=""><a
+				<li class="{{ page == totalpag ? 'disabled' : '' }}"><a
 					href="{{ constant('URL') }}envios/index/{{ totalpag }}">&raquo;</a></li>
 			</ul>
 		</nav>

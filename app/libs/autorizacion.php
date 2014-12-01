@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Autorizacion
+ * Clase Autorizacion
  * 
  * comprueba si usuario está logeado. En la aplicación los diferentes controladores la usarán Autorizacion::handleLogin() para
  * comprobar si el usuario está logueado

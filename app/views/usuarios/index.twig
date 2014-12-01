@@ -9,7 +9,7 @@
 
 	<div class="col-xs-12">
 		<p>
-					<a class="btn btn-primary" href="{{ constant('URL') }}usuario/add">[+]
+			<a class="btn btn-primary" href="{{ constant('URL') }}usuario/add">[+]
 				Añadir usuario</a>
 		</p>
 	</div>
@@ -18,7 +18,7 @@
 		<div class="panel panel-default">
 
 			<div class="panel-body">
-				<form action="{{ constant('URL') }}zona/filtroPaginacion/"
+				<form action="{{ constant('URL') }}usuario/filtroPaginacion/"
 					class="form-inline" role="form" method="POST">
 
 					<div class="input-group col-sm-3">
@@ -29,7 +29,7 @@
 
 					<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
 					<a class="btn btn-default"
-						href="{{ constant('URL') }}envios/borraFiltros/">Limpiar filtros</a>
+						href="{{ constant('URL') }}usuario/borraFiltros/">Limpiar filtros</a>
 
 				</form>
 
@@ -62,20 +62,21 @@
 		<nav class="">
 			<ul class="pagination">
 
-				<li class=""><a href="{{ constant('URL') }}envios/index/1">&laquo;</a></li>
-				<li class=""><a
-					href="{{ constant('URL') }}envios/index/{{ page == 1 ? 1 : page-1 }}">&larr;</a></li>
+				<li class="{{ page == 1 ? 'disabled' : '' }}"><a
+					href="{{ constant('URL') }}usuario/index/1">&laquo;</a></li>
+				<li class="{{ page == 1 ? 'disabled' : '' }}"><a
+					href="{{ constant('URL') }}usuario/index/{{ page == 1 ? 1 : page-1 }}">&larr;</a></li>
 
 				{% for pag in inicio..fin %} {% if (pag > 0) and (pag <= totalpag)
 				%}
 				<li class="{{ pag == page ? 'active' : '' }}"><a
-					href="{{ constant('URL') }}envios/index/{{ pag }}">{{ pag }} <span
+					href="{{ constant('URL') }}usuario/index/{{ pag }}">{{ pag }} <span
 						class="sr-only">(current)</span></a></li> {% endif %} {% endfor %}
 
-				<li class=""><a
-					href="{{ constant('URL') }}envios/index/{{  page == totalpag ? totalpag : page+1 }}">&rarr;</a></li>
-				<li class=""><a
-					href="{{ constant('URL') }}envios/index/{{ totalpag }}">&raquo;</a></li>
+				<li class="{{ page == totalpag ? 'disabled' : '' }}"><a
+					href="{{ constant('URL') }}usuario/index/{{  page == totalpag ? totalpag : page+1 }}">&rarr;</a></li>
+				<li class="{{ page == totalpag ? 'disabled' : '' }}"><a
+					href="{{ constant('URL') }}usuario/index/{{ totalpag }}">&raquo;</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -90,10 +91,10 @@
 			<div class="panel-body">Total de registros {{ filas }}</div>
 			<table class="table table-hover table-bordered">
 				<tr>
-				<th>#ID</th>
-				<th>Nombre</th>
-				<th>Email</th>					
-				<th></th>
+					<th>#ID</th>
+					<th>Nombre</th>
+					<th>Email</th>
+					<th></th>
 				</tr>
 				{% for usuario in usuarios %}
 				<!-- |title devuelve una versión con mayúsculas iniciales del valor -->
@@ -102,11 +103,13 @@
 					<td>{{ usuario.username|title }}</td>
 					<td>{{ usuario.email|title }}</td>
 					<td class="col-xs-3">
-					
-					  <p><a class="btn btn-default"
-							href="{{ constant('URL') }}zona/editar/{{ usuario.id_usuario }}">Editar</a>					
-						 <a class="btn btn-danger"
-						href="{{ constant('URL') }}zona/eliminar/{{ usuario.id_usuario }}">Eliminar</a></p>  						
+
+						<p>
+							<a class="btn btn-default"
+								href="{{ constant('URL') }}zona/editar/{{ usuario.id_usuario }}">Editar</a>
+							<a class="btn btn-danger"
+								href="{{ constant('URL') }}zona/eliminar/{{ usuario.id_usuario }}">Eliminar</a>
+						</p>
 					</td>
 				</tr>
 				{% endfor %}

@@ -88,8 +88,10 @@ class Controller
         if ($pag < 1)
             $pag = 1;
         
-        $offset = ($pag - 1) * REGS_PAG;
-        $totalPag = ceil($totalRows / REGS_PAG);
+        $REGS_PAG = session::get('REGS_PAG');             
+        
+        $offset = ($pag - 1) * $REGS_PAG;
+        $totalPag = ceil($totalRows / $REGS_PAG);
         
         $inicio = max($pag - 1, 1);
         

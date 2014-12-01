@@ -42,14 +42,14 @@ class Login extends Controller
         if (isset($_REQUEST['login'])) {
             
             // cargamos el modelo y realizamos la acción
-            $login_model = $this->loadModel('LoginModel');
+            $usuario_model = $this->loadModel('UsuarioModel');
             // filtramos y sanitizamos formulario
             $dataLogin = $this->filtraFormulario($this->formLogin());
             
             // Si validación ok
             if ($this->validation($dataLogin)) {
                 // Obtenemos datos del usuario que quiere hacer login
-                $user = $login_model->getUsuario($dataLogin['datos']['email']);
+                $user = $usuario_model->getUsuario($dataLogin['datos']['email']);
                 $user['zona'] = $_POST['zona'];
                
                 if ($user) {
@@ -62,13 +62,13 @@ class Login extends Controller
                         if (isset($_POST['remember'])) {
                             
                             // string formado por id usuario, random string y hash combinado de ambos
-                            $cookie_string = $login_model->rememberToken($user);
+                            $cookie_string = $usuario_model->rememberToken($user);
                             
                             // guardamos cookie
                             setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME,"/", null);
                         }                        
                         
-                       header('location: ' . URL . 'home/index');
+                      //header('location: ' . URL . 'home/index');
                     }
                 }
             }
@@ -82,10 +82,11 @@ class Login extends Controller
     {
         $cookie = isset($_COOKIE['rememberme']) ? $_COOKIE['rememberme'] : '';
               
-        $login_model = $this->loadModel('LoginModel');
+        $usuario_model = $this->loadModel('UsuarioModel');
         $zona_model = $this->loadModel('ZonaModel');
+        // por defecto debemos asignar una zona, en este caso la primera de la tabla zonas
         $zona = $zona_model->getZonaDefault();
-        $user = $login_model->getUsuarioCookie($cookie);
+        $user = $usuario_model->getUsuarioCookie($cookie);
         $user['zona'] = $zona['ZONA'];
         
         
@@ -96,7 +97,7 @@ class Login extends Controller
         } else {
            
             // eliminamos cookie invalidad para evitar un bucle infinito
-            $login_model->deleteCookie();
+            $usuario_model->deleteCookie();
             // redireccionamos al formulario login
             header('location: ' . URL . 'login/index');
         }
@@ -107,9 +108,7 @@ class Login extends Controller
      * y el estado de usuario logueado
      */
     public function guardaDatosSesion($user)
-    {
-        var_dump($user);
-        
+    {                
         // guardamos datos en la sesion
         Session::start();
         Session::set('usuario_logueado', true);
@@ -117,6 +116,12 @@ class Login extends Controller
         Session::set('usuario_nombre', $user['username']);
         Session::set('usuario_email', $user['email']);
         Session::set('usuario_zona', $user['zona']);
+        
+        $params = json_decode($user['configuracion'],true);
+        
+        foreach ($params as $key => $value){
+            session::set($key, $value);           
+        }            
     }
 
     /**
