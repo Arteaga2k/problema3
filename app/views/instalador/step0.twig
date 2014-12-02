@@ -1,0 +1,21 @@
+{% extends "_templates/base.twig" %} {% block content %}
+<div class="container">
+	<div class="jumbotron">
+		<h1>Kenollega SL</h1>
+		<p>Bienvenido a Kenollega. Antes de empezar necesitamos alguna
+			información de la base de datos. Necesitarás saber lo siguiente antes
+			de continuar.
+		
+		
+		<ul>
+			<li>Nombre de la base de datos Usuario de la base de datos</li>
+			<li>Contraseña de la base de datos</li>
+			<li>Servidor de la base de datos</li>
+		</ul>
+		</p>
+	</div>
+<a href="{{ constant('URL') }}instalador/configuracion/" class="btn btn-info">!Vamos a ello!</a>
+
+</div>
+
+{% endblock %}

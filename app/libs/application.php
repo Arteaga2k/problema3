@@ -76,11 +76,11 @@ class Application
                     $this->url_controller->{$this->url_action}();
                 }
             } else {
-                // si no existe el m�todo llamamos al index del controlador por defecto
+                // si no existe el método llamamos al index del controlador por defecto
                 $this->url_controller->index();
             }
         } else {
-            // Si no existe o es inv�lida la URL nos vamos al index de inicio
+            // Si no existe o es inválida la URL nos vamos al index de inicio
             require './app/controller/home.php';
             $home = new Home();
             $home->index();

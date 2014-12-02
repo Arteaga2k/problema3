@@ -89,13 +89,13 @@ class Login extends Controller {
 		
 		if (! empty ( $user )) {
 			$this->guardaDatosSesion ( $user );
-			//header ( 'location: ' . URL . 'home/index' );
+			header ( 'location: ' . URL . 'home/index' );
 		} else {
 			
 			// eliminamos cookie invalidad para evitar un bucle infinito
 			$usuario_model->deleteCookie ();
 			// redireccionamos al formulario login
-			//header ( 'location: ' . URL . 'login/index' );
+			header ( 'location: ' . URL . 'login/index' );
 		}
 	}
 	
