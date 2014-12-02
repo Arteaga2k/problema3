@@ -1,19 +1,17 @@
 {% extends "_templates/base.twig" %} {% block content %}
-
+<ol class="breadcrumb">
+	<li><a href="#">Home</a></li>
+	<li><a href="#">Zonas</a></li>
+	<li class="active">Alta</li>
+</ol>
 <h1>
-	{{ tabla }} <small>{{ cabecera }} </small>
+	<small>{{ cabecera }} </small>
 </h1>
 <hr />
 <div class="col-xs-6">
 	<form class="form-horizontal" role="form"
 		action="{{ constant('URL') }}zona/{{ accion }}">
-		<div class="form-group">
-			<label for="id_zona" class="col-sm-2 control-label">ID</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="id_zona"
-					value="{{ datos.id_zona|length ? datos.id_zona : '' }}" disabled>
-			</div>
-		</div>
+
 		<input type="hidden" name="id_zona"
 			value="{{ datos.id_zona|length ? datos.id_zona : '' }}">
 
@@ -25,16 +23,19 @@
 					id="nombrezona" placeholder=""
 					value="{{ datos.nombrezona|length ? datos.nombrezona : '' }}"
 					
+					
 				 {{accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
 					errores.nombrezona|length ? errores.nombrezona : '' -}}</span>
 			</div>
 		</div>
+		{% if accion|lower != 'consulta' -%}
 		<div class="form-group well">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" name="{{ accion }}" class="btn btn-primary">Guardar</button>
 				<a class="btn btn-default" href="{{ constant('URL') }}zona/index/">Cancelar</a>
 			</div>
 		</div>
+		{% endif %}
 	</form>
 </div>
 

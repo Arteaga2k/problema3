@@ -8,19 +8,21 @@
  * 
  * @author Carlos
  */
-class Autorizacion
-{
-
-    public static function checkLogin()
-    {
-        // Inicialiazamos la sesion
-        Session::start();
-        // si usuario no está logueado, destruimos sesión y redireccionamos al formulario de login
-        if (! isset($_SESSION['usuario_logueado'])) {
-            // destruimos session
-            Session::destroy();
-            // redireccionamos al formulario login
-            header('location: ' . URL . 'login');           
-        }
-    }
+class Autorizacion {
+	public static function checkLogin() {
+		// Inicialiazamos la sesion
+		Session::start ();
+		// si usuario no está logueado, destruimos sesión y redireccionamos al formulario de login
+		if (! isset ( $_SESSION ['usuario_logueado'] )) {
+			
+			if (isset ( $_COOKIE ['rememberme'] )) {
+				header ( 'location: ' . URL . 'login/loginConCookie' );
+			} else {
+				// destruimos session
+				Session::destroy ();
+				// redireccionamos al formulario login
+				header ( 'location: ' . URL . 'login' );
+			}
+		}
+	}
 }

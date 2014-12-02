@@ -8,17 +8,18 @@
 			href="{{ constant('URL') }}usuario/add">[+] Añadir usuario</a>
 	</h1>
 
-	<div class="col-xs-8">
+	<div class="col-xs-6 col-sm-9 col-lg-8">
 		<div class="panel panel-default">
 
 			<div class="panel-body">
 				<form action="{{ constant('URL') }}usuario/filtroPaginacion/"
 					class="form-inline" role="form" method="POST">
-
-					<div class="input-group col-sm-3">
-						<span class="input-group-addon">Texto</span> <input type="text"
-							id="texto" name="texto" placeholder="" class="form-control"
-							value="{{ filtro.filtro_texto|length  ? filtro.filtro_texto : '' }}">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon">Texto</span> <input type="text"
+								id="texto" name="texto" placeholder="" class="form-control"
+								value="{{ filtro.filtro_texto|length  ? filtro.filtro_texto : '' }}">
+						</div>
 					</div>
 
 					<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
@@ -32,15 +33,17 @@
 		</div>
 	</div>
 
-	<div class="col-xs-3 col-xs-offset-1">
+	<div class="col-xs-6 col-sm-3 col-lg-4">
 		<div class="panel panel-default">
 
 			<div class="panel-body">
 				<form action="{{ constant('URL') }}usuario/consulta/"
 					class="form-inline" role="form" method="POST">
-					<div class="input-group ">
-						<span class="input-group-addon">Usuario</span> <input type="text"
-							class="form-control" name="ver" id="ver" placeholder="">
+					<div class="form-group">
+						<div class="input-group ">
+							<span class="input-group-addon">ID</span> <input type="text"
+								class="form-control" name="ver" id="ver" placeholder="">
+						</div>
 					</div>
 					<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
 				</form>
@@ -78,7 +81,7 @@
 
 
 	<div class="clearfix"></div>
-	<div class="col-xs-6">
+	<div class="col-xs-12">
 		<div class="panel panel-primary">
 			<!-- Default panel contents -->
 			<div class="panel-heading">Lista de usuarios</div>
@@ -100,9 +103,9 @@
 
 						<p>
 							<a class="btn btn-default"
-								href="{{ constant('URL') }}zona/editar/{{ usuario.id_usuario }}">Editar</a>
+								href="{{ constant('URL') }}usuario/editar/{{ usuario.id_usuario }}">Editar</a>
 							<a class="btn btn-danger"
-								href="{{ constant('URL') }}zona/eliminar/{{ usuario.id_usuario }}">Eliminar</a>
+								href="{{ constant('URL') }}usuario/eliminar/{{ usuario.id_usuario }}">Eliminar</a>
 						</p>
 					</td>
 				</tr>
