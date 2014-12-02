@@ -1,38 +1,41 @@
 {% extends "_templates/base.twig" %} {% block content %}
-<div class="page-header">
-	<h1>
-		{{ tabla }} <small>{{ cabecera }} </small>
-	</h1>
 
-</div>
+<h1>
+	{{ tabla }} <small>{{ cabecera }} </small>
+</h1>
+<hr />
 <div class="col-xs-6">
-<form class="form-horizontal" role="form"
-action="{{ constant('URL') }}zona/{{ accion }}">
-	<div class="form-group">
-		<label for="id_zona" class="col-sm-2 control-label">ID</label>
-		<div class="col-sm-2">
-			<input type="text" class="form-control" id="id_zona"
-				value="{{ datos.id_zona|length ? datos.id_zona : '' }}" disabled>				
+	<form class="form-horizontal" role="form"
+		action="{{ constant('URL') }}zona/{{ accion }}">
+		<div class="form-group">
+			<label for="id_zona" class="col-sm-2 control-label">ID</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="id_zona"
+					value="{{ datos.id_zona|length ? datos.id_zona : '' }}" disabled>
+			</div>
 		</div>
-	</div>
-	<input type="hidden" name="id_zona" value="{{ datos.id_zona|length ? datos.id_zona : '' }}">
-	
-	<div class="form-group {% if errores.nombrezona|length -%} has-error {%- endif -%}">
-		<label for=""nombrezona"" class="col-sm-2 control-label">Nombre zona</label>
-		<div class="col-sm-10">
-			<input type="text" name="nombrezona" class="form-control" id="nombrezona"
-				placeholder="" value="{{ datos.nombrezona|length ? datos.nombrezona : '' }}"
+		<input type="hidden" name="id_zona"
+			value="{{ datos.id_zona|length ? datos.id_zona : '' }}">
+
+		<div
+			class="form-group {% if errores.nombrezona|length -%} has-error {%- endif -%}">
+			<label for="" nombrezona"" class="col-sm-2 control-label">Nombre zona</label>
+			<div class="col-sm-10">
+				<input type="text" name="nombrezona" class="form-control"
+					id="nombrezona" placeholder=""
+					value="{{ datos.nombrezona|length ? datos.nombrezona : '' }}"
+					
 				 {{accion|lower == 'consulta' ? 'disabled' : '' -}}> <span>{{-
-											errores.nombrezona|length ? errores.nombrezona : '' -}}</span>
+					errores.nombrezona|length ? errores.nombrezona : '' -}}</span>
+			</div>
 		</div>
-	</div>	
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" name="{{ accion }}" class="btn btn-primary" >Guardar</button>
-			<a class="btn btn-default" href="{{ constant('URL') }}zona/index/">Cancelar</a>
+		<div class="form-group well">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" name="{{ accion }}" class="btn btn-primary">Guardar</button>
+				<a class="btn btn-default" href="{{ constant('URL') }}zona/index/">Cancelar</a>
+			</div>
 		</div>
-	</div>
-</form>
+	</form>
 </div>
 
 {% endblock %}

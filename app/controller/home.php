@@ -27,6 +27,7 @@ class Home extends Controller
         $zonas = $zona_model->getZonas();
         
         $this->render('home/index', array(
+            'tabla' => 'dashboard',
             'cabecera' => 'Dashboard',
             'usuario' => $_SESSION['usuario_nombre'],
             'envios' => $envios,

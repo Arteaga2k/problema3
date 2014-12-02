@@ -1,10 +1,11 @@
 {% extends "_templates/base.twig" %} {% block content %}
-<div class="page-header">
+
 	<h1>
 		{{ tabla }} <small>{{ title }} </small>
 	</h1>
+	<hr />
 
-</div>
+
 <p class="bg-primary">Paginación</p>
 <form class="form-horizontal"
 	action="{{ constant('URL') }}usuario/configuracion_accion" method="POST"

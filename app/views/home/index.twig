@@ -1,85 +1,117 @@
-{% extends "home/base_home.twig" %} {% block content %}
-<div class="page-header">
-	<h1>{{ cabecera }}</h1>
-</div>
-<div class="row">
-	<div class="col-xs-5">
-		<div class="panel panel-primary">
-			<div class="panel-heading">Envíos Pendientes</div>
-			<div class="panel-body">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<td>ID</td>
-							<td>Destinatario</td>
-							<td>Fecha creación</td>
-							<td>Estado</td>
-						</tr>
-					</thead>
-					{% for envio in envios %}
-					<tbody>
-						{% if envio.estado|lower == "p" %}
-						<tr>
-							<td><a href="{{ constant('URL') }}envios/edit/{{ envio.id_envio }}">{{ envio.id_envio }} </a></td>
-							<td>{{ [envio.nombre,envio.apellido1, envio.apellido2]|join(' ')
-								}}</td>
-							<td>{{ envio.fec_creacion }}</td>
-							<td class="text-center"><span class="label label-danger">PENDIENTE</span></td>
-						</tr>
-						{% endif %} {% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+{% extends "_templates/base.twig" %} {% block content %}
 
-
-	<div class="col-xs-7">
-		<div class="panel panel-primary">
-			<div class="panel-heading">Envíos recientes</div>
-			<div class="panel-body">
-				<table class="table table-bordered">
-					<tr></tr>
-					<tr></tr>
-				</table>
-			</div>
-		</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<div class="col-xs-5">
-		<div class="panel panel-primary">
-			<div class="panel-heading">Envíos Enviados</div>
-			<div class="panel-body">
-				<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<td>ID</td>
-							<td>Destinatario</td>
-							<td>Fecha creación</td>
-							<td>Estado</td>
-						</tr>
-					</thead>
-					{% for envio in envios %}
-					<tbody>
-						{% if envio.estado|lower == "e" %}
-						<tr>
-							<td><a href="{{ constant('URL') }}envios/edit/{{ envio.id_envio }}">{{ envio.id_envio }} </a></td>
-							<td>{{ [envio.nombre,envio.apellido1, envio.apellido2]|join(' ')
-								}}</td>
-							<td>{{ envio.fec_creacion }}</td>
-							<td class="text-center"><span class="label label-success">ENVIADO</span></td>
-						</tr>
-						{% endif %} {% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-
-</div>
-
+ <div class="row">
+                <div class="col-lg-12">
+                    <h1>{{ cabecera }}<small>Dashboard Home</small></h1>
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        Welcome to the admin dashboard! Feel free to review all pages and modify the layout to your needs. 
+                        For the purpose of data visualization, additional widgets are used, so make sure you review all provided information.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o"></i>Alerts</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row alert-success">
+                                <div class="col-xs-5">
+                                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    <p class="alerts-heading">343</p>
+                                    <p class="alerts-text">New Orders</p>
+                                </div>
+                            </div>
+                            <div class="row alert-success">
+                                <div class="col-xs-5">
+                                    <i class="fa fa-thumbs-o-up fa-5x"></i>
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    <p class="alerts-heading">1256</p>
+                                    <p class="alerts-text">Registrations</p>
+                                </div>
+                            </div>
+                            <div class="row alert-danger">
+                                <div class="col-xs-5">
+                                    <i class="fa fa-thumbs-o-down fa-5x"></i>
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    <p class="alerts-heading">4</p>
+                                    <p class="alerts-text">Errors</p>
+                                </div>
+                            </div>
+                            <div class="row alert-success">
+                                <div class="col-xs-5">
+                                    <i class="fa fa-thumbs-o-up fa-5x"></i>
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    <p class="alerts-heading">11</p>
+                                    <p class="alerts-text">Mentions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Traffic Estimations for last 30 days</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shieldui-chart1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Logins per week</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shieldui-chart2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Budget</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shieldui-chart3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Purchases</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shieldui-chart4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sales personnel Data</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shieldui-grid1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
 
 
 

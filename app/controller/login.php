@@ -50,7 +50,9 @@ class Login extends Controller
             if ($this->validation($dataLogin)) {
                 // Obtenemos datos del usuario que quiere hacer login
                 $user = $usuario_model->getUsuario($dataLogin['datos']['email']);
-                $user['zona'] = $_POST['zona'];
+                $user['zona'] = $_REQUEST['zona'];
+                
+               
                
                 if ($user) {
                     // si coinciden passwords hasheadas, acceso ok
@@ -68,7 +70,7 @@ class Login extends Controller
                             setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME,"/", null);
                         }                        
                         
-                      //header('location: ' . URL . 'home/index');
+                      header('location: ' . URL . 'home/index');
                     }
                 }
             }
