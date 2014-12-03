@@ -16,8 +16,10 @@ class Autorizacion {
 		if (! isset ( $_SESSION ['usuario_logueado'] )) {
 			
 			if (isset ( $_COOKIE ['rememberme'] )) {
+			    
 				header ( 'location: ' . URL . 'login/loginConCookie' );
 			} else {
+			    echo 'no cookie';
 				// destruimos session
 				Session::destroy ();
 				// redireccionamos al formulario login

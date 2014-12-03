@@ -17,6 +17,7 @@ class Home extends Controller
      */
     public function index()
     {    
+        // estamos logueado?
         Autorizacion::checkLogin();
         
         $envios_model = $this->loadModel('EnviosModel');
@@ -29,7 +30,8 @@ class Home extends Controller
         $this->render('home/index', array(
             'tabla' => 'dashboard',
             'cabecera' => 'Dashboard',
-            'usuario' => $_SESSION['usuario_nombre'],
+            'usuario' => Session::get('usuario_nombre'),
+            'hora' => Session::get('usuario_hora_inicio'),
             'envios' => $envios,
             'zona_usuario' => $zona['nombrezona'],
             'zonas' => $zonas

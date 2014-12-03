@@ -36,6 +36,21 @@ class ZonaModel
         
         return $result;
     }
+    
+    /**
+     * devuelve listado de zonas limitados por el offset y el num de registros
+     */
+    public function getZonasPag($filtro = NULL, $offset = 0, $count = NULL) {
+    
+        if (! is_null ( $filtro ) || ! empty ( $filtro ))
+            $this->setFiltros ( $filtro );
+    
+        $this->setFiltros ( $filtro );
+        $result = $this->mysqlDB->select ()->limit ( "$offset," . session::get ( 'REGS_PAG' ) )->from ( $this->table )->fetchAll ();
+        unset ( $this->binds );
+    
+        return $result;
+    }
 
     /**
      * Devuelve la información de una zona determinada por su id
@@ -66,6 +81,38 @@ class ZonaModel
         return $result = $this->mysqlDB->select("MIN(id_zona) as ZONA")
             ->from($this->table)
             ->fetch();
+    }
+    
+    /**
+     *
+     * @param unknown $filtro
+     */
+    public function setFiltros($filtro) {
+        // existe filtro campo texto
+        if (! empty ( $filtro ['filtro_texto'] )) {
+            $this->binds ['nombrezona'] = '%' . $filtro ['filtro_texto'] . '%';          
+            	
+            foreach ( $this->binds as $key => $value ) {
+                $fields [$key] = 'like';
+            }
+            $this->mysqlDB->or_where ( $fields );
+            $this->mysqlDB->setBinds ( $this->binds );
+        }
+    }
+    
+    /**
+     * Obtenemos el numero de filas total de una consulta
+     *
+     * @return Ambigous <>
+     */
+    public function getTotalRows($filtro) {
+        if (! is_null ( $filtro ) || ! empty ( $filtro ))
+            $this->setFiltros ( $filtro );
+    
+        $result = $this->mysqlDB->select ( "COUNT(*) as total" )->from ( $this->table )->fetch ();
+        unset ( $this->binds );
+    
+        return $result ['total'];
     }
 
     /**

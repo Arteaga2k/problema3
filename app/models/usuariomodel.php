@@ -131,6 +131,11 @@ class UsuarioModel {
 		
 		return $result;
 	}
+	
+	/**
+	 * 
+	 * @param unknown $filtro
+	 */
 	public function setFiltros($filtro) {
 		// existe filtro campo texto
 		if (! empty ( $filtro ['filtro_texto'] )) {

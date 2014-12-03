@@ -9,313 +9,236 @@
 </ol>
 
 <h1>
-	 <small>{{ cabecera }} {% if datos.id_envio %}#{{
-		datos.id_envio}} {% endif %}</small>
+	<small>{{ cabecera }} {% if datos.id_envio %}#{{ datos.id_envio}} {%
+		endif %}</small>
 </h1>
 <hr />
-<div class="row">
-	<form action="{{ constant('URL') }}envios/{{ accion }}" method="POST"
-		class="form-horizontal" role="form">
-		<div class="col-xs-12">
-			<div class="row">
-				<div class="col-xs-5 ">
-					<div class="panel panel-default">
-						<div class="panel-heading">Datos envío</div>
-						<div class="panel-body">
-							<div
-								class="form-group {% if errores.direccion|length -%} has-error {%- endif -%}">
-								<label for="direccion" class="col-sm-2 control-label">Dirección</label>
-								<div class="col-sm-10">
-									<input type="text" name="direccion"
-										value="{{ datos.direccion|length ? datos.direccion : '' }}"
-										class="form-control" id="direccion"
-										
-											
-											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.direccion|length ? errores.direccion : '' -}}</span>
-								</div>
-							</div>
-							<input type="hidden" name="id_envio"
-								value="{{ datos.id_envio|length ? datos.id_envio : '' }}">
-							<div
-								class="form-group {% if errores.telefono1|length -%} has-error {%- endif -%}">
-								<label for="telefono1" class="col-sm-2 control-label">Teléfono</label>
-								<div class="col-sm-5">
-									<input type="text" name="telefono1"
-										value="{{ datos.telefono1|length ? datos.telefono1 : '' }}"
-										class="form-control" id="telefono1"
-										
-											
-											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.telefono1|length ? errores.telefono1 : '' -}}</span>
-								</div>
-								<div class="col-sm-5">
-									<input type="text" name="telefono2"
-										value="{{ datos.telefono2|length ? datos.telefono2 : '' }}"
-										class="form-control" id="telefono2"
-										
-											
-											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.telefono2|length ? errores.telefono2 : '' -}}</span>
-								</div>
-							</div>
-							<div class="form-group">
 
-								<label for="fec_crea" class="col-sm-2 control-label">Fecha de
-									Creacion</label>
-								<div class="col-sm-3 ">
-									<input type="text" name="fec_crea"
-										value="{{ datos.fec_creacion|length ? datos.fec_creacion :  fecha|date("Y-m-d") }}"
-										class="form-control" id="fec_crea" disabled> <input
-										type="hidden" name="fec_creacion" id="fec_creacion"
-										value="{{ datos.fec_creacion|length ? datos.fec_creacion :  fecha|date("Y-m-d") }}">
-								</div>
-							</div>
+<div class="col-lg-8">
 
-
-							<div
-								class="form-group {% if errores.codpostal|length -%} has-error {%- endif -%}">
-								<label for="codpostal" class="col-sm-2 control-label">Código
-									postal</label>
-								<div class="col-sm-3">
-									<input type="text" name="codpostal"
-										value="{{ datos.codpostal|length ? datos.codpostal : '' }}"
-										class="form-control" id="cp"
-										
-											
-											 {{accion|lower == 'anotar_accion' or accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.codpostal|length ? errores.codpostal : '' -}}</span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="provincia" class="col-sm-2 control-label">Provincia</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="provincia" id="provincia"
-										
-											
-											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-										{% for provincia in provincias %}
-										<option value="{{ provincia.id_provincia }}">{{
-											provincia.provincia }}</option> {% endfor %}
-									</select>
-								</div>
-							</div>
-
-							<div
-								class="form-group {% if errores.poblacion|length -%} has-error {%- endif -%}">
-								<label for="poblacion" class="col-sm-2 control-label">Población</label>
-								<div class="col-sm-10">
-									<input type="text" name="poblacion"
-										value="{{ datos.poblacion|length ? datos.poblacion : '' }}"
-										class="form-control" id="poblacion"
-										
-											
-											 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.poblacion|length ? errores.poblacion : '' -}}</span>
-								</div>
-							</div>
-
-							<div
-								class="form-group {% if errores.zona_entrega|length -%} has-error {%- endif -%}">
-								<label for="zona_entrega" class="col-sm-2 control-label">Zona
-									Envío</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="zona_entrega"
-										id="zona_entrega"
-										   {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-										{% for zona in zonas %}
-										<option value="{{ zona.id_zona }}"
-											 {{ zona.nombrezona|lower == zona_usuario|lower ? "selected='selected'": '' -}}>{{
-											zona.nombrezona }}</option> {% endfor %}
-									</select>
-								</div>
-							</div>
-							<div
-								class="form-group {% if errores.zona_recepcion|length -%} has-error {%- endif -%}">
-								<label for="zona_recepcion" class="col-sm-2 control-label">Zona
-									Recepción</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="zona_recepcion"
-										id="zona_recepcion"
-										   {{ accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-										{% for zona in zonas %}
-										<option value="{{- zona.id_zona -}}"
-											 {{ zona.nombrezona|lower == zona_usuario|lower ? "selected='selected'": '' -}}>{{-
-											zona.nombrezona -}}</option> {%- endfor -%}
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">Observaciones</div>
-						<div class="panel-body">
-							<textarea id="observaciones" name="observaciones" rows="5"
-								cols="40">{{- datos.observaciones|length ? datos.observaciones|raw : '' -}}</textarea>
-						</div>
-					</div>
-
-				</div>
-				<!--FIN COL XS 5 -->
-				<div class="col-xs-5 col-xs-offset-1">
-					<div class="panel panel-default">
-						<div class="panel-heading">Datos destinatario</div>
-						<div class="panel-body">
-
-							<div
-								class="form-group {% if errores.razonsocial|length -%} has-error {%- endif -%}">
-								<label for="razonsocial" class="col-sm-2 control-label">Razón
-									social</label>
-								<div class="col-sm-10">
-									<input type="text" name="razonsocial"
-										value="{{- datos.razonsocial|length ? datos.razonsocial : '' -}}"
-										class="form-control" id="razonsocial"
-										
-										
-										 {{accion|lower == 'anotar_accion' or accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.razonsocial|length ? errores.razonsocial : ''
-										-}}</span>
-								</div>
-
-							</div>
-
-							<div
-								class="form-group {% if errores.nombre|length -%} has-error {%- endif -%}">
-								<label for="destinatario" class="col-sm-2 control-label">Nombre</label>
-								<div class="col-sm-10">
-									<input type="text" name="nombre"
-										value=" {{- datos.nombre|length ? datos.nombre : '' -}}"
-										class="form-control" id="nombre"
-										
-										
-										{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.nombre|length ? errores.nombre : '' -}}</span>
-
-								</div>
-
-							</div>
-
-
-
-							<div
-								class="form-group {% if errores.apellido1|length  -%} has-error {%- endif -%}">
-								<label for="apellido1" class="col-sm-2 control-label">Primer
-									Apellido</label>
-								<div class="col-sm-10">
-									<input type="text" name="apellido1"
-										value="{{ datos.apellido1|length ? datos.apellido1 : '' }}"
-										class="form-control" id="apellido1"
-										
-										
-{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.apellido1|length ? errores.apellido1 : '' -}}</span>
-								</div>
-							</div>
-
-							<div
-								class="form-group {% if errores.apellido2|length -%} has-error {%- endif -%}">
-								<label for="apellido2" class="col-sm-2 control-label">Segundo
-									Apellido</label>
-								<div class="col-sm-10">
-									<input type="text" name="apellido2"
-										value="{{ datos.apellido2|length ? datos.apellido2 : '' }}"
-										class="form-control" id="apellido2"
-										
-										
-{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.apellido2|length ? errores.apellido2 : '' -}}</span>
-								</div>
-							</div>
-
-							<div
-								class="form-group {% if errores.email|length -%} has-error {%- endif -%}">
-								<label for="email" class="col-sm-2 control-label">Email</label>
-								<div class="col-sm-10">
-									<input type="text" name="email"
-										value="{{ datos.email|length ? datos.email : '' }}"
-										class="form-control" id="email"
-										
-										
-{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-									<span>{{- errores.email|length ? errores.email : '' -}}</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					{% if accion|lower == 'anotar_accion' %}
-					<div class="panel panel-default">
-						<div class="panel-heading">anotar_accion recepción</div>
-						<div class="panel-body">
-							<div
-								class="form-group {% if errores.fec_entrega|length -%} has-error {%- endif -%}">
-								<label for="fec_entrega" class="col-sm-2 control-label">Fecha de
-									Entrega</label>
-								<div class="col-sm-3">
-									<input type="text" name="fec_entrega"
-										value="{{ datos.fec_entrega|length ? datos.fec_entrega : 'aaaa/mm/dd' }}"
-										class="form-control" id="fec_entrega" placeholder=""> <span>{{-
-										errores.fec_entrega|length ? errores.fec_entrega : '' -}}</span>
-								</div>
-							</div>
-
-
-							<div
-								class="form-group {% if errores.confirmacion|length -%} has-error {%- endif -%}">
-								<div class="col-sm-offset-2 col-sm-10">
-									<div class="checkbox">
-										<label> <input type="checkbox" name="confirmacion" value=""
-											id="anotacion"> Confirmar anotación
-										</label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					{% endif %}
-
-
-					<div class="panel panel-default ">
-						<div class="panel-heading">Estado Pedido</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="estado" class="col-sm-2 control-label">Estado</label>
-								<div class="col-sm-10">
-									<!-- Creo array de estados -->
-									{% set estados = { 'p': 'pendiente','e': 'enviado','d':
-									'devuelto'} %} <select class="form-control" name="estado"
-										id="estado"
-										   {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
-										{% for key,value in estados %}
-										<option value="{{ key }}">{{ value }}</option> {% endfor %}
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix">
-
-					<div class="col-xs-12">
-						<div class="well">
-							<button type="submit" name="{{ accion }}" value="Submit"
-								class="btn btn-primary ">Guardar</button>
-							<a class="btn btn-default"
-								href="{{ constant('URL') }}envios/index/">Cancelar</a>
-						</div>
-
-					</div>
-				</div>
-				<!-- FIN COL-XS-5-OFFSET-1 -->
-			</div>
+<form action="{{ constant('URL') }}envios/{{ accion }}" method="POST"
+	class="form-horizontal" role="form">
 	
-	</form>
+		<div
+		class="form-group {% if errores.razonsocial|length -%} has-error {%- endif -%}">
+		<label for="razonsocial" class="col-sm-2 control-label">Razón social</label>
+		<div class="col-sm-10">
+			<input type="text" name="razonsocial"
+				value="{{- datos.razonsocial|length ? datos.razonsocial : '' -}}"
+				class="form-control" id="razonsocial"
+				
+				
+				{{accion|lower == 'anotar_accion' or accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.razonsocial|length ? errores.razonsocial : '' -}}</span>
+		</div>
 
+	</div>
+
+	<div
+		class="form-group {% if errores.nombre|length -%} has-error {%- endif -%}">
+		<label for="destinatario" class="col-sm-2 control-label">Nombre</label>
+		<div class="col-sm-10">
+			<input type="text" name="nombre"
+				value=" {{- datos.nombre|length ? datos.nombre : '' -}}"
+				class="form-control" id="nombre"
+				
+				 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.nombre|length ? errores.nombre : '' -}}</span>
+
+		</div>
+	</div>
+	<div
+		class="form-group {% if errores.apellido1|length  -%} has-error {%- endif -%}">
+		<label for="apellido1" class="col-sm-2 control-label">Primer Apellido</label>
+		<div class="col-sm-10">
+			<input type="text" name="apellido1"
+				value="{{ datos.apellido1|length ? datos.apellido1 : '' }}"
+				class="form-control" id="apellido1"
+				 {{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.apellido1|length ? errores.apellido1 : '' -}}</span>
+		</div>
+	</div>
+
+	<div
+		class="form-group {% if errores.apellido2|length -%} has-error {%- endif -%}">
+		<label for="apellido2" class="col-sm-2 control-label">Segundo Apellido</label>
+		<div class="col-sm-10">
+			<input type="text" name="apellido2"
+				value="{{ datos.apellido2|length ? datos.apellido2 : '' }}"
+				class="form-control" id="apellido2"
+				{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.apellido2|length ? errores.apellido2 : '' -}}</span>
+		</div>
+	</div>
+
+	<div
+		class="form-group {% if errores.email|length -%} has-error {%- endif -%}">
+		<label for="email" class="col-sm-2 control-label">Email</label>
+		<div class="col-sm-10">
+			<input type="text" name="email"
+				value="{{ datos.email|length ? datos.email : '' }}"
+				class="form-control" id="email"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.email|length ? errores.email : '' -}}</span>
+		</div>
+	</div>
+	
+	<div
+		class="form-group {% if errores.direccion|length -%} has-error {%- endif -%}">
+		<label for="direccion" class="col-sm-2 control-label">Dirección</label>
+		<div class="col-sm-10">
+			<input type="text" name="direccion"
+				value="{{ datos.direccion|length ? datos.direccion : '' }}"
+				class="form-control" id="direccion"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.direccion|length ? errores.direccion : '' -}}</span>
+		</div>
+	</div>
+	<input type="hidden" name="id_envio"
+		value="{{ datos.id_envio|length ? datos.id_envio : '' }}">
+
+	<div
+		class="form-group {% if errores.telefono1|length -%} has-error {%- endif -%}">
+		<label for="telefono1" class="col-sm-2 control-label">Teléfonos</label>
+		<div class="col-sm-5">
+			<input type="text" name="telefono1"
+				value="{{ datos.telefono1|length ? datos.telefono1 : '' }}"
+				class="form-control" id="telefono1"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.telefono1|length ? errores.telefono1 : '' -}}</span>
+		</div>
+		<div class="col-sm-5">
+			<input type="text" name="telefono2"
+				value="{{ datos.telefono2|length ? datos.telefono2 : '' }}"
+				class="form-control" id="telefono2"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.telefono2|length ? errores.telefono2 : '' -}}</span>
+		</div>
+	</div>
+
+	<div class="form-group">
+
+		<label for="fec_crea" class="col-sm-2 control-label">Fecha de Creacion</label>
+		<div class="col-sm-3 ">
+			<input type="text" name="fec_crea"
+				value="{{ datos.fec_creacion|length ? datos.fec_creacion :  fecha|date("Y-m-d") }}"
+				class="form-control" id="fec_crea" disabled> <input type="hidden"
+				name="fec_creacion" id="fec_creacion"
+				value="{{ datos.fec_creacion|length ? datos.fec_creacion :  fecha|date("Y-m-d") }}">
+		</div>
+	</div>
+	<div
+		class="form-group {% if errores.codpostal|length -%} has-error {%- endif -%}">
+		<label for="codpostal" class="col-sm-2 control-label">Código postal</label>
+		<div class="col-sm-3">
+			<input type="text" name="codpostal"
+				value="{{ datos.codpostal|length ? datos.codpostal : '' }}"
+				class="form-control" id="cp"{{accion|lower == 'anotar_accion' or accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.codpostal|length ? errores.codpostal : '' -}}</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="provincia" class="col-sm-2 control-label">Provincia</label>
+		<div class="col-sm-10">
+			<select class="form-control" name="provincia" id="provincia"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+				{% for provincia in provincias %}
+				<option value="{{ provincia.id_provincia }}">{{ provincia.provincia
+					}}</option> {% endfor %}
+			</select>
+		</div>
+	</div>
+	<div
+		class="form-group {% if errores.poblacion|length -%} has-error {%- endif -%}">
+		<label for="poblacion" class="col-sm-2 control-label">Población</label>
+		<div class="col-sm-10">
+			<input type="text" name="poblacion"
+				value="{{ datos.poblacion|length ? datos.poblacion : '' }}"
+				class="form-control" id="poblacion"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+			<span>{{- errores.poblacion|length ? errores.poblacion : '' -}}</span>
+		</div>
+	</div>
+
+	<div
+		class="form-group {% if errores.zona_entrega|length -%} has-error {%- endif -%}">
+		<label for="zona_entrega" class="col-sm-2 control-label">Zona Envío</label>
+		<div class="col-sm-10">
+			<select class="form-control" name="zona_entrega" id="zona_entrega"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+				{% for zona in zonas %}
+				<option value="{{ zona.id_zona }}"{{ zona.nombrezona|lower == zona_usuario|lower ? "selected='selected'": '' -}}>{{
+					zona.nombrezona }}</option> {% endfor %}
+			</select>
+		</div>
+	</div>
+	<div
+		class="form-group {% if errores.zona_recepcion|length -%} has-error {%- endif -%}">
+		<label for="zona_recepcion" class="col-sm-2 control-label">Zona
+			Recepción</label>
+		<div class="col-sm-10">
+			<select class="form-control" name="zona_recepcion"
+				id="zona_recepcion"{{ accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+				{% for zona in zonas %}
+				<option value="{{- zona.id_zona -}}"{{ zona.nombrezona|lower == zona_usuario|lower ? "selected='selected'": '' -}}>{{-
+					zona.nombrezona -}}</option> {%- endfor -%}
+			</select>
+		</div>
+	</div>
+
+
+	<div
+		class="form-group {% if errores.zona_recepcion|length -%} has-error {%- endif -%}">
+		<label for="zona_recepcion" class="col-sm-2 control-label">Observaciones</label>
+		<div class="col-sm-10">
+			<textarea id="observaciones" name="observaciones" rows="5" cols="40">{{- datos.observaciones|length ? datos.observaciones|raw : '' -}}</textarea>
+		</div>
+	</div>
+
+
+
+	<div class="form-group">
+		<label for="estado" class="col-sm-2 control-label">Estado</label>
+		<div class="col-sm-10">
+			<!-- Creo array de estados -->
+			{% set estados = { 'p': 'pendiente','e': 'enviado','d': 'devuelto'}
+			%} <select class="form-control" name="estado" id="estado"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
+				{% for key,value in estados %}
+				<option value="{{ key }}">{{ value }}</option> {% endfor %}
+			</select>
+		</div>
+	</div>
+
+	{% if accion|lower == 'anotar_accion' %}
+	<div
+		class="form-group {% if errores.fec_entrega|length -%} has-error {%- endif -%}">
+		<label for="fec_entrega" class="col-sm-2 control-label">Fecha de
+			Entrega</label>
+		<div class="col-sm-3">
+			<input type="text" name="fec_entrega"
+				value="{{ datos.fec_entrega|length ? datos.fec_entrega : 'aaaa/mm/dd' }}"
+				class="form-control" id="fec_entrega" placeholder=""> <span>{{-
+				errores.fec_entrega|length ? errores.fec_entrega : '' -}}</span>
+		</div>
+	</div>
+
+	<div
+		class="form-group {% if errores.confirmacion|length -%} has-error {%- endif -%}">
+		<div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+				<label> <input type="checkbox" name="confirmacion" value=""
+					id="anotacion"> Confirmar anotación
+				</label>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+	<div class="form-group well">
+		<label for="estado" class="col-sm-2 control-label"></label>
+		<div class="col-sm-10">
+			<button type="submit" name="{{ accion }}" value="Submit"
+				class="btn btn-primary ">Guardar</button>
+			<a class="btn btn-default" href="{{ constant('URL') }}envios/index/">Cancelar</a>
+		</div>
+	</div>
+</form>
 </div>
 
 
-</div>
-
-</div>
 {% endblock %} {% block javascripts %} {{ parent() }}
 <script>
 		
