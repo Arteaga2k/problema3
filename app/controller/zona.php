@@ -38,7 +38,9 @@ class Zona extends Controller
             'totalpag' => $pagination['totalPag'],
             'inicio' => $pagination['inicio'],
             'fin' => $pagination['fin'],
-            'filtro' => isset($filtro) ? $filtro : ''
+            'filtro' => isset($filtro) ? $filtro : '',
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
 
@@ -117,7 +119,9 @@ class Zona extends Controller
             'accion' => 'add_accion',
             'zonas' => $zonas,
             'zona_usuario' => $zona['nombrezona'],
-            'hora' => Session::get('usuario_hora_inicio')
+            'hora' => Session::get('usuario_hora_inicio'),
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
 
@@ -156,7 +160,9 @@ class Zona extends Controller
                     'errores' => $data['errores'],
                     'zonas' => $zonas,
                     'zona_usuario' => $zona['nombrezona'],
-                    'hora' => Session::get('usuario_hora_inicio')
+                    'hora' => Session::get('usuario_hora_inicio'),
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         }
@@ -195,7 +201,9 @@ class Zona extends Controller
                 'id_zona' => $zona_id,
                 'zonas' => $zonas,
                 'zona_usuario' => $zona['nombrezona'],
-                'hora' => Session::get('usuario_hora_inicio')
+                'hora' => Session::get('usuario_hora_inicio'),
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -236,7 +244,9 @@ class Zona extends Controller
                     'errores' => $data['errores'],
                     'zonas' => $zonas,
                     'zona_usuario' => $zona['nombrezona'],
-                    'hora' => Session::get('usuario_hora_inicio')
+                    'hora' => Session::get('usuario_hora_inicio'),
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         } else {
@@ -273,7 +283,9 @@ class Zona extends Controller
                 'id' => $id_zona,
                 'zonas' => $zonas,
                 'zona_usuario' => $zona['nombrezona'],
-                'hora' => Session::get('usuario_hora_inicio')
+                'hora' => Session::get('usuario_hora_inicio'),
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -309,7 +321,9 @@ class Zona extends Controller
                 'mensaje' => 'No se puede elimnar este registro',
                 'zonas' => $zonas,
                 'zona_usuario' => $zona['nombrezona'],
-                'hora' => Session::get('usuario_hora_inicio')
+                'hora' => Session::get('usuario_hora_inicio'),
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -342,7 +356,7 @@ class Zona extends Controller
             
             // filtramos y sanitizamos formulario
             $data = $this->filtraFormulario(array(
-                'ver' => 'numerico'
+                'ver' => 'consulta'
             ));
             
             if ($this->validation($data)) {
@@ -364,7 +378,9 @@ class Zona extends Controller
                         'datos' => $data['datos'],
                         'zonas' => $zonas,
                         'zona_usuario' => $zona['nombrezona'],
-                        'hora' => session::get('usuario_hora_inicio')
+                        'hora' => session::get('usuario_hora_inicio'),
+                        'avatar' => session::get('AVATAR'),
+                        'tema' => Session::get('TEMA')
                     ));
                 } else {
                     header('location: ' . URL . 'zona');

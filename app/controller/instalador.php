@@ -72,6 +72,7 @@ class Instalador extends Controller
     public function error(){
         $this->render('instalador/error', array(
             'login' => TRUE
+            
         ));
     }    
    

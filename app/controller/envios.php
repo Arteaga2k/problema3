@@ -48,7 +48,9 @@ class Envios extends Controller
             'fin' => $pagination['fin'],
             'filtro' => isset($filtro) ? $filtro : '',
             'zona_usuario' => $zona['nombrezona'],
-            'zonas' => $zonas
+            'zonas' => $zonas,
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
 
@@ -119,7 +121,9 @@ class Envios extends Controller
             'accion' => 'add_accion',
             'provincias' => $provincias,
             'zona_usuario' => $zona['nombrezona'],
-            'zonas' => $zonas
+            'zonas' => $zonas,
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
 
@@ -160,7 +164,9 @@ class Envios extends Controller
                     'datos' => $data['datos'],
                     'errores' => $data['errores'],
                     'zona_usuario' => $zona['nombrezona'],
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         }
@@ -193,7 +199,9 @@ class Envios extends Controller
                 'zona_usuario' => $zona['nombrezona'],
                 'zonas' => $zonas,
                 'accion' => 'eliminar_accion',
-                'id' => $envio_id
+                'id' => $envio_id,
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -224,7 +232,9 @@ class Envios extends Controller
                 'tabla' => 'envios',
                 'cabecera' => 'Eliminar envio',
                 'usuario' => $_SESSION['usuario_nombre'],
-                'mensaje' => 'No se puede elimnar este registro'
+                'mensaje' => 'No se puede elimnar este registro',
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -248,8 +258,8 @@ class Envios extends Controller
             $envios_model = $this->loadModel('EnviosModel');
             $zona_model = $this->loadModel('ZonaModel');
             // obtenemos datos del envío a editar
-            $data['datos'] = $envios_model->getEnvio($envio_id, $_SESSION['usuario_zona']);
-            $zona = $zona_model->getZona($_SESSION['usuario_zona']);
+            $data['datos'] = $envios_model->getEnvio($envio_id, session::get('usuario_zona'));
+            $zona = $zona_model->getZona(session::get('usuario_zona'));
             $zonas = $zona_model->getZonas();
             
             // obtenemos listado de provincias
@@ -265,7 +275,9 @@ class Envios extends Controller
                 'id_envio' => $envio_id,
                 'provincias' => $provincias,
                 'zona_usuario' => $zona['nombrezona'],
-                'zonas' => $zonas
+                'zonas' => $zonas,
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -292,7 +304,7 @@ class Envios extends Controller
             
             // filtramos y sanitizamos formulario
             $data = $this->filtraFormulario($this->formAddEnvio());
-            
+           
             // Si validación ok
             if ($this->validation($data)) {
                 // insertamos nuevo envío y redireccionamos a envios index
@@ -302,14 +314,16 @@ class Envios extends Controller
                 $this->render('envios/form_envio', array(
                     'tabla' => 'Envios',
                     'cabecera' => 'Editar envío',
-                    'usuario' => $_SESSION['usuario_nombre'],
+                    'usuario' => session::get('usuario_nombre'),
                     'provincias' => $provincias,
                     'accion' => 'editar_accion',
                     'id_envio' => $_REQUEST['id_envio'],
                     'datos' => $data['datos'],
                     'errores' => $data['errores'],
                     'zona_usuario' => $zona['nombrezona'],
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         } else {
@@ -350,7 +364,9 @@ class Envios extends Controller
                 'provincias' => $provincias,
                 'datos' => $data['datos'],
                 'zona_usuario' => $zona['nombrezona'],
-                'zonas' => $zonas
+                'zonas' => $zonas,
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -378,13 +394,16 @@ class Envios extends Controller
                 header('location: ' . URL . 'envios/index');
             } else {
                 // obtenemos datos del envío a editar y añadimos a datos del usuario que estamos editando
-                $data['datos'] = $envios_model->getEnvio($_REQUEST['id_envio'], $_SESSION['usuario_zona']);
+                $data['datos'] = $envios_model->getEnvio($_REQUEST['id_envio'], session::get('usuario_zona'));
                 foreach ($dataAnotar['datos'] as $key => $value) {
                     $data['datos'][$key] = $value;
                 }
                 if (! isset($_REQUEST['confirmacion'])) {
                     $dataAnotar['errores']['confirmacion'] = 'tiene que confirmar';
                 }
+                $zona_model = $this->loadModel('Zonamodel');
+                $zona = $zona_model->getZona(session::get('usuario_zona'));
+                $zonas = $zona_model->getZonas();
                 
                 // obtenemos listado de provincias
                 $provincias = $envios_model->getAllProvincias();
@@ -396,7 +415,12 @@ class Envios extends Controller
                     'provincias' => $provincias,
                     'id_envio' => $_REQUEST['id_envio'],
                     'errores' => $dataAnotar['errores'],
-                    'datos' => $data['datos']
+                    'datos' => $data['datos'],
+                    'zona_usuario' => $zona['nombrezona'],
+                    'zonas' => $zonas,
+                    'hora' => session::get('usuario_hora_inicio'),
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         }
@@ -416,7 +440,7 @@ class Envios extends Controller
             
             // filtramos y sanitizamos formulario
             $data = $this->filtraFormulario(array(
-                'ver' => 'numerico'
+                'ver' => 'consulta'
             ));
             
             if ($this->validation($data)) {
@@ -487,8 +511,8 @@ class Envios extends Controller
             'apellido1' => 'texto',
             'apellido2' => 'texto',
             'razonsocial' => 'alfanum',
-            'telefono1' => 'numerico',
-            'telefono2' => 'numerico',
+            'telefono1' => 'telefono',
+            'telefono2' => 'telefono',
             'zona_entrega' => 'numerico',
             'zona_recepcion' => 'numerico'
         );

@@ -1,9 +1,9 @@
 {% extends "_templates/base.twig" %} {% block content %}
 
 <ol class="breadcrumb">
-	<li><a href="#">Home</a></li>
-	<li><a href="#">Usuario</a></li>
-	<li class="active">Alta</li>
+	<li><a href="{{ constant('URL') }}home/">Home</a></li>
+	<li><a href="{{ constant('URL') }}{{ tabla }}/">Usuario</a></li>
+	<li class="active">{{ cabecera }}</li>
 </ol>
 
 <h1>

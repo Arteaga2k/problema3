@@ -20,7 +20,7 @@ class EnviosModel
 
     /**
      * array valores a bindear
-     * 
+     *
      * @var unknown
      */
     private $binds = array();
@@ -272,5 +272,68 @@ class EnviosModel
         }
         unset($this->binds);
         return $result['total'];
+    }
+
+    /**
+     * Prepara los datos de envíos para mostrarlos en una gráfica
+     * 
+     * @return multitype:NULL multitype:
+     */
+    public function pieChart()
+    {
+        $data = array();
+        
+        $this->binds[':estado'] = 'e';
+        $this->mysqlDB->setBinds($this->binds);
+        $data['enviados'] = $this->mysqlDB->select("COUNT(*) as total")
+            ->where('estado')
+            ->from($this->table)
+            ->fetch();
+        unset($this->binds);
+        
+        $this->binds[':estado'] = 'p';
+        $this->mysqlDB->setBinds($this->binds);
+        $data['pendientes'] = $this->mysqlDB->select("COUNT(*) as total")
+            ->where('estado')
+            ->from($this->table)
+            ->fetch();
+        unset($this->binds);
+        
+        $this->binds[':estado'] = 'd';
+        $this->mysqlDB->setBinds($this->binds);
+        $data['devueltos'] = $this->mysqlDB->select("COUNT(*) as total")
+            ->where('estado')
+            ->from($this->table)
+            ->fetch();
+        unset($this->binds);
+        $table = array();
+        $table['cols'] = array(
+        
+            // Labels for your chart, these represent the column titles
+            // Note that one column is in "string" format and another one is in "number" format as pie chart only required "numbers" for calculating percentage and string will be used for column title
+            array('label' => 'envios','pattern' => "", 'type' => 'string'),
+            array('label' => 'total', 'pattern' => "", 'type' => 'number')
+        
+        );
+        
+        
+        $temp = array();
+        // the following line will be used to slice the Pie chart
+        $enviados[] = array('v' => 'enviados','f' =>NULL);  
+        $enviados[] = array('v' => (int) $data['enviados']['total'],'f' =>NULL);
+        $rows[] = array('c' => $enviados);
+        
+        $pendientes[] = array('v' => 'pendientes','f' =>NULL);
+        $pendientes[] = array('v' => (int) $data['pendientes']['total'],'f' =>NULL);
+        $rows[] = array('c' => $pendientes);
+        
+        $devueltos[] = array('v' => 'devueltos','f' =>NULL);
+        $devueltos[] = array('v' => (int) $data['devueltos']['total'],'f' =>NULL);
+        $rows[] = array('c' => $devueltos);
+        
+        $table['rows'] = $rows;        
+        $jsonTable = json_encode($table);
+        
+        return $jsonTable;
     }
 }

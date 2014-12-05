@@ -54,9 +54,8 @@
 					class="form-inline" role="form" method="POST">
 					<div class="form-group">
 						<div class="input-group ">
-							<span class="input-group-addon">#ID</span> <input
-								type="text" class="form-control" name="ver" id="ver"
-								placeholder="">
+							<span class="input-group-addon">#ID</span> <input type="text"
+								class="form-control" name="ver" id="ver" placeholder="">
 						</div>
 					</div>
 					<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
@@ -101,64 +100,43 @@
 			<div class="panel-heading">Lista de envíos</div>
 			<div class="panel-body">Total de registros {{ filas }}</div>
 			<div class="table-responsive">
-			<table class="table table-hover table-bordered">
-				<tr>
-					<td><strong>#ID</strong></td>
+				<table class="table table-hover table-bordered">
+					<tr>
+						<td><strong>#ID</strong></td>
 
-					<td><strong>Destinatario</strong></td>
-					<td><strong>Teléfonos</strong></td>
-					<td><strong>Razón Social</strong></td>
-					<td><strong>Fecha Creación</strong></td>
-					<td><strong>Estado</strong></td>
-					<td></td>
-				</tr>
-				{% for envio in envios %}
-				<!-- |title devuelve una versión con mayúsculas iniciales del valor -->
-				<tr>
-					<td>#{{ envio.id_envio }}</td> {% set apellidos =
-					[envio.apellido1,envio.apellido2]|join(' ')%}
-					<td>{{ [envio.nombre,apellidos]|join(' ')|title }}</td>
-					<td>{{ [envio.telefono1,envio.telefono2]|join(' / ')|title }}</td>
-					<td>{{ envio.razonsocial }}</td>
-					<!-- Estado del pedido -->
-					{% if envio.estado|lower == 'e' %} {% set estado = 'Enviado' %} {%
-					elseif envio.estado|lower == 'd' %} {% set estado = 'Devuelto' %}
-					{% else %} {% set estado = 'Pendiente' %} {% endif %}
-					<td>{{ envio.fec_creacion }}</td>
-					<td>{{ estado }}</td>
-					<td>
-						<!-- Split button -->
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary"
-								
-								
-								
-								
-								 {{-envio.estado|lower == 'e' ? 'disabled' : '' -}}>Acción</button>
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown" aria-expanded="false"
-								
-								
-								
-								
-								 {{-envio.estado|lower == 'e' ? 'disabled' : '' -}}>
-								<span class="caret"></span> <span class="sr-only">Toggle
-									Dropdown</span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a
-									href="{{ constant('URL') }}envios/editar/{{ envio.id_envio }}">Editar
-										Envío</a></li>
-								<li><a
-									href="{{ constant('URL') }}envios/anotar/{{ envio.id_envio }}">Anotar
-										recepción</a></li>
-							</ul>
-						</div> <a class="btn btn-danger"
-						href="{{ constant('URL') }}envios/eliminar/{{ envio.id_envio }}">Eliminar</a>
-					</td>
-				</tr>
-				{% endfor %}
-			</table>
+						<td><strong>Destinatario</strong></td>
+						<td><strong>Teléfonos</strong></td>
+						<td><strong>Razón Social</strong></td>
+						<td><strong>Fecha Creación</strong></td>
+						<td><strong>Estado</strong></td>
+						<td></td>
+					</tr>
+					{% for envio in envios %}
+					<!-- |title devuelve una versión con mayúsculas iniciales del valor -->
+					<tr>
+						<td>#{{ envio.id_envio }}</td> {% set apellidos =
+						[envio.apellido1,envio.apellido2]|join(' ')%}
+						<td>{{ [envio.nombre,apellidos]|join(' ')|title }}</td>
+						<td>{{ [envio.telefono1,envio.telefono2]|join(' / ')|title }}</td>
+						<td>{{ envio.razonsocial }}</td>
+						<!-- Estado del pedido -->
+						{% if envio.estado|lower == 'e' %} {% set estado = 'Enviado' %} {%
+						elseif envio.estado|lower == 'd' %} {% set estado = 'Devuelto' %}
+						{% else %} {% set estado = 'Pendiente' %} {% endif %}
+						<td>{{ envio.fec_creacion }}</td>
+						<td>{{ estado }}</td>
+						<td>
+						 <a class="btn btn-info"
+							href="{{ constant('URL') }}envios/anotar/{{ envio.id_envio }}">Anotar
+								recepción</a>
+						 <a class="btn btn-default"
+							href="{{ constant('URL') }}envios/editar/{{ envio.id_envio }}">Editar
+								</a> <a class="btn btn-danger"
+							href="{{ constant('URL') }}envios/eliminar/{{ envio.id_envio }}">Eliminar</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
 			</div>
 		</div>
 	</div>

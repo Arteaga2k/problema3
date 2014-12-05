@@ -20,7 +20,9 @@ class Configuration
         
         $parametros['COOKIE_RUNTIME'] = 1209600; // dos semanas
         $parametros['REGS_PAG'] = 10; // diez registros por página
-                                      
+        $parametros['AVATAR'] = 'glyphicon glyphicon-user';
+        $parametros['TEMA'] = 'blue-theme.css';
+                
         // guardamos cambios en la sesion
         foreach ($data as $key => $value) {
             session::set($key, $value);

@@ -66,8 +66,7 @@ class Login extends Controller
                             $cookie_string = $usuario_model->rememberToken($user);
                             
                             // guardamos cookie
-                            setcookie('rememberme', $cookie_string, time() + 3600, "/", FALSE);
-                            //time() + COOKIE_RUNTIME
+                            setcookie('rememberme', $cookie_string, time() + session::get('COOKIE_RUNTIME'), "/", FALSE);                           
                         }
                         
                         header('location: ' . URL . 'home/index');
@@ -86,7 +85,9 @@ class Login extends Controller
             'tabla' => 'Login',
             'login' => true,
             'cabecera' => 'Registro usuario',          
-            'accion' => 'registro_accion'          
+            'accion' => 'registro_accion',
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
           
         ));
     }
@@ -115,7 +116,9 @@ class Login extends Controller
                     'cabecera' => 'Registro usuario',
                     'accion' => 'registro_accion',
                     'datos' => $data['datos'],
-                    'errores' => $data['errores']                  
+                    'errores' => $data['errores'],
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         }
@@ -136,10 +139,9 @@ class Login extends Controller
         $user['zona'] = $zona['ZONA'];
         
         if (! empty($user)) {
-            $this->guardaDatosSesion($user);
+            $this->guardaDatosSesion($user);          
             header('location: ' . URL . 'home/index');
-        } else {
-            
+        } else {            
             // eliminamos cookie invalidad para evitar un bucle infinito
             $usuario_model->deleteCookie();
             // redireccionamos al formulario login

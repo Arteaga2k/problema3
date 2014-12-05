@@ -1,123 +1,183 @@
 {% extends "_templates/base.twig" %} {% block content %}
 
- <div class="row">
-                <div class="col-lg-12">
-                    <h1>{{ cabecera }}<small>Dashboard Home</small></h1>
-                    <div class="alert alert-success alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laboru
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-clock-o"></i>Alerts</h3>
-                        </div>
-                        <div class="panel-body">
-                            <!-- <div class="row alert-success">
-                                <div class="col-xs-5">
-                                    <i class="glyphicon glyphicon-thumbs-up"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">343</p>
-                                    <p class="alerts-text">New Orders</p>
-                                </div>
-                            </div>
-                            <div class="row alert-success">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-up fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">1256</p>
-                                    <p class="alerts-text">Registrations</p>
-                                </div>
-                            </div>
-                            <div class="row alert-danger">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-down fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">4</p>
-                                    <p class="alerts-text">Errors</p>
-                                </div>
-                            </div>
-                            <div class="row alert-success">
-                                <div class="col-xs-5">
-                                    <i class="fa fa-thumbs-o-up fa-5x"></i>
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    <p class="alerts-heading">11</p>
-                                    <p class="alerts-text">Mentions</p>
-                                </div>
-                            </div>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <!-- <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Traffic Estimations for last 30 days</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="shieldui-chart1"></div>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Logins per week</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="shieldui-chart2"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Budget</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="shieldui-chart3"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Purchases</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="shieldui-chart4"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Sales personnel Data</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="shieldui-grid1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<h1>
+			{{ cabecera }}<small>Dashboard Home</small>
+		</h1>
+		<div class="alert alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">&times;</button>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+			eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+			ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+			aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+			pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+			culpa qui officia deserunt mollit anim id est laboru
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-clock-o"></i>Alerts
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row alert-success">
+					<div class="col-xs-5">
+						<i class="fa fa-thumbs-o-up fa-5x"></i>
+					</div>
+					<div class="col-xs-5 text-right">
+						<p class="alerts-heading">343</p>
+						<p class="alerts-text">New Orders</p>
+					</div>
+				</div>
+				<div class="row alert-success">
+					<div class="col-xs-5">
+						<i class="fa fa-thumbs-o-up fa-5x"></i>
+					</div>
+					<div class="col-xs-5 text-right">
+						<p class="alerts-heading">1256</p>
+						<p class="alerts-text">Registrations</p>
+					</div>
+				</div>
+				<div class="row alert-success">
+					<div class="col-xs-5">
+						<i class="fa fa-thumbs-o-up fa-5x"></i>
+					</div>
+					<div class="col-xs-5 text-right">
+						<p class="alerts-heading">11</p>
+						<p class="alerts-text">Mentions</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-9">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-bar-chart-o"></i> Estadísticas de envíos
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div id="chart_div"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-bar-chart-o"></i> Logins per week
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div id="shieldui-chart2">Lorem ipsum dolor sit amet, consectetur
+					adipisicing elit. A magni accusamus id illum distinctio aliquid
+					iure odio quod nostrum et recusandae tempore nulla voluptatem
+					laudantium ducimus quibusdam amet. Suscipit hic.</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-bar-chart-o"></i> Budget
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div id="shieldui-chart3">Lorem ipsum dolor sit amet, consectetur
+					adipisicing elit. Consequatur dolorum totam labore asperiores
+					nesciunt a blanditiis veniam eveniet quis quisquam voluptatem
+					tempora repellendus magnam quidem modi cum dolore doloremque
+					numquam!</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-bar-chart-o"></i> Purchases
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div id="shieldui-chart4">Lorem ipsum dolor sit amet, consectetur
+					adipisicing elit. Ex rerum minus distinctio repellat similique
+					mollitia numquam culpa quibusdam modi impedit eligendi velit vero
+					facilis eaque eum debitis laboriosam est voluptatibus.</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-bar-chart-o"></i> Sales personnel Data
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div id="shieldui-grid1">
+					<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Expedita quaerat repellendus dolorem tempora quisquam architecto
+						officiis perspiciatis autem iusto sequi perferendis eos officia
+						libero laudantium labore aperiam sunt assumenda laborum!</div>
+					<div>Iste consequuntur adipisci ex? Iure nisi porro provident
+						doloribus tenetur beatae quo animi harum aut delectus autem
+						numquam cumque asperiores blanditiis reprehenderit ab quia eum
+						ipsum atque odio perferendis repellat.</div>
+					<div>Reiciendis quaerat vel provident nihil quos asperiores sed
+						nostrum assumenda perspiciatis alias modi vitae tenetur autem
+						dolorem neque quas adipisci laudantium eaque commodi aperiam saepe
+						sapiente doloremque. Quidem quam minus.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.row -->
+
+
+
+
+{% endblock %} {% block javascripts %} {{ parent() }}
+ 
+<script type="text/javascript">
+var jsonData= JSON.parse('{{ pieChart|raw}}');
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+    	  // Create our data table out of JSON data loaded from server.
+          var data = new google.visualization.DataTable(jsonData);
+      
+
+        var options = {
+          title: 'Total de envíos',
+          is3D: true,
+          width: 600, 
+          height: 400
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
 
 
 
 
 {% endblock %}
+
+
+
+

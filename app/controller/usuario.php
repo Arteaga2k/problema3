@@ -44,7 +44,9 @@ class Usuario extends Controller
             'totalpag' => $pagination['totalPag'],
             'inicio' => $pagination['inicio'],
             'fin' => $pagination['fin'],
-            'filtro' => isset($filtro) ? $filtro : ''
+            'filtro' => isset($filtro) ? $filtro : '',
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
 
@@ -102,12 +104,14 @@ class Usuario extends Controller
         
         $this->render('usuarios/form_registro', array(
             'tabla' => 'Usuario',
-            'cabecera' => 'Añadir usuario',          
+            'cabecera' => 'Añadir usuario',
             'accion' => 'add_accion',
             'zona_usuario' => $zona['nombrezona'],
             'usuario' => session::get('usuario_nombre'),
             'hora' => session::get('usuario_hora_inicio'),
-            'zonas' => $zonas
+            'zonas' => $zonas,
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
 
@@ -136,12 +140,17 @@ class Usuario extends Controller
                 header('location: ' . URL . 'home');
             } else {
                 $this->render('usuarios/form_registro', array(
-                    'tabla' => 'Usuario',                    
+                    'tabla' => 'Usuario',
+                    'cabecera' => 'Añadir usuario',
                     'datos' => $data['datos'],
                     'errores' => $data['errores'],
+                    'accion' => 'add_accion',
+                    'usuario' => session::get('usuario_nombre'),
                     'hora' => session::get('usuario_hora_inicio'),
-                    'hora' => session::get('usuario_hora_inicio'),
-                    'zonas' => $zonas
+                    'zonas' => $zonas,
+                    'zona_usuario' => $zona['nombrezona'],
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         }
@@ -181,7 +190,9 @@ class Usuario extends Controller
                 'id_usuario' => $id_usuario,
                 'datos' => $data['datos'],
                 'zona_usuario' => $zona['nombrezona'],
-                'zonas' => $zonas
+                'zonas' => $zonas,
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
         }
     }
@@ -200,6 +211,9 @@ class Usuario extends Controller
         if (isset($_REQUEST['editar_accion'])) {
             // cargamos el modelo y realizamos la acción
             $usuario_model = $this->loadModel('UsuarioModel');
+            $zona_model = $this->loadModel('Zonamodel');
+            $zonas = $zona_model->getZonas();
+            $zona = $zona_model->getZona(session::get('usuario_zona'));
             
             // filtramos y sanitizamos formulario
             $data = $this->filtraFormulario($this->formEditUsuario());
@@ -208,6 +222,9 @@ class Usuario extends Controller
             if ($this->validation($data)) {
                 // insertamos nuevo envío y redireccionamos a envios index
                 $usuario_model->editUsuario($data['datos'], $_REQUEST['id_usuario']);
+                if ($data['datos']['username'])
+                    session::set('usuario_nombre', $data['datos']['username']);
+                
                 header('location: ' . URL . 'usuario/index');
             } else {
                 $this->render('usuarios/form_registro', array(
@@ -217,7 +234,12 @@ class Usuario extends Controller
                     'accion' => 'editar_accion',
                     'id_usuario' => session::get('id_usuario'),
                     'datos' => $data['datos'],
-                    'errores' => $data['errores']
+                    'errores' => $data['errores'],
+                    'hora' => session::get('usuario_hora_inicio'),
+                    'zona_usuario' => $zona['nombrezona'],
+                    'zonas' => $zonas,
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA')
                 ));
             }
         } else {
@@ -237,14 +259,20 @@ class Usuario extends Controller
         Autorizacion::checkLogin();
         
         $zona_model = $this->loadModel('ZonaModel');
-        $zona = $zona_model->getZona($_SESSION['usuario_zona']);
+        $zona = $zona_model->getZona(session::get('usuario_zona'));       
+        $zonas = $zona_model->getZonas();
+      
         
         // creamos la vista, pasamos datos de envío obtenidos
         $this->render('usuarios/configuracion', array(
             'tabla' => 'Configuración',
             'cabecera' => 'parámetros',
             'usuario' => session::get('usuario_nombre'),
-            'zona_usuario' => $zona['nombrezona']
+            'zona_usuario' => $zona['nombrezona'],
+            'hora' => session::get('usuario_hora_inicio'),
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA'),
+            'zonas' => $zonas
         ));
     }
 
@@ -262,19 +290,35 @@ class Usuario extends Controller
             
             // filtramos y sanitizamos formulario
             $data = $this->filtraFormulario($this->formConfiguracion());
+            $config = array();
+            foreach ($data['datos'] as $key => $value) {
+                if (! empty($value))
+                    $config[$key] = $value;
+                else 
+                    $config[$key] = Session::get($key); //guardamos el valor por defecto
+            }
             
             // Si validación ok
-            if ($this->validation($data)) {
+            if (! empty($config)) {
                 // insertamos nuevo envío y redireccionamos a envios index
-                $usuario_model->setConfigParams($data['datos'], Session::get('usuario_id'));
+                $usuario_model->setConfigParams($config, Session::get('usuario_id'));
                 
                 header('location: ' . URL . 'home');
             } else {
+                $zona_model = $this->loadModel('ZonaModel');
+                $zona = $zona_model->getZona(session::get('usuario_zona'));
+                $zonas = $zona_model->getZonas();
+                
                 $this->render('usuarios/configuracion', array(
                     'tabla' => 'Configuración',
                     'cabecera' => 'parámetros',
                     'datos' => $data['datos'],
-                    'errores' => $data['errores']
+                    'errores' => $data['errores'],
+                    'hora' => session::get('usuario_hora_inicio'),
+                    'avatar' => session::get('AVATAR'),
+                    'tema' => Session::get('TEMA'),
+                    'zona_usuario' => $zona['nombrezona'],
+                    'zonas' => $zonas
                 ));
             }
         }
@@ -294,7 +338,7 @@ class Usuario extends Controller
             
             // filtramos y sanitizamos formulario
             $data = $this->filtraFormulario(array(
-                'ver' => 'numerico'
+                'ver' => 'consulta'
             ));
             
             if ($this->validation($data)) {
@@ -315,7 +359,9 @@ class Usuario extends Controller
                         'datos' => $data['datos'],
                         'zona_usuario' => $zona['nombrezona'],
                         'hora' => session::get('usuario_hora_inicio'),
-                        'zonas' => $zonas
+                        'zonas' => $zonas,
+                        'avatar' => session::get('AVATAR'),
+                        'tema' => Session::get('TEMA')
                     ));
                 } else {
                     header('location: ' . URL . 'usuario');
@@ -353,8 +399,31 @@ class Usuario extends Controller
                 'id' => $id_usuario,
                 'zona_usuario' => $zona['nombrezona'],
                 'hora' => session::get('usuario_hora_inicio'),
-                'zonas' => $zonas
+                'zonas' => $zonas,
+                'avatar' => session::get('AVATAR'),
+                'tema' => Session::get('TEMA')
             ));
+        }
+    }
+
+    /**
+     * Cambia el tema css de la aplicacion web
+     *
+     * @param unknown $tema            
+     */
+    public function apariencia($tema)
+    {
+        if ($tema) {          
+            // insertamos nuevo envío y redireccionamos a envios index
+            $config = array();
+            $config['TEMA'] = $tema;
+            $config['COOKIE_RUNTIME'] = Session::get(COOKIE_RUNTIME);
+            $config['REGS_PAG'] = Session::get(REGS_PAG);
+            $config['AVATAR'] = Session::get(AVATAR);
+           // $usuario_model->setConfigParams(array(''), Session::get('usuario_id'));
+            Session::set('TEMA', $tema);
+                        
+            header('location: ' . URL . 'home');
         }
     }
 
@@ -369,7 +438,7 @@ class Usuario extends Controller
         // eliminamos cookie según explica el enlace de abajo
         // ponemos una fecha antigua.
         // @see http://stackoverflow.com/a/686166/1114320
-        setcookie('rememberme', false, time() - (3600 * 3650), '/', 'localhost');
+        // setcookie('rememberme', false, time() - (3600 * 3650), '/', 'localhost');
         
         // borramos sesion
         Session::destroy();
@@ -432,8 +501,9 @@ class Usuario extends Controller
     {
         // campos esperados del formulario envio -nombre/tipo-
         $formConfig = array(
-            'REGS_PAG' => 'numerico',
-            'COOKIE_RUNTIME' => 'numerico'
+            'REGS_PAG' => 'richtext',
+            'COOKIE_RUNTIME' => 'richtext',
+            'AVATAR' => 'richtext'
         );
         
         return $formConfig;

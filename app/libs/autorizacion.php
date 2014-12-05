@@ -15,11 +15,9 @@ class Autorizacion {
 		// si usuario no está logueado, destruimos sesión y redireccionamos al formulario de login
 		if (! isset ( $_SESSION ['usuario_logueado'] )) {
 			
-			if (isset ( $_COOKIE ['rememberme'] )) {
-			    
+			if (isset ( $_COOKIE ['rememberme'] )) {			   
 				header ( 'location: ' . URL . 'login/loginConCookie' );
-			} else {
-			    echo 'no cookie';
+			} else {			    
 				// destruimos session
 				Session::destroy ();
 				// redireccionamos al formulario login

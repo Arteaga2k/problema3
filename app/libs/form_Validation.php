@@ -27,43 +27,43 @@ class Validation
     {
         $opcion = array(
             'texto' => '/^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/',
-            'numerico' => '/^[0-9]{1,20}+$/',
+            'telefono' => '/^[0-9]{6,20}+$/',
+            'consulta' => '/^[0-9]+$/',
             'codpostal' => '/^[0-9]{5}+$/',
-            'alfanum' => '#^[a-z0-9\s]+$#i'
+            'alfanum' => '#^[a-z0-9\s]+$#i',
+            'numerico' => '/^[0-9]+$/'
+         
         );
-        // Comprobamos que la cadena no está vacía
-        if ($cadena) {
-            if ($tipo == "date") {
-                $fecha = explode("-", $cadena);
+        
+        if ($tipo == "date") {
+            $fecha = explode("-", $cadena);
+            
+            if (count($fecha) == 3) {
                 
-                if (count($fecha) == 3) {
-                    
-                    if (! checkdate($fecha[1], $fecha[2], $fecha[0])) {
-                        $this->_errores[$campo] = "La fecha no es válida";
-                    }
-                } else {
-                    $this->_errores[$campo] = "Formato de fecha incorrecto";
+                if (! checkdate($fecha[1], $fecha[2], $fecha[0])) {
+                    $this->_errores[$campo] = "La fecha no es válida";
+                }
+            } else {
+                $this->_errores[$campo] = "Formato de fecha incorrecto";
+            }
+        } else 
+            if ($tipo == "email") { // email
+                
+                if (! filter_var($cadena, FILTER_VALIDATE_EMAIL)) {
+                    $this->_errores[$campo] = 'Introduzca o revise el valor';
                 }
             } else 
-                if ($tipo == "email") { // email
-                    
-                    if (! filter_var($cadena, FILTER_VALIDATE_EMAIL)) {
-                        $this->_errores[$campo] = $campo . ' no es válido';
+                if ($tipo == 'richtext') {
+                    // solo sanitizamos
+                } else {
+                    if (! filter_var($cadena, FILTER_VALIDATE_REGEXP, array(
+                        "options" => array(
+                            "regexp" => $opcion[$tipo]
+                        )
+                    ))) {
+                        $this->_errores[$campo] = 'Introduzca o revise el valor';
                     }
-                } else 
-                    if ($tipo == 'richtext') { // solo sanitizamos
-                    } else {
-                        if (! filter_var($cadena, FILTER_VALIDATE_REGEXP, array(
-                            "options" => array(
-                                "regexp" => $opcion[$tipo]
-                            )
-                        ))) {
-                            $this->_errores[$campo] = 'El ' . $campo . ' no es válido';
-                        }
-                    }
-        } else {
-            $this->_errores[$campo] = 'Introduzca ' . $campo;
-        }
+                }
     }
 
     /**
@@ -72,7 +72,7 @@ class Validation
      *
      * @return valor $_REQUEST|cadena string vacía
      */
-    public function valPost($campo, $tipo)
+    public function valida_Sanitiza($campo, $tipo)
     {
         if (isset($_REQUEST[$campo])) {
             switch ($tipo) {
@@ -87,11 +87,10 @@ class Validation
                     break;
             }
             // Validamos cadena sanitizada
-            
             $this->filterValue($cadena, $tipo, $campo);
             return $cadena;
         } else
-            return 'No existe el campo ' . $campo;
+            return; //'No existe el campo ' . $campo;
     }
 
     /**
@@ -105,13 +104,13 @@ class Validation
     {
         foreach ($data as $key => $value) {
             // saneamos datos
-            $dataForm[$key] = $this->valPost($key, $value);
+            $dataForm[$key] = $this->valida_Sanitiza($key, $value);
         }
         
         $datos = array(
             'datos' => $dataForm, // valores sanitizados y validados
             'errores' => $this->_errores
-        );         
+        );
         return $datos;
     }
 }

@@ -86,7 +86,7 @@ class Controller
     public function pagination($pag, $totalRows)
     {
         if ($pag < 1)
-            $pag = 1;
+            $pag = 1;      
         
         $REGS_PAG = session::get('REGS_PAG');             
         

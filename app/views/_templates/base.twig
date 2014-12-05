@@ -13,7 +13,7 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css"
-	href="{{ constant('URL') }}assets/css/local.css" />
+	href="{{ constant('URL') }}assets/css/{{ tema }}" />
 {% endblock %}
 
 
@@ -53,6 +53,16 @@
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right navbar-user">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"><i
+							class="glyphicon glyphicon-adjust"></i> Apariencia <span
+							class="caret"></span> </a>
+						<ul class="dropdown-menu" role="menu">							
+							<li><a href="{{ constant('URL') }}usuario/apariencia/blue-theme.css">Tema Azul claro</a></li> 
+							<li><a href="{{ constant('URL') }}usuario/apariencia/grey-theme.css">Tema gris claro</a></li> 
+							<li><a href="{{ constant('URL') }}usuario/apariencia/dark-theme.css">Tema dark</a></li> 
+						</ul></li>
+						
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><i
 							class="glyphicon glyphicon-bookmark"></i> {{ zona_usuario }} <span
@@ -67,7 +77,7 @@
 							disable></i>{{ hora }}</a></li>
 					<li class="dropdown user-dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"><i
-							class="glyphicon glyphicon-user"></i> {{ usuario }}<b
+							class="{{ avatar }}"></i> {{ usuario }}<b
 							class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>
@@ -83,6 +93,7 @@
 			</div>
 			{% endif %}
 		</nav>
+		
 
 		<div id="page-wrapper">{% block content %} {% endblock %}</div>
 		<!-- /#page-wrapper -->
@@ -106,6 +117,9 @@
 	<script src="{{ constant('URL') }}assets/js/jquery.cleditor.min.js"
 		type="text/javascript"></script>
 	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>	
+	
 	{% endblock %}
 </body>
 </html>

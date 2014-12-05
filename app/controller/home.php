@@ -23,6 +23,8 @@ class Home extends Controller
         $envios_model = $this->loadModel('EnviosModel');
         $zona_model = $this->loadModel('ZonaModel');
         
+        $piechart = $envios_model->pieChart();              
+        
         $envios = $envios_model->getEnvios($_SESSION['usuario_zona']);
         $zona = $zona_model->getZona($_SESSION['usuario_zona']);
         $zonas = $zona_model->getZonas();
@@ -34,9 +36,14 @@ class Home extends Controller
             'hora' => Session::get('usuario_hora_inicio'),
             'envios' => $envios,
             'zona_usuario' => $zona['nombrezona'],
-            'zonas' => $zonas
+            'zonas' => $zonas,
+            'pieChart' => $piechart,
+            'avatar' => session::get('AVATAR'),
+            'tema' => Session::get('TEMA')
         ));
     }
+    
+    
 
     
 }
