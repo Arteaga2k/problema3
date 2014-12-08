@@ -14,7 +14,8 @@
 			<div class="panel-body">
 				<form action="{{ constant('URL') }}zona/filtroPaginacion/"
 					class="form-inline" role="form" method="POST">
-					<div class="form-group">
+
+					<div class="col-lg-9">
 						<div class="input-group">
 							<span class="input-group-addon">Nombre</span> <input type="text"
 								id="texto" name="texto" placeholder="" class="form-control"
@@ -22,10 +23,13 @@
 						</div>
 					</div>
 
-					<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
-					<a class="btn btn-default"
-						href="{{ constant('URL') }}zona/borraFiltros/">Limpiar filtros</a>
-
+					<div class="col-lg-3">
+						<div class="input-group">
+							<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
+							<a class="btn btn-default"
+								href="{{ constant('URL') }}zona/borraFiltros/">Limpiar filtros</a>
+						</div>
+					</div>
 				</form>
 
 
@@ -33,19 +37,27 @@
 		</div>
 	</div>
 
-	<div class="col-xs-6 col-sm-3 col-lg-4">
+	<div class="col-xs-6 col-sm-3 col-lg-3 col-lg-offset-1">
 		<div class="panel panel-default">
 
 			<div class="panel-body">
 				<form action="{{ constant('URL') }}zona/consulta/"
 					class="form-inline" role="form" method="POST">
-					<div class="form-group">
-						<div class="input-group ">
-							<span class="input-group-addon">ID</span> <input type="text"
+					
+					<div class="col-lg-8">
+						<div class="input-group">
+								<span class="input-group-addon">ID</span> <input type="text"
 								class="form-control" name="ver" id="ver" placeholder="">
 						</div>
 					</div>
-					<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
+					
+					<div class="col-lg-3 col-lg-offset-1">
+						<div class="input-group">
+								<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
+						</div>
+					</div>
+					
+					
 				</form>
 			</div>
 		</div>
@@ -59,7 +71,8 @@
 		<nav class="">
 			<ul class="pagination">
 
-				<li class="{{ page == 1 ? 'disabled' : '' }}"><a href="{{ constant('URL') }}{{ tabla }}/index/1">&laquo;</a></li>
+				<li class="{{ page == 1 ? 'disabled' : '' }}"><a
+					href="{{ constant('URL') }}{{ tabla }}/index/1">&laquo;</a></li>
 				<li class="{{ page == 1 ? 'disabled' : '' }}"><a
 					href="{{ constant('URL') }}{{ tabla }}/index/{{ page == 1 ? 1 : page-1 }}">&larr;</a></li>
 

@@ -51,11 +51,11 @@ class Application
         // crea un array con los par�metros de la URL de la variable $url
         $this->separaUrl();
         // comprobamos que el archivo controlador existe
-        if (file_exists('./app/controller/' . $this->url_controller . '.php')) {           
+        if (file_exists('controller/' . $this->url_controller . '.php') && strtolower($this->url_controller) == 'instalador') {           
             // solo permitimos que cargue el controlador instalador
             if ($this->url_controller == 'instalador') {
                 // Si existe cargamos el archivo y creamos el controlador
-                require './app/controller/' . $this->url_controller . '.php';
+                require 'controller/' . $this->url_controller . '.php';
                 
                 $this->url_controller = new $this->url_controller();
                 // comprobamos que el método requerido existe en el controlador cargado
@@ -69,7 +69,7 @@ class Application
             }
         }else {
             // Por defecto mostramos pantalla bienvenida instalacion
-            require './app/controller/instalador.php';
+            require 'controller/instalador.php';
             $instalacion = new Instalador();
             $instalacion->index();
         }
@@ -87,10 +87,10 @@ class Application
         $this->separaUrl();
         
         // comprobamos que el archivo controlador existe
-        if (file_exists('./app/controller/' . $this->url_controller . '.php')) {
+        if (file_exists('controller/' . $this->url_controller . '.php')) {
             
             // Si existe cargamos el archivo y creamos el controlador
-            require './app/controller/' . $this->url_controller . '.php';
+            require 'controller/' . $this->url_controller . '.php';
             
             $this->url_controller = new $this->url_controller();
             
@@ -117,7 +117,7 @@ class Application
             }
         } else {
             // Si no existe o es inválida la URL nos vamos al index de inicio
-            require './app/controller/home.php';
+            require 'controller/home.php';
             $home = new Home();
             $home->index();
         }

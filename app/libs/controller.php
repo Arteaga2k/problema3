@@ -32,7 +32,7 @@ class Controller
     public function loadModel($model_name)
     {
         // construyo cadena y cargo el modelo
-        require 'app/models/' . strtolower($model_name) . '.php';
+        require 'models/' . strtolower($model_name) . '.php';
         // return el modelo cargado
         return new $model_name();
     }
@@ -61,7 +61,7 @@ class Controller
      */
     public function filtraFormulario($formEnvio)
     {
-        require 'app/libs/form_Validation.php';
+        require 'libs/form_Validation.php';
         $validate = new Validation();
         $data = $validate->checkForm($formEnvio);
         return $data;
@@ -88,7 +88,7 @@ class Controller
         if ($pag < 1)
             $pag = 1;      
         
-        $REGS_PAG = session::get('REGS_PAG');             
+        $REGS_PAG = session::get('REGS_PAG') ? session::get('REGS_PAG'): 10;             
         
         $offset = ($pag - 1) * $REGS_PAG;
         $totalPag = ceil($totalRows / $REGS_PAG);

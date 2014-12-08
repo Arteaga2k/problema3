@@ -17,6 +17,8 @@ class Db
      */
     private static $db;
     
+   
+    
     
     /**
      * El método singleton
@@ -26,14 +28,20 @@ class Db
     public static function singleton()
     {
         if (! self::$db) {
-            try {
+            try {               
                 $dsn = DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8';
                 self::$db = new PDO($dsn, DB_USER, DB_PASS);
                 self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                //var_dump($e->getMessage());
-                die('Connection error: ' . $e->getMessage());
+             
+            } catch (PDOException $e) {   
+               
+                //die('Connection error: ' . $e->getMessage());
+                if (! file_exists('app/config.php')) {
+                  header('location: ' . URL . 'instalador/error');
+                }else{
+                    die('Connection error: ' . $e->getMessage());
+                }
             }
         }
         return self::$db;

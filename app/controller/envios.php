@@ -64,13 +64,13 @@ class Envios extends Controller
         if (isset($_REQUEST['filtro'])) {
             
             // filtramos y sanitizamos formulario
-            $data = $this->filtraFormulario($this->formFiltro());
+            $data = $this->filtraFormulario($this->formFiltro());           
             
             // guardamos valores de campos a filtrar en la sesion
             Session::start();
             
             foreach ($data['datos'] as $key => $value) {
-                if ($value) {
+                if ($value && empty($data['errores'][$key])) {                  
                     Session::set('filtro_' . $key, $value);
                 }
             }
@@ -267,6 +267,7 @@ class Envios extends Controller
             
             // Mostramos datos del envío a editar
             $this->render('envios/form_envio', array(
+                'tabla' => 'Envios',
                 'cabecera' => 'Editar envío',
                 'usuario' => session::get('usuario_nombre'),
                 'hora' => session::get('usuario_hora_inicio'),
@@ -357,6 +358,7 @@ class Envios extends Controller
             $zonas = $zona_model->getZonas();
             
             $this->render('envios/form_envio', array(
+                'tabla' => 'Envios',
                 'cabecera' => 'Anotar envío',
                 'usuario' => session::get('usuario_nombre'),
                 'hora' => session::get('usuario_hora_inicio'),
@@ -409,6 +411,7 @@ class Envios extends Controller
                 $provincias = $envios_model->getAllProvincias();
                 
                 $this->render('envios/form_envio', array(
+                    'tabla' => 'Envios',
                     'cabecera' => 'Anotar envío',
                     'usuario' => $_SESSION['usuario_nombre'],
                     'accion' => 'anotar_accion',
@@ -451,14 +454,23 @@ class Envios extends Controller
                 $data['datos'] = $envios_model->getEnvio($id_envio, $_SESSION['usuario_zona']);
                 // obtenemos listado de provincias
                 $provincias = $envios_model->getAllProvincias();
+                $zona_model = $this->loadModel('Zonamodel');
+                $zona = $zona_model->getZona(session::get('usuario_zona'));
+                $zonas = $zona_model->getZonas();
                 
                 if (! empty($data['datos'])) {
                     $this->render('envios/form_envio', array(
+                        'tabla' => 'Envios',
                         'usuario' => $_SESSION['usuario_nombre'],
                         'cabecera' => 'Consultar envío',
                         'accion' => 'consulta',
                         'provincias' => $provincias,
-                        'datos' => $data['datos']
+                        'datos' => $data['datos'],
+                        'tema' => Session::get('TEMA'),
+                        'hora' => session::get('usuario_hora_inicio'),
+                        'avatar' => session::get('AVATAR'),
+                        'zona_usuario' => $zona['nombrezona'],
+                        'zonas' => $zonas
                     ));
                 } else {
                     header('location: ' . URL . 'envios');

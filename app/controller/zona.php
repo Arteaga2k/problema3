@@ -60,7 +60,7 @@ class Zona extends Controller
             Session::start();
             
             foreach ($data['datos'] as $key => $value) {
-                if ($value) {
+                if ($value && empty($data['errores'][$key])) {
                     Session::set('filtro_' . $key, $value);
                 }
             }

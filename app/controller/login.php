@@ -27,7 +27,8 @@ class Login extends Controller
         
         $this->render('login/form_login', array(
             'login' => TRUE,
-            'zonas' => $zonas
+            'zonas' => $zonas,
+            'tema' => 'blue-theme.css'
         ));
     }
 
@@ -52,8 +53,8 @@ class Login extends Controller
                 // Obtenemos datos del usuario que quiere hacer login
                 $user = $usuario_model->getUsuarioByEmail($dataLogin['datos']['email']);
                 $user['zona'] = $_REQUEST['zona'];
-                
-                if ($user) {
+                // si nos ha devuelto un usuario
+                if (isset($user['id_usuario'])) {
                     // si coinciden passwords hasheadas, acceso ok
                     if (password_verify($dataLogin['datos']['password_hash'], $user['password_hash'])) {
                         // guardamos datos usuario en sesion
@@ -85,9 +86,8 @@ class Login extends Controller
             'tabla' => 'Login',
             'login' => true,
             'cabecera' => 'Registro usuario',          
-            'accion' => 'registro_accion',
-            'avatar' => session::get('AVATAR'),
-            'tema' => Session::get('TEMA')
+            'accion' => 'registro_accion',           
+            'tema' => 'blue-theme.css'
           
         ));
     }
@@ -116,9 +116,8 @@ class Login extends Controller
                     'cabecera' => 'Registro usuario',
                     'accion' => 'registro_accion',
                     'datos' => $data['datos'],
-                    'errores' => $data['errores'],
-                    'avatar' => session::get('AVATAR'),
-                    'tema' => Session::get('TEMA')
+                    'errores' => $data['errores'],                 
+                    'tema' => 'blue-theme.css'
                 ));
             }
         }
@@ -165,6 +164,8 @@ class Login extends Controller
         Session::set('usuario_hora_inicio', date('H:i'));
         
         $params = json_decode($user['configuracion'], true);
+        
+        //var_dump($params);
         
         foreach ($params as $key => $value) {
             session::set($key, $value);

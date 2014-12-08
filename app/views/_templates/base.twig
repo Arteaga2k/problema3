@@ -73,15 +73,13 @@
 								href="{{ constant('URL') }}zona/cambiaZona/{{ zona.id_zona }}">{{
 									zona.nombrezona }}</a></li> {% endif %} {% endfor %}
 						</ul></li>
-					<li><a href="" disabled><i class="glyphicon glyphicon-check"
-							disable></i>{{ hora }}</a></li>
+					<li class="disabled"><a href="" disabled><i class="glyphicon glyphicon-check"
+							></i>{{ hora }}</a></li>
 					<li class="dropdown user-dropdown"><a href="#"
 						class="dropdown-toggle" data-toggle="dropdown"><i
 							class="{{ avatar }}"></i> {{ usuario }}<b
 							class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>
-									Perfil</a></li>
+						<ul class="dropdown-menu">						
 							<li><a href="{{ constant('URL') }}usuario/configuracion"><i
 									class="glyphicon glyphicon-pencil"></i> Settings</a></li>
 							<li class="divider"></li>

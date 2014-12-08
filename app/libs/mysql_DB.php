@@ -82,7 +82,7 @@ class MysqlDB
      */
     public function __construct()
     {
-        require_once 'app/libs/db.php';
+        require_once 'libs/db.php';
         $this->db = Db::singleton();
     }
 

@@ -31,7 +31,7 @@ class UsuarioModel {
 	 * Constructor de la clase
 	 */
 	public function __construct() {
-		require_once 'app/libs/mysql_DB.php';
+		require_once 'libs/mysql_DB.php';
 		$this->mysqlDB = new MysqlDB ();
 	}
 	
@@ -46,7 +46,7 @@ class UsuarioModel {
 		// by the password hashing compatibility library. the third parameter looks a little bit shitty, but that's
 		// how those PHP 5.5 functions want the parameter: as an array with, currently only used with 'cost' => XX
 		// HASH_COST_FACTOR definido en config.php por defecto en 10
-		$hash_cost_factor = (defined ( 'HASH_COST_FACTOR' ) ? HASH_COST_FACTOR : null);
+		$hash_cost_factor = (defined ( 'HASH_COST_FACTOR' ) ? HASH_COST_FACTOR : 10);
 		$user_password_hash = password_hash ( $dataForm ['password_hash'], PASSWORD_DEFAULT, array (
 				'cost' => $hash_cost_factor 
 		) );

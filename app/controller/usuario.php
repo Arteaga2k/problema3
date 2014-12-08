@@ -66,7 +66,7 @@ class Usuario extends Controller
             Session::start();
             
             foreach ($data['datos'] as $key => $value) {
-                if ($value) {
+                if ($value && empty($data['errores'][$key])) {
                     Session::set('filtro_' . $key, $value);
                 }
             }
@@ -353,6 +353,7 @@ class Usuario extends Controller
                 
                 if (! empty($data['datos'])) {
                     $this->render('usuarios/form_registro', array(
+                        'tabla' => 'Usuario',
                         'usuario' => session::get('usuario_nombre'),
                         'cabecera' => 'Consultar usuario',
                         'accion' => 'consulta',
@@ -413,14 +414,17 @@ class Usuario extends Controller
      */
     public function apariencia($tema)
     {
-        if ($tema) {          
-            // insertamos nuevo envío y redireccionamos a envios index
+        if ($tema) {     
+            // cargamos modelo
+            $usuario_model = $this->loadModel('UsuarioModel');     
+            // creamos array configuracion   
             $config = array();
             $config['TEMA'] = $tema;
             $config['COOKIE_RUNTIME'] = Session::get(COOKIE_RUNTIME);
             $config['REGS_PAG'] = Session::get(REGS_PAG);
             $config['AVATAR'] = Session::get(AVATAR);
-           // $usuario_model->setConfigParams(array(''), Session::get('usuario_id'));
+           
+            $usuario_model->setConfigParams($config, Session::get('usuario_id'));
             Session::set('TEMA', $tema);
                         
             header('location: ' . URL . 'home');
@@ -438,7 +442,7 @@ class Usuario extends Controller
         // eliminamos cookie según explica el enlace de abajo
         // ponemos una fecha antigua.
         // @see http://stackoverflow.com/a/686166/1114320
-        // setcookie('rememberme', false, time() - (3600 * 3650), '/', 'localhost');
+        //setcookie('rememberme', false, time() - (3600 * 3650), '/', 'localhost');
         
         // borramos sesion
         Session::destroy();

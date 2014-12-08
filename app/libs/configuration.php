@@ -24,8 +24,8 @@ class Configuration
         $parametros['TEMA'] = 'blue-theme.css';
                 
         // guardamos cambios en la sesion
-        foreach ($data as $key => $value) {
-            session::set($key, $value);
-        }
+        //foreach ($parametros as $key => $value) {
+            session::set('config', $parametros);          
+       // }
     }
 }

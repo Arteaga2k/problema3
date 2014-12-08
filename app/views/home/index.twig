@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1>
-			{{ cabecera }}<small>Dashboard Home</small>
+			{{ cabecera }} <small>Estadísticas</small>
 		</h1>
 		<div class="alert alert-success alert-dismissable">
 			<button type="button" class="close" data-dismiss="alert"
@@ -19,45 +19,62 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-lg-3">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<i class="fa fa-clock-o"></i>Alerts
-				</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row alert-success">
+	<div class="col-lg-12">
+		<div class="col-lg-3">
+			<div class="panel panel-default ">
+				<div class="panel-body alert-info">
 					<div class="col-xs-5">
-						<i class="fa fa-thumbs-o-up fa-5x"></i>
+						<i class="btn-lg glyphicon glyphicon-envelope"></i>
 					</div>
 					<div class="col-xs-5 text-right">
 						<p class="alerts-heading">343</p>
-						<p class="alerts-text">New Orders</p>
+						<p class="alerts-text">Envíos</p>
 					</div>
 				</div>
-				<div class="row alert-success">
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="panel panel-default ">
+				<div class="panel-body alert-info">
 					<div class="col-xs-5">
-						<i class="fa fa-thumbs-o-up fa-5x"></i>
+						<i class="btn-lg glyphicon glyphicon-user"></i>
 					</div>
 					<div class="col-xs-5 text-right">
-						<p class="alerts-heading">1256</p>
-						<p class="alerts-text">Registrations</p>
+						<p class="alerts-heading">17453</p>
+						<p class="alerts-text">Usuarios</p>
 					</div>
 				</div>
-				<div class="row alert-success">
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="panel panel-default ">
+				<div class="panel-body alert-info">
 					<div class="col-xs-5">
-						<i class="fa fa-thumbs-o-up fa-5x"></i>
+						<i class="btn-lg glyphicon glyphicon-globe"></i>
 					</div>
 					<div class="col-xs-5 text-right">
-						<p class="alerts-heading">11</p>
-						<p class="alerts-text">Mentions</p>
+						<p class="alerts-heading">10</p>
+						<p class="alerts-text">Zonas</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="panel panel-default ">
+				<div class="panel-body alert-info">
+					<div class="col-xs-5">
+						<i class="btn-lg glyphicon glyphicon-th"></i>
+					</div>
+					<div class="col-xs-5 text-right">
+						<p class="alerts-heading">1453</p>
+						<p class="alerts-text">Logins</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-9">
+	
+	<div class="col-xs-12 col-lg-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">
@@ -151,7 +168,7 @@
 
 
 {% endblock %} {% block javascripts %} {{ parent() }}
- 
+
 <script type="text/javascript">
 var jsonData= JSON.parse('{{ pieChart|raw}}');
       google.load("visualization", "1", {packages:["corechart"]});
@@ -164,8 +181,11 @@ var jsonData= JSON.parse('{{ pieChart|raw}}');
         var options = {
           title: 'Total de envíos',
           is3D: true,
-          width: 600, 
-          height: 400
+          width: 800, 
+          height: 400,
+          fontSize: 20   
+        
+          
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));

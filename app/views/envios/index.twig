@@ -7,13 +7,14 @@
 			href="{{ constant('URL') }}envios/add">[+] Añadir envío</a>
 	</h1>
 
-	<div class="col-xs-6 col-sm-9 col-lg-8">
+	<div class="col-xs-6 col-sm-9 col-lg-9">
 		<div class="panel panel-default">
-
 			<div class="panel-body">
 				<form action="{{ constant('URL') }}envios/filtroPaginacion/"
 					class="form-inline" role="form" method="POST">
-					<div class="form-group">
+
+
+					<div class="col-lg-3">
 						<div class="input-group">
 							<span class="input-group-addon">Texto</span> <input type="text"
 								id="texto" name="texto" placeholder="" class="form-control"
@@ -21,7 +22,7 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div class="col-lg-3">
 						<div class="input-group">
 							<span class="input-group-addon">Desde</span> <input type="text"
 								id="fec_desde" name="fec_desde" placeholder="aaaa/mm/dd"
@@ -29,7 +30,8 @@
 								value="{{ filtro.filtro_fec_desde|length  ? filtro.filtro_fec_desde : '' }}">
 						</div>
 					</div>
-					<div class="form-group">
+
+					<div class="col-lg-3">
 						<div class="input-group">
 							<span class="input-group-addon">Hasta</span> <input type="text"
 								id="fec_hasta" name="fec_hasta" class="form-control"
@@ -37,9 +39,15 @@
 								value="{{ filtro.filtro_fec_hasta|length  ? filtro.filtro_fec_hasta : '' }}">
 						</div>
 					</div>
-					<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
-					<a class="btn btn-default"
-						href="{{ constant('URL') }}envios/borraFiltros/">Limpiar filtros</a>
+
+					<div class="col-lg-3">
+						<div class="input-group">
+							<button type="submit" name="filtro" class="btn btn-primary">Filtrar</button>
+							<a class="btn btn-default"
+								href="{{ constant('URL') }}envios/borraFiltros/">Limpiar filtros</a>
+						</div>
+					</div>
+
 				</form>
 
 
@@ -47,18 +55,24 @@
 		</div>
 	</div>
 
-	<div class="col-xs-6 col-sm-3 col-lg-4">
+	<div class="col-xs-6 col-sm-3 col-lg-3">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<form action="{{ constant('URL') }}envios/consulta/"
 					class="form-inline" role="form" method="POST">
-					<div class="form-group">
-						<div class="input-group ">
-							<span class="input-group-addon">#ID</span> <input type="text"
+
+					<div class="col-lg-9">
+						<div class="input-group">
+							<span class="input-group-addon">ID</span> <input type="text"
 								class="form-control" name="ver" id="ver" placeholder="">
 						</div>
 					</div>
-					<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
+
+					<div class="col-lg-3">
+						<div class="input-group">
+							<button type="submit" name="consulta" class="btn btn-primary">Ver</button>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -125,13 +139,11 @@
 						{% else %} {% set estado = 'Pendiente' %} {% endif %}
 						<td>{{ envio.fec_creacion }}</td>
 						<td>{{ estado }}</td>
-						<td>
-						 <a class="btn btn-info"
+						<td><a class="btn btn-info"
 							href="{{ constant('URL') }}envios/anotar/{{ envio.id_envio }}">Anotar
-								recepción</a>
-						 <a class="btn btn-default"
+								recepción</a> <a class="btn btn-default"
 							href="{{ constant('URL') }}envios/editar/{{ envio.id_envio }}">Editar
-								</a> <a class="btn btn-danger"
+						</a> <a class="btn btn-danger"
 							href="{{ constant('URL') }}envios/eliminar/{{ envio.id_envio }}">Eliminar</a>
 						</td>
 					</tr>
