@@ -197,7 +197,7 @@
 			{% set estados = { 'p': 'pendiente','e': 'enviado','d': 'devuelto'}
 			%} <select class="form-control" name="estado" id="estado"{{accion|lower == 'anotar_accion' or  accion|lower == 'consulta' ? 'disabled' : '' -}}>
 				{% for key,value in estados %}
-				<option value="{{ key }}">{{ value }}</option> {% endfor %}
+				<option value="{{ key }}" {{ datos.estado == key ? 'selected' : '' }}>{{ value }}</option> {% endfor %}
 			</select>
 		</div>
 	</div>

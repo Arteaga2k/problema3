@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2014 a las 11:55:13
+-- Tiempo de generación: 08-12-2014 a las 21:19:27
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -15,6 +15,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+
 
 
 -- --------------------------------------------------------
@@ -77,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `tbl_envio` (
 --
 
 INSERT INTO `tbl_envio` (`id_envio`, `direccion`, `poblacion`, `codpostal`, `provincia`, `email`, `estado`, `fec_creacion`, `fec_entrega`, `observaciones`, `nombre`, `apellido1`, `apellido2`, `razonsocial`, `telefono1`, `telefono2`, `zona_entrega`, `zona_recepcion`) VALUES
-(6, 'avd huelva 9', 'aljaraque', 21110, '2', 'cav1662@hotmail.com', 'e', '2014-11-27', '2014-11-29', 'po', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
-(7, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
+(6, 'avd huelva 9', 'aljaraque', 21110, '2', 'cav1662@hotmail.com', 'e', '2014-11-27', '2014-11-29', '&#60;img src=&#34;http://php.net/manual/es/images/c0d23d2d6769e53e24a1b3136c064577-php_logo.png&#34;&#62;&#60;br&#62;', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
+(7, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'e', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (8, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (9, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (10, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
@@ -88,7 +89,7 @@ INSERT INTO `tbl_envio` (`id_envio`, `direccion`, `poblacion`, `codpostal`, `pro
 (14, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (15, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (16, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
-(17, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
+(17, 'avd huelva 6', 'aljaraque', 21110, '2', 'cav1662@hotmail.com', 'd', '2014-11-27', '2014-11-29', 'defectuoso', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (18, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (19, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (20, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
@@ -134,9 +135,9 @@ INSERT INTO `tbl_envio` (`id_envio`, `direccion`, `poblacion`, `codpostal`, `pro
 (60, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (61, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (62, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
-(63, 'avd huelva 6', 'aljaraque', 21110, '20', 'cav1662@hotmail.com', 'p', '2014-11-27', '2014-11-29', '', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
+(63, 'avd huelva 6', 'aljaraque', 21110, '2', 'cav1662@hotmail.com', 'd', '2014-11-27', '2014-11-29', '&#60;br&#62;', 'carlos', 'arteaga', 'virella', 'onuba sl', '65156156', '45456456', 2, 2),
 (64, 'direccion', 'carmona', 21110, '9', 'ejemplo@gmail.com', 'p', '2014-09-16', '2015-01-31', 'probando observaciones', 'nombre', 'jejejeje', 'jejejeje', 'pepe sl', '1212121', '1212121', 4, 4),
-(66, 'sdsd', 'sdsdsd', 21110, '2', 'cav1662@hotmail.com', 'p', '2014-11-29', '0000-00-00', 'sdaas', 'sdsds', 'sdsds', 'sdsds', 'sds', '1212121', '121212', 2, 2),
+(66, 'sdsd', 'sdsdsd', 21110, '2', 'cav1662@hotmail.com', 'd', '2014-11-29', '0000-00-00', 'sdaas', 'sdsds', 'sdsds', 'sdsds', 'sds', '1212121', '121212', 2, 2),
 (67, 'zzzzzzz', 'zzzz', 21110, '50', 'zzz@zgo.com', 'p', '2014-12-01', '0000-00-00', 'z', 'zzz', 'zzz', 'zz', 'zz', '11111', '1111', 2, 2);
 
 -- --------------------------------------------------------
@@ -223,15 +224,15 @@ CREATE TABLE IF NOT EXISTS `tbl_usuario` (
   `email` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `remember_token` varchar(10000) COLLATE utf8_spanish_ci NOT NULL,
   `configuracion` mediumtext COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `tbl_usuario`
 --
 
 INSERT INTO `tbl_usuario` (`id_usuario`, `username`, `password_hash`, `email`, `remember_token`, `configuracion`) VALUES
-(6, 'arteaga', '$2y$10$zky33SibzmrDUngOmPb1xeKZAREQFtoa2ZXK0MjGJKDoWH3SKYSWa', 'cav1662@hotmail.com', 'd8e45e556dd66306f2e9efe46aa1c9ace77e683ca6f8e859aa66d5a8bd163e7c', '{"REGS_PAG":"3","COOKIE_RUNTIME":"3434"}'),
-(8, 'car', '$2y$10$SgU0yYbDALn6qtKwQ8r7zumhqYZQ1gydhZzgG95CUc9JT6de2Uqyu', 'arteaga@gmail.com', '', '{"COOKIE_RUNTIME":1209600,"REGS_PAG":10}');
+(6, 'arteaga', '$2y$10$zky33SibzmrDUngOmPb1xeKZAREQFtoa2ZXK0MjGJKDoWH3SKYSWa', 'cav1662@hotmail.com', 'c28ab140de4d36f05fefef710baa33efb0ee7ada2ec7e8fb41b2dfa62a6fef64', '{"TEMA":"grey-theme.css","COOKIE_RUNTIME":"3434","REGS_PAG":"3","AVATAR":"glyphicon glyphicon-send"}'),
+(9, 'Push push', '$2y$10$heUhCKd8PFVQOaWCNT59CudSd6Vtf/QyCrQGNr2ZXpviH5N0z2cMC', 'user@kenollega.com', '', '{"COOKIE_RUNTIME":1209600,"REGS_PAG":10,"AVATAR":"glyphicon glyphicon-user","TEMA":"blue-theme.css"}');
 
 -- --------------------------------------------------------
 
@@ -300,7 +301,7 @@ MODIFY `id_envio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
 -- AUTO_INCREMENT de la tabla `tbl_usuario`
 --
 ALTER TABLE `tbl_usuario`
-MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tbl_zona`
 --

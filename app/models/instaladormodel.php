@@ -2,9 +2,9 @@
 
 /**
  * Clase instaladormodel
- *
- *
- *
+ * Crea una conexión con la base de datos con los parámetros introducidos por el usuario
+ * Genera las tablas y su contenido
+ * Genera el archivo config.php
  * @author Carlos
  *
  */

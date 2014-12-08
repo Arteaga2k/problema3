@@ -140,7 +140,7 @@
 						<td>{{ envio.fec_creacion }}</td>
 						<td>{{ estado }}</td>
 						<td><a class="btn btn-info"
-							href="{{ constant('URL') }}envios/anotar/{{ envio.id_envio }}">Anotar
+							href="{{ constant('URL') }}envios/anotar/{{ envio.id_envio }}" {{ estado == 'Enviado' ? 'disabled' : '' }}>Anotar
 								recepción</a> <a class="btn btn-default"
 							href="{{ constant('URL') }}envios/editar/{{ envio.id_envio }}">Editar
 						</a> <a class="btn btn-danger"
