@@ -57,7 +57,7 @@ class InstaladorModel
         require_once 'libs/db.php';
     }
 
-    public function compruebaConexion($data)
+    public function ejecutaInstalacion($data)
     {
         
         /**

@@ -61,7 +61,7 @@ class Instalador extends Controller
             
             // cargamos el modelo
             $instalador_model = $this->loadModel('InstaladorModel');
-            $result = $instalador_model->compruebaConexion($data);
+            $result = $instalador_model->ejecutaInstalacion($data);
         } else {}
     }
 
