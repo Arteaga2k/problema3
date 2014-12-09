@@ -15,7 +15,7 @@ class Instalador extends Controller
         if (! defined('URL'))
             define('URL', 'http://localhost/problema3/');
         if (! defined('PATH_VIEWS'))
-            define('PATH_VIEWS', 'app/views/');
+            define('PATH_VIEWS', 'views/');
         if (! defined('PATH_VIEW_FILE_TYPE'))
             define('PATH_VIEW_FILE_TYPE', '.twig');
     }
